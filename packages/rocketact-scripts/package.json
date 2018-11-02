@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "git-cz"
   },
@@ -18,8 +20,10 @@
   },
   "homepage": "https://github.com/rocketact/rocketact-scripts#readme",
   "devDependencies": {
+    "@types/node": "^10.12.2",
     "commitizen": "3.0.4",
-    "cz-conventional-changelog": "^2.1.0"
+    "cz-conventional-changelog": "^2.1.0",
+    "typescript": "^3.1.6"
   },
   "config": {
     "commitizen": {
