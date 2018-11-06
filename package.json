@@ -4,6 +4,8 @@
   "description": "Develop React projects with ease",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "git-cz"
   },
