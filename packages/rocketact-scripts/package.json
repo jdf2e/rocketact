@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rocketact/rocketact-scripts.git"
+    "url": "git+https://github.com/jdf2e/rocketact-scripts.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rocketact/rocketact-scripts/issues"
+    "url": "https://github.com/jdf2e/rocketact-scripts/issues"
   },
-  "homepage": "https://github.com/rocketact/rocketact-scripts#readme",
+  "homepage": "https://github.com/jdf2e/rocketact-scripts#readme",
   "devDependencies": {
     "@types/chalk": "^2.2.0",
     "@types/node": "^10.12.2",
