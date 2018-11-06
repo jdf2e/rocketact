@@ -9,21 +9,43 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rocketact/rocketact.git"
+    "url": "git+https://github.com/jdf2e/rocketact.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rocketact/rocketact/issues"
+    "url": "https://github.com/jdf2e/rocketact/issues"
   },
-  "homepage": "https://github.com/rocketact/rocketact#readme",
+  "homepage": "https://github.com/jdf2e/rocketact#readme",
   "devDependencies": {
+    "@types/node": "^10.12.2",
     "commitizen": "3.0.4",
-    "cz-conventional-changelog": "^2.1.0"
+    "cz-conventional-changelog": "^2.1.0",
+    "husky": "^1.1.3",
+    "lint-staged": "^8.0.4",
+    "prettier": "^1.14.3",
+    "typescript": "^3.1.6"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "chalk": "^2.4.1"
+  },
+  "engines": {
+    "node": ">=7"
   }
 }
