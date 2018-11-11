@@ -7,11 +7,11 @@ export interface webpackChainFn {
 }
 
 class Core {
-  webpackChainFns: webpackChainFn[];
-  webpackChain: WebpackChain;
-  commands: {
+  private webpackChainFns: webpackChainFn[];
+  private commands: {
     [key: string]: { fn: () => void };
   };
+  webpackChain: WebpackChain;
 
   constructor() {
     this.webpackChainFns = [];
