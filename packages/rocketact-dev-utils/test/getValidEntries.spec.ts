@@ -1,4 +1,4 @@
-import { getValidEntries } from "./paths";
+import { getValidEntries } from "../src/getValidEntries";
 
 import path from "path";
 
