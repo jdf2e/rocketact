@@ -10,6 +10,7 @@ export default (api: CoreAPI) => {
       .resolve.extensions.add(".js")
       .add(".ts")
       .add(".jsx")
-      .add(".tsx");
+      .add(".tsx")
+      .end();
   });
 };
