@@ -14,4 +14,17 @@ describe("CoreAPI", () => {
       expect(core.webpackChainFns[0]).toBe(fn);
     });
   });
+
+  describe("#registerCommand", () => {
+    it("should add commands to Core.commands", () => {
+      const core = new Core();
+      const coreAPI = new CoreAPI(core);
+
+      const fn = jest.fn();
+
+      coreAPI.registerCommand("myapi", fn);
+
+      expect(core.commands["myapi"]["fn"]).toBe(fn);
+    });
+  });
 });

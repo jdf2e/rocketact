@@ -1,7 +1,7 @@
 import Core, { webpackChainFn } from "./Core";
 
 export default class CoreAPI {
-  readonly core: Core;
+  private readonly core: Core;
   constructor(core: Core) {
     this.core = core;
   }
