@@ -21,10 +21,10 @@ if (!semver.satisfies(process.version, pkg.engines.node)) {
 
 const core = new Core();
 
-const scriptName = path.basename(__filename, ".js");
-
-const i = process.argv.findIndex(arg => arg.startsWith(scriptName));
-
+const scriptName = path.basename(__filename).replace(/\.[tj]s$/, "");
+const i = process.argv.findIndex(arg =>
+  path.basename(arg).startsWith(scriptName)
+);
 const command = process.argv[i + 1];
 const argvs = minimist(process.argv.slice(i + 2));
 

@@ -27,7 +27,7 @@ class Core {
 
   run(command: string, args: minimist.ParsedArgs) {
     if (!this.commands["command"]) {
-      console.log(error(`Command ${command} does not exist!`));
+      console.log(error(`Subcommand [${command}] does not exist!`));
       process.exit(1);
     }
   }

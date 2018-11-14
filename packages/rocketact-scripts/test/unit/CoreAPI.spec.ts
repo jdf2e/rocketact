@@ -1,5 +1,5 @@
-import Core from "../src/Core";
-import CoreAPI from "../src/CoreAPI";
+import Core from "../../src/Core";
+import CoreAPI from "../../src/CoreAPI";
 
 describe("CoreAPI", () => {
   describe("#chainWebpack", () => {
