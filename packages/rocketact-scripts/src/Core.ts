@@ -1,4 +1,6 @@
 import WebpackChain from "webpack-chain";
+import { error } from "rocketact-dev-utils";
+import minimist from "minimist";
 
 import CoreAPI from "./CoreAPI";
 
@@ -23,8 +25,11 @@ class Core {
     this.webpackChainFns.forEach(fn => fn(this.webpackChain));
   }
 
-  run() {
-    // this.applyAp
+  run(command: string, args: minimist.ParsedArgs) {
+    if (!this.commands["command"]) {
+      console.log(error(`Command ${command} does not exist!`));
+      process.exit(1);
+    }
   }
 }
 
