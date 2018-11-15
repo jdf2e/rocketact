@@ -27,19 +27,27 @@ class Core {
   }
 
   resolveBuiltInPlugins() {
-    const builtInPlugins = glob.sync("commands/*.*,./config/**/*.*", {
-      cwd: __dirname
-    });
-    console.log(builtInPlugins);
+    const builtInPlugins = [
+      ...glob.sync("./commands/*.*", {
+        cwd: __dirname
+      }),
+      ...glob.sync("./config/**/*.*", {
+        cwd: __dirname
+      })
+    ];
+
+    builtInPlugins.forEach(file => require(file).default(new CoreAPI(this)));
   }
 
   run(command: string, args: minimist.ParsedArgs) {
     this.resolveBuiltInPlugins();
     this.applyWebpackChainFns();
-    if (!this.commands["command"]) {
+    if (!this.commands[command]) {
       console.log(error(`Subcommand [${command}] does not exist!`));
       process.exit(1);
     }
+
+    this.commands[command].fn();
   }
 }
 
