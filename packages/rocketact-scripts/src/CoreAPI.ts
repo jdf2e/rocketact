@@ -13,4 +13,8 @@ export default class CoreAPI {
   registerCommand(name: string, fn: () => void) {
     this.core.commands[name] = { fn };
   }
+
+  resolveWebpackPlugins() {
+    return this.core.resolveWebpackPlugins();
+  }
 }

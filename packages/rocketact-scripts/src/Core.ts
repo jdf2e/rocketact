@@ -35,8 +35,11 @@ class Core {
         cwd: __dirname
       })
     ];
-
     builtInPlugins.forEach(file => require(file).default(new CoreAPI(this)));
+  }
+
+  resolveWebpackPlugins() {
+    return this.webpackChain.toConfig();
   }
 
   run(command: string, args: minimist.ParsedArgs) {

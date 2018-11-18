@@ -10,8 +10,9 @@ export default (api: CoreAPI) => {
   api.chainWebpack(webpackChain => {
     if (isProductionEnv()) {
       webpackChain.optimization
-        .minimizer(
-          new UglifyJsPlugin({
+        .minimizer("js")
+        .use(UglifyJsPlugin, [
+          {
             cache: true,
             parallel: true,
             uglifyOptions: {
@@ -22,10 +23,12 @@ export default (api: CoreAPI) => {
               }
             },
             sourceMap: false
-          })
-        )
-        .minimizer(
-          new OptimizeCSSAssetsPlugin({
+          }
+        ])
+        .end()
+        .minimizer("css")
+        .use(OptimizeCSSAssetsPlugin, [
+          {
             assetNameRegExp: /\.css$/g,
             cssProcessor: cssnano, // 默认使用 cssnano 这个处理 css，看了一个 clean-css 的方案，4.2 版本才可用，以后再说
             cssProcessorOptions: {
@@ -36,8 +39,8 @@ export default (api: CoreAPI) => {
               zindex: false,
               map: false
             }
-          })
-        )
+          }
+        ])
         .end();
     }
   });
