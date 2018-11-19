@@ -16,9 +16,9 @@ interface IValidEntries {
 
 const getJsEntries = (p: string): IEntries => {
   return R.pipe(
-    R.flip(R.nAry(2, path.resolve))("./src/js/pages/"),
+    R.flip(R.nAry(2, path.resolve))("./src/pages/"),
     fs.readdirSync,
-    R.map(R.curry(R.nAry(3, path.resolve))(p, "./src/js/pages")),
+    R.map(R.curry(R.nAry(3, path.resolve))(p, "./src/pages")),
     R.filter(R.test(/\.[tj]sx?$/)),
     R.converge(R.zipObj, [
       R.map(
@@ -34,9 +34,9 @@ const getJsEntries = (p: string): IEntries => {
 
 const getHtmlEntries = (p: string): IEntries => {
   return R.pipe(
-    R.flip(R.nAry(2, path.resolve))("./src/html/"),
+    R.flip(R.nAry(2, path.resolve))("./src/pages/"),
     fs.readdirSync,
-    R.map(R.curry(R.nAry(3, path.resolve))(p, "./src/html")),
+    R.map(R.curry(R.nAry(3, path.resolve))(p, "./src/pages")),
     R.filter(R.test(/\.html$/)),
     R.converge(R.zipObj, [
       R.map(
