@@ -6,7 +6,7 @@ import { getValidEntries, appRoot } from "rocketact-dev-utils";
 
 export default (api: CoreAPI) => {
   api.chainWebpack(webpackChain => {
-    const validEntries = getValidEntries(appRoot);
+    const validEntries = getValidEntries(appRoot());
 
     Object.keys(validEntries).forEach(entryName => {
       const entry = validEntries[entryName];

@@ -5,15 +5,22 @@ import CoreAPI from "../CoreAPI";
 import { error, success } from "rocketact-dev-utils";
 
 export default (api: CoreAPI) => {
-  api.registerCommand("build", () => {
-    process.env.NODE_ENV = "production";
+  api.registerCommand(
+    "build",
+    (): Promise<any> => {
+      process.env.NODE_ENV = "production";
 
-    webpack(api.resolveWebpackPlugins(), (err, stats) => {
-      if (err || stats.hasErrors()) {
-        console.log(error(`${err.name}: ${err.message}`));
-      } else {
-        console.log("Build Success!");
-      }
-    });
-  });
+      return new Promise((resolve, reject) => {
+        webpack(api.resolveWebpackPlugins(), (err, stats) => {
+          if (err || stats.hasErrors()) {
+            console.log(error(`${err.name}: ${err.message}`));
+            reject(err);
+          } else {
+            console.log("Build Success!");
+            resolve();
+          }
+        });
+      });
+    }
+  );
 };

@@ -14,9 +14,10 @@ export default (api: CoreAPI) => {
       .publicPath(
         isDevelopmentEnv()
           ? "/"
-          : ensureTrailingSlash(require(paths.appPackageJson).publicPath) || "/"
+          : ensureTrailingSlash(require(paths.appPackageJson()).publicPath) ||
+            "/"
       )
-      .path(isProductionEnv() ? paths.appBuild : "/")
+      .path(isProductionEnv() ? paths.appBuild() : "/")
       .end();
   });
 };

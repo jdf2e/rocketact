@@ -12,7 +12,7 @@ export interface webpackChainFn {
 class Core {
   webpackChainFns: webpackChainFn[];
   commands: {
-    [key: string]: { fn: () => void };
+    [key: string]: { fn: () => Promise<any> };
   };
   webpackChain: WebpackChain;
 
@@ -43,7 +43,7 @@ class Core {
     return this.webpackChain.toConfig();
   }
 
-  run(command: string, args: minimist.ParsedArgs) {
+  run(command: string, args: minimist.ParsedArgs): Promise<any> {
     this.resolveBuiltInPlugins();
 
     if (!this.commands[command]) {
@@ -51,7 +51,7 @@ class Core {
       process.exit(1);
     }
 
-    this.commands[command].fn();
+    return this.commands[command].fn();
   }
 }
 

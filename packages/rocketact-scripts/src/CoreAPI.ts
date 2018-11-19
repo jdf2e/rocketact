@@ -10,7 +10,7 @@ export default class CoreAPI {
     this.core.webpackChainFns.push(fn);
   }
 
-  registerCommand(name: string, fn: () => void) {
+  registerCommand(name: string, fn: () => Promise<any>) {
     this.core.commands[name] = { fn };
   }
 
