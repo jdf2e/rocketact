@@ -4,3 +4,5 @@ dist/
 coverage/
 test/**/build
 test/**/package-lock.json
+.DS_Store
+**/.DS_Store

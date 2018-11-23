@@ -10,7 +10,7 @@ export default (api: CoreAPI) => {
   api.chainWebpack(webpackChain => {
     if (isProductionEnv()) {
       webpackChain.optimization
-        .minimizer("js")
+        .minimizer("script")
         .use(UglifyJsPlugin, [
           {
             cache: true,
