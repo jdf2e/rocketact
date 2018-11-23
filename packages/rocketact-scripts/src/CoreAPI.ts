@@ -14,7 +14,7 @@ export default class CoreAPI {
     this.core.commands[name] = { fn };
   }
 
-  resolveWebpackPlugins() {
-    return this.core.resolveWebpackPlugins();
+  resolveWebpackConfig() {
+    return this.core.resolveWebpackConfig();
   }
 }

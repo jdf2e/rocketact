@@ -3,15 +3,16 @@ import Core from "../../src/Core";
 import path from "path";
 
 let originalCwd: () => string;
+let consoleLog: jest.Mock;
 // let originalLog;
 
 describe("rocketact-scripts: build", () => {
-  beforeAll(() => {
+  beforeEach(() => {
     originalCwd = process.cwd;
     // originalLog = console.log;
   });
 
-  afterAll(() => {
+  afterEach(() => {
     process.cwd = originalCwd;
     // console.log = originalLog;
   });

@@ -38,7 +38,7 @@ class Core {
     builtInPlugins.forEach(file => require(file).default(new CoreAPI(this)));
   }
 
-  resolveWebpackPlugins() {
+  resolveWebpackConfig() {
     this.applyWebpackChainFns();
     return this.webpackChain.toConfig();
   }

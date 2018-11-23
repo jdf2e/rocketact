@@ -11,7 +11,7 @@ export default (api: CoreAPI) => {
       process.env.NODE_ENV = "production";
 
       return new Promise((resolve, reject) => {
-        webpack(api.resolveWebpackPlugins(), (err, stats) => {
+        webpack(api.resolveWebpackConfig(), (err, stats) => {
           if (err || stats.hasErrors()) {
             console.log(error(`${err.name}: ${err.message}`));
             reject(err);
