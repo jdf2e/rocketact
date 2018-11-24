@@ -30,7 +30,7 @@ export default (api: CoreAPI) => {
         .use(OptimizeCSSAssetsPlugin, [
           {
             assetNameRegExp: /\.css$/g,
-            cssProcessor: cssnano, // 默认使用 cssnano 这个处理 css，看了一个 clean-css 的方案，4.2 版本才可用，以后再说
+            cssProcessor: cssnano,
             cssProcessorOptions: {
               reduceIdents: false,
               mergeIdents: false,

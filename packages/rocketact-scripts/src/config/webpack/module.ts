@@ -61,7 +61,7 @@ export default (api: CoreAPI) => {
         })
         .end()
         .use("scss")
-        .loader("scss-loader")
+        .loader("sass-loader")
         .options({
           sourceMap: true,
           outputStyle: "compressed"
@@ -102,7 +102,7 @@ export default (api: CoreAPI) => {
         })
         .end()
         .use("scss")
-        .loader("scss-loader")
+        .loader(require.resolve("sass-loader"))
         .end()
         .end()
         .rule("html")
@@ -120,7 +120,7 @@ export default (api: CoreAPI) => {
         .loader("url-loader")
         .options({
           limit: 10 * 1024,
-          name: "/css/i/[name].[hash:8].[ext]"
+          name: "css/i/[name].[hash:8].[ext]"
         })
         .end();
     }

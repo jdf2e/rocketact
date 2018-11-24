@@ -13,8 +13,14 @@ export default (api: CoreAPI) => {
       return new Promise((resolve, reject) => {
         webpack(api.resolveWebpackConfig(), (err, stats) => {
           if (err || stats.hasErrors()) {
-            console.log(error(`${err.name}: ${err.message}`));
-            reject(err);
+            if (err) {
+              console.log(error(`${err.name}: ${err.message}`));
+              reject(err);
+            } else {
+              const info = stats.toJson();
+              console.log(error(info.errors));
+              reject(info.errors);
+            }
           } else {
             console.log("Build Success!");
             resolve();
