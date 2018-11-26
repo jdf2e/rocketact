@@ -1,6 +1,8 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 import webpack from "webpack";
+import path from "path";
 
 import CoreAPI from "../../CoreAPI";
 
@@ -24,7 +26,20 @@ export default (api: CoreAPI) => {
         .end()
         .plugin("NoEmitOnErrorsPlugin")
         .use(webpack.NoEmitOnErrorsPlugin)
+        .end()
+        .plugin("HotModuleReplacementPlugin")
+        .use(webpack.HotModuleReplacementPlugin)
         .end();
+      // .plugin("ReactHotLoader")
+      // .use(
+      //   require(path.join(
+      //     process.cwd(),
+      //     "./node_modules/",
+      //     "react-hot-loader/babel"
+      //   )),
+      //   [{}]
+      // )
+      // .end();
     }
 
     if (isProductionEnv()) {

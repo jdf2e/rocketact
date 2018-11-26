@@ -2,6 +2,8 @@ const autoprefixer = require("autoprefixer");
 const postcssFlexbugsFixes = require("postcss-flexbugs-fixes");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+import path from "path";
+
 import CoreAPI from "../../CoreAPI";
 
 import { isDevelopmentEnv, isProductionEnv } from "../../utils/environment";
@@ -25,7 +27,14 @@ export default (api: CoreAPI) => {
       .use("babel")
       .loader("babel-loader")
       .options({
-        presets: ["babel-preset-rocketact"]
+        presets: ["babel-preset-rocketact"],
+        plugins: [
+          require(path.join(
+            process.cwd(),
+            "./node_modules/",
+            "react-hot-loader/babel"
+          ))
+        ]
       })
       .end()
       .end()

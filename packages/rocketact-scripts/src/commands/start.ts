@@ -13,11 +13,11 @@ export default (api: CoreAPI) => {
       process.env.NODE_ENV = "development";
 
       return new Promise((resolve, reject) => {
-        const compiler = webpack(api.resolveWebpackConfig());
+        const webpackConfig = api.resolveWebpackConfig();
         const devServerOptions = {
           disableHostCheck: true,
           overlay: true,
-          // hot: true,
+          hot: true,
           host: "127.0.0.1",
           publicPath: "/",
           // contentBase: ['./src/html', './src'],
@@ -35,6 +35,9 @@ export default (api: CoreAPI) => {
           // },
         };
 
+        DevServer.addDevServerEntrypoints(webpackConfig, devServerOptions);
+
+        const compiler = webpack(webpackConfig);
         const devServer = new DevServer(compiler, devServerOptions);
         detectPort(3000, (err, availablePort) => {
           if (err) {
