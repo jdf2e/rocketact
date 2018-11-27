@@ -1,5 +1,3 @@
-const merge = require("babel-merge");
-
 const polyfillsPlugin = require.resolve("./polyfillsPlugin");
 const polyfill = require.resolve("./polyfill");
 
