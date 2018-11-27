@@ -9,6 +9,9 @@
     "test": "jest --coverage",
     "commit": "git-cz"
   },
+  "bin": {
+    "rocketact-scripts": "./dist/bin/rocketact-scripts.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jdf2e/rocketact-scripts.git"
