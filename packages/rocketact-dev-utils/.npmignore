@@ -1,5 +1,4 @@
-dist/
-.DS_Store
+
 # Logs
 logs
 *.log
@@ -63,3 +62,10 @@ typings/
 .next
 
 .vscode/
+
+test/
+src/
+jest.config.js
+tsconfig.json
+.travis.yml
+*.map
