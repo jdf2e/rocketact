@@ -30,16 +30,6 @@ export default (api: CoreAPI) => {
         .plugin("HotModuleReplacementPlugin")
         .use(webpack.HotModuleReplacementPlugin)
         .end();
-      // .plugin("ReactHotLoader")
-      // .use(
-      //   require(path.join(
-      //     process.cwd(),
-      //     "./node_modules/",
-      //     "react-hot-loader/babel"
-      //   )),
-      //   [{}]
-      // )
-      // .end();
     }
 
     if (isProductionEnv()) {
