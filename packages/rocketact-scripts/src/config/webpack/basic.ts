@@ -1,5 +1,7 @@
-import CoreAPI from "../../CoreAPI";
+import path from "path";
+import { appRoot } from "rocketact-dev-utils";
 
+import CoreAPI from "../../CoreAPI";
 import { isDevelopmentEnv } from "../../utils/environment";
 
 export default (api: CoreAPI) => {
@@ -11,6 +13,10 @@ export default (api: CoreAPI) => {
       .add(".ts")
       .add(".jsx")
       .add(".tsx")
-      .end();
+      .end()
+      .alias.set(
+        "react-hot-loader",
+        path.resolve(appRoot(), "./node_modules/react-hot-loader")
+      );
   });
 };
