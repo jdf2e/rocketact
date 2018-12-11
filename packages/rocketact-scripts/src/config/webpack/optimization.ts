@@ -10,6 +10,15 @@ export default (api: CoreAPI) => {
   api.chainWebpack(webpackChain => {
     if (isProductionEnv()) {
       webpackChain.optimization
+        .splitChunks({
+          cacheGroups: {
+            commons: {
+              test: /[\\/]node_modules[\\/]/,
+              name: "vendor",
+              chunks: "initial"
+            }
+          }
+        })
         .minimizer("script")
         .use(UglifyJsPlugin, [
           {
