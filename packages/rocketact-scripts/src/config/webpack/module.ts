@@ -16,7 +16,7 @@ export default (api: CoreAPI) => {
       .rule("font")
       .test(/\.(ttf|eot|woff|woff2)$/)
       .use("file")
-      .loader("file-loader")
+      .loader(require.resolve("file-loader"))
       .options({
         name: "css/fonts/[name].[ext]"
       })
@@ -27,9 +27,9 @@ export default (api: CoreAPI) => {
       .include.add(appSrc())
       .end()
       .use("babel")
-      .loader("babel-loader")
+      .loader(require.resolve("babel-loader"))
       .options({
-        presets: ["babel-preset-rocketact"],
+        presets: [require.resolve("babel-preset-rocketact")],
         plugins: [
           require(path.join(
             process.cwd(),
@@ -47,19 +47,19 @@ export default (api: CoreAPI) => {
         .rule("scss")
         .test(/\.(css|sass|scss)$/)
         .use("style")
-        .loader("style-loader")
+        .loader(require.resolve("style-loader"))
         .options({
           sourceMap: true
         })
         .end()
         .use("css")
-        .loader("css-loader")
+        .loader(require.resolve("css-loader"))
         .options({
           sourceMap: true
         })
         .end()
         .use("postcss")
-        .loader("postcss-loader")
+        .loader(require.resolve("postcss-loader"))
         .options({
           sourceMap: true,
           ident: "postcss",
@@ -72,7 +72,7 @@ export default (api: CoreAPI) => {
         })
         .end()
         .use("scss")
-        .loader("sass-loader")
+        .loader(require.resolve("sass-loader"))
         .options({
           sourceMap: true,
           outputStyle: "compressed"
@@ -82,7 +82,7 @@ export default (api: CoreAPI) => {
         .rule("image")
         .test(/\.(png|jpg|gif|svg|jpeg|webp)$/)
         .use("file")
-        .loader("file-loader")
+        .loader(require.resolve("file-loader"))
         .options({
           name: "css/i/[name].[hash:8].[ext]",
           publicPath: "/"
@@ -98,10 +98,10 @@ export default (api: CoreAPI) => {
         .loader(MiniCssExtractPlugin.loader)
         .end()
         .use("css")
-        .loader("css-loader")
+        .loader(require.resolve("css-loader"))
         .end()
         .use("postcss")
-        .loader("postcss-loader")
+        .loader(require.resolve("postcss-loader"))
         .options({
           ident: "postcss",
           plugins: () => [
@@ -115,11 +115,13 @@ export default (api: CoreAPI) => {
         .use("scss")
         .loader(require.resolve("sass-loader"))
         .end()
-        .end()
+        .end();
+
+      webpackChain.module
         .rule("html")
         .test(/\.html$/)
         .use("html")
-        .loader("html-loader")
+        .loader(require.resolve("html-loader"))
         .options({
           attrs: ["img:src"]
         })
@@ -128,7 +130,7 @@ export default (api: CoreAPI) => {
         .rule("image")
         .test(/\.(png|jpg|gif|svg|jpeg|webp)$/)
         .use("url")
-        .loader("url-loader")
+        .loader(require.resolve("url-loader"))
         .options({
           limit: 10 * 1024,
           name: "css/i/[name].[hash:8].[ext]"
