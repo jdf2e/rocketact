@@ -8,7 +8,7 @@ import CoreAPI from "../../CoreAPI";
 
 import { isDevelopmentEnv, isProductionEnv } from "../../utils/environment";
 
-import { getValidEntries, appRoot } from "rocketact-dev-utils";
+import { getValidEntries, appRoot, appSrc } from "rocketact-dev-utils";
 
 export default (api: CoreAPI) => {
   api.chainWebpack(webpackChain => {
@@ -24,6 +24,8 @@ export default (api: CoreAPI) => {
       .end()
       .rule("compile")
       .test(/\.[tj]sx?$/)
+      .include.add(appSrc())
+      .end()
       .use("babel")
       .loader("babel-loader")
       .options({
