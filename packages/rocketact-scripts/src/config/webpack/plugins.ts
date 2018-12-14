@@ -1,12 +1,15 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+import { info } from "rocketact-dev-utils";
+
 import webpack from "webpack";
 import path from "path";
 
 import CoreAPI from "../../CoreAPI";
 
 import { isProductionEnv, isDevelopmentEnv } from "../../utils/environment";
+import ConsolePlugin from "../../plugins/console";
 
 import {
   getValidEntries,
@@ -17,6 +20,17 @@ import {
 export default (api: CoreAPI) => {
   api.chainWebpack(webpackChain => {
     if (isDevelopmentEnv()) {
+      webpackChain.plugin("ConsolePlugin").use(ConsolePlugin, [
+        {
+          messages: [
+            () =>
+              `Your application is running at ${info(
+                `http://localhost:${global.ROCKETACT_PORT}`
+              )}`
+          ],
+          notes: [`To create a production bundle, run ${info("npm run build")}`]
+        }
+      ]);
       webpackChain
         .plugin("NamedModulesPlugin")
         .use(webpack.NamedModulesPlugin)
