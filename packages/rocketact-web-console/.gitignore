@@ -1,0 +1,5 @@
+node_modules/
+client/*
+server/*
+index.js
+.DS_Store
