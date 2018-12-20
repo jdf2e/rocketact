@@ -87,7 +87,7 @@ class App extends React.PureComponent<{}, IAppState> {
                 style={{
                   background: "#fff",
                   margin: "24px 16px 0",
-                  overflow: "initial",
+                  overflowY: "auto",
                   padding: 20
                 }}
               >

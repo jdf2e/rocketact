@@ -3,6 +3,7 @@ import express from "express";
 
 import projectAPI from "./server/projectAPI";
 import pagesAPI from "./server/pagesAPI";
+import dependenciesAPI from "./server/dependenciesAPI";
 
 export default (app: express.Application) => {
   app.use(
@@ -16,4 +17,5 @@ export default (app: express.Application) => {
 
   app.use("/ROCKETACT_WEB_CONSOLE/api/project", projectAPI);
   app.use("/ROCKETACT_WEB_CONSOLE/api/pages", pagesAPI);
+  app.use("/ROCKETACT_WEB_CONSOLE/api/dependencies", dependenciesAPI);
 };
