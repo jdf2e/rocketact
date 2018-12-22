@@ -7,7 +7,16 @@ import { IDependency } from "../../server/dependenciesAPI";
 
 import * as API from "../api";
 
-import { Table, Tag, Icon, Tooltip, Tabs, Button, Modal } from "antd";
+import {
+  Table,
+  Tag,
+  Icon,
+  Tooltip,
+  Tabs,
+  Button,
+  Modal,
+  Popconfirm
+} from "antd";
 
 import Loading from "../components/Loading";
 import PackageInstaller from "../components/PackageInstaller";
@@ -106,14 +115,34 @@ class Dependencies extends React.Component<
         title: "Opeartion",
         key: "opeartion",
         align: "center" as "center",
-        render: (text: any, record: IDependency) =>
-          record.homepage ? (
-            <Tooltip placement="top" title="View homepage">
-              <a href={record.homepage} target="_blank">
-                <Icon type="home" />
+        render: (text: any, record: IDependency) => (
+          <React.Fragment>
+            {record.homepage ? (
+              <Tooltip placement="top" title="View homepage">
+                <a
+                  href={record.homepage}
+                  target="_blank"
+                  style={{ marginRight: 10 }}
+                >
+                  <Icon type="home" />
+                </a>
+              </Tooltip>
+            ) : null}
+            <Popconfirm
+              placement="topRight"
+              title="Are you sure?"
+              onConfirm={() => {
+                alert("removed");
+              }}
+              okText="Yes"
+              cancelText="No"
+            >
+              <a href="javascript:void(0)" style={{ color: "#F5222D" }}>
+                <Icon type="delete" />
               </a>
-            </Tooltip>
-          ) : null
+            </Popconfirm>
+          </React.Fragment>
+        )
       }
     ];
 
@@ -128,9 +157,8 @@ class Dependencies extends React.Component<
       </Button>
     );
 
-    const { main, dev, loading, all, version } = this.props.store;
+    const { main, dev, loading } = this.props.store;
 
-    const allDependencies = [...new Set([...all].map(d => d.id))];
     return (
       <React.Fragment>
         <Tabs tabBarExtraContent={operations}>

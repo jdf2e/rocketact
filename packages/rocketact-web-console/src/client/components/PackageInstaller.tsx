@@ -10,7 +10,8 @@ import {
   Button,
   Tooltip,
   Icon,
-  Divider
+  Divider,
+  Popover
 } from "antd";
 import TimeAgo from "react-timeago";
 import gravatar from "gravatar";
@@ -150,9 +151,24 @@ class PackageInstaller extends React.Component<
                       Installed
                     </Button>
                   ) : (
-                    <Button type="primary" icon="download">
-                      Install
-                    </Button>
+                    <Popover
+                      placement="topRight"
+                      title="Do you want install it as?"
+                      content={
+                        <React.Fragment>
+                          <Button type="primary">Main dependency</Button>
+                          <span style={{ marginLeft: 10, marginRight: 10 }}>
+                            or
+                          </span>
+                          <Button>Dev dependency</Button>
+                        </React.Fragment>
+                      }
+                      trigger="click"
+                    >
+                      <Button type="primary" icon="download">
+                        Install
+                      </Button>
+                    </Popover>
                   )
                 ]}
               >
