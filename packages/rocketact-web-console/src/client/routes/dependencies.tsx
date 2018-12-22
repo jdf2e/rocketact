@@ -159,7 +159,6 @@ class Dependencies extends React.Component<
           destroyOnClose
         >
           <PackageInstaller
-            alreadyInstalled={allDependencies}
             onClose={() => this.setState({ displayInstallModal: false })}
           />
         </Modal>

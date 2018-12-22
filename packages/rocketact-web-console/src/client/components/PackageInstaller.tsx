@@ -1,4 +1,6 @@
 import React from "react";
+import { observer } from "mobx-react";
+import dependencyStore, { IDependencyStore } from "../stores/dependencies";
 
 import {
   Input,
@@ -46,7 +48,7 @@ export interface IPackage {
 
 interface IPackageInstallerProps {
   onClose: () => void;
-  alreadyInstalled: string[];
+  store: IDependencyStore;
 }
 
 interface IPackageInstallerState {
@@ -57,6 +59,7 @@ interface IPackageInstallerState {
   installed: string[];
 }
 
+@observer
 class PackageInstaller extends React.Component<
   IPackageInstallerProps,
   IPackageInstallerState
@@ -71,7 +74,7 @@ class PackageInstaller extends React.Component<
       keyword: "",
       packages: [],
       totalCount: 0,
-      installed: props.alreadyInstalled.slice(0)
+      installed: props.store.all.map(p => p.id)
     };
 
     this.searchService = new SearchService();
@@ -222,4 +225,6 @@ class PackageInstaller extends React.Component<
   }
 }
 
-export default PackageInstaller;
+export default (props: { onClose: () => void }) => (
+  <PackageInstaller store={dependencyStore} {...props} />
+);
