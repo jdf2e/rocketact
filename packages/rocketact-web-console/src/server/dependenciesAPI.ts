@@ -3,9 +3,10 @@ import fse from "fs-extra";
 import execa from "execa";
 import semver from "semver";
 import express from "express";
+import axios from "axios";
+import url from "url";
 
 import { appRoot, appPackageJson } from "rocketact-dev-utils";
-import { url } from "inspector";
 
 export enum DependencyType {
   Main = "dependencies",
@@ -23,82 +24,84 @@ export interface IDependency {
   description?: string;
 }
 
-function getDependenciesInstalledVersion(
-  dependencies: IDependency[]
-): Promise<void> {
+function getDependenciesInstalledVersion(): Promise<{ [key: string]: string }> {
   return execa("npm", ["list", "--depth=0", "--json"], {
     cwd: appRoot()
   })
-    .then(result => JSON.parse(result.stdout))
-    .then(result => {
-      dependencies.forEach(d => {
-        const info = result.dependencies[d.id];
-        if (info) {
-          d.installed = info.version;
-        }
-      });
+    .then(result => JSON.parse(result.stdout).dependencies)
+    .then(listResult => {
+      const result: { [key: string]: string } = {};
+
+      Object.keys(listResult).forEach(
+        key => (result[key] = listResult[key].version)
+      );
+
+      return result;
     });
 }
 
-function getDependencyAvailaleVersion(dependency: IDependency): Promise<void> {
-  return execa("npm", ["info", dependency.id, "--json"], {
-    cwd: appRoot()
-  })
-    .then(result => JSON.parse(result.stdout))
-    .then(result => {
-      dependency.description = result.description;
-      dependency.homepage = result.homepage;
-
-      result.versions.forEach((version: string) => {
-        if (semver.satisfies(version, dependency.range)) {
-          if (!dependency.wanted) {
-            dependency.wanted = version;
-          } else if (semver.gt(version, dependency.wanted)) {
-            dependency.wanted = version;
-          }
-        }
-      });
-
-      dependency.latest = result["dist-tags"].latest;
-      dependency.next = result["dist-tags"].next;
-    })
-    .catch(r => undefined);
+function getDependenciesInPackageJson(): Promise<{
+  main: IDependency[];
+  dev: IDependency[];
+}> {
+  return fse.readJson(appPackageJson()).then(project => {
+    return {
+      main: Object.keys(project[DependencyType.Main]).map(
+        id =>
+          ({
+            id,
+            range: project[DependencyType.Main][id]
+          } as IDependency)
+      ),
+      dev: Object.keys(project[DependencyType.Dev]).map(
+        id =>
+          ({
+            id,
+            range: project[DependencyType.Dev][id]
+          } as IDependency)
+      )
+    };
+  });
 }
 
-function getDependenciesAvailaleVersion(
-  dependencies: IDependency[]
-): Promise<void[]> {
-  return Promise.all(dependencies.map(getDependencyAvailaleVersion));
-}
-
-function getDependencies(
-  dependencyType: DependencyType
-): Promise<IDependency[]> {
-  const project = JSON.parse(
-    fs.readFileSync(appPackageJson(), "utf-8").toString()
-  );
-
-  const dependencies: IDependency[] = Object.keys(project[dependencyType]).map(
-    id => ({
-      id,
-      range: project[dependencyType][id]
-    })
-  );
-
+function getDependencies(): Promise<{
+  main: IDependency[];
+  dev: IDependency[];
+}> {
   return Promise.all([
-    getDependenciesInstalledVersion(dependencies),
-    getDependenciesAvailaleVersion(dependencies)
-  ]).then(() => dependencies);
+    getDependenciesInPackageJson(),
+    getDependenciesInstalledVersion()
+  ]).then(result => {
+    const dependencies = result[0];
+    const installedStats = result[1];
+
+    dependencies.main.forEach(i => (i.installed = installedStats[i.id]));
+    dependencies.dev.forEach(i => (i.installed = installedStats[i.id]));
+
+    return dependencies;
+  });
 }
 
 const dependenciesAPI = express.Router();
 
-dependenciesAPI.get("/main", (req, res) => {
-  getDependencies(DependencyType.Main).then(r => res.json(r));
+dependenciesAPI.get("/", (req, res) => {
+  getDependencies().then(r => res.json(r));
 });
 
-dependenciesAPI.get("/dev", (req, res) => {
-  getDependencies(DependencyType.Dev).then(r => res.json(r));
+dependenciesAPI.get("/npmPackageDetail", (req, res) => {
+  const urlParams = url.parse(req.url, true);
+
+  axios
+    .get(`http://registry.npmjs.org/${urlParams.query.name}`)
+    .then(response => response.data)
+    .then(response => {
+      response.versions = Object.keys(response.versions);
+
+      res.json(response);
+    })
+    .catch(() => {
+      res.end();
+    });
 });
 
 export default dependenciesAPI;

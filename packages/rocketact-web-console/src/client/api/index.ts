@@ -3,6 +3,16 @@ import axios from "axios";
 import { IDependency } from "../../server/dependenciesAPI";
 import { IPackage } from "../components/PackageInstaller";
 
+export interface IPackageDetail {
+  description: string;
+  "dist-tags": {
+    latest: string;
+    next: string;
+  };
+  homepage: string;
+  versions: string[];
+}
+
 export interface ISearchResult {
   total: number;
   objects: Array<{ package: IPackage }>;
@@ -18,10 +28,11 @@ function getPages() {
   return axios.get(`${API_BASE}/pages`).then(response => response.data);
 }
 
-function getDependencies(type: string): Promise<IDependency[]> {
-  return axios
-    .get(`${API_BASE}/dependencies/${type}`)
-    .then(response => response.data);
+function getDependencies(): Promise<{
+  main: IDependency[];
+  dev: IDependency[];
+}> {
+  return axios.get(`${API_BASE}/dependencies`).then(response => response.data);
 }
 
 function searchNPM(
@@ -40,4 +51,21 @@ function searchNPM(
     .then(response => response.data);
 }
 
-export { getProject, getPages, getDependencies, searchNPM };
+function getNPMPackageDetail(name: string): Promise<IPackageDetail> {
+  return axios
+    .get(`${API_BASE}/dependencies/npmPackageDetail?name=${name}`)
+    .then(response => response.data)
+    .then(response => {
+      response.versions = Object.values(response.versions);
+
+      return response as IPackageDetail;
+    });
+}
+
+export {
+  getProject,
+  getPages,
+  getDependencies,
+  searchNPM,
+  getNPMPackageDetail
+};

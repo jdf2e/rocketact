@@ -1,4 +1,7 @@
 import React from "react";
+import { observer } from "mobx-react";
+
+import dependenciesStore, { IDependencyStore } from "../stores/dependencies";
 
 import { IDependency } from "../../server/dependenciesAPI";
 
@@ -11,45 +14,25 @@ import PackageInstaller from "../components/PackageInstaller";
 
 const { TabPane } = Tabs;
 
+interface IDependenciesRouteProps {
+  store: IDependencyStore;
+}
+
 interface IDependenciesRouteState {
-  mainDependencies: IDependency[];
-  loadingMain: boolean;
-  devDependencies: IDependency[];
-  loadingDev: boolean;
   displayInstallModal: boolean;
 }
 
-class Dependencies extends React.PureComponent<{}, IDependenciesRouteState> {
-  firstTimeViewDevDependecies: boolean;
-
+@observer
+class Dependencies extends React.Component<
+  IDependenciesRouteProps,
+  IDependenciesRouteState
+> {
   constructor(props: any) {
     super(props);
 
-    this.firstTimeViewDevDependecies = true;
-
     this.state = {
-      mainDependencies: [],
-      loadingMain: true,
-      devDependencies: [],
-      loadingDev: true,
       displayInstallModal: false
     };
-  }
-
-  componentDidMount() {
-    API.getDependencies("main").then(r =>
-      this.setState({ mainDependencies: r, loadingMain: false })
-    );
-  }
-
-  handleTabChange(activeKey: string) {
-    if (activeKey === "2" && this.firstTimeViewDevDependecies) {
-      this.firstTimeViewDevDependecies = false;
-
-      API.getDependencies("dev").then(r =>
-        this.setState({ devDependencies: r, loadingDev: false })
-      );
-    }
   }
 
   render() {
@@ -145,43 +128,24 @@ class Dependencies extends React.PureComponent<{}, IDependenciesRouteState> {
       </Button>
     );
 
-    const {
-      mainDependencies,
-      devDependencies,
-      loadingMain,
-      loadingDev
-    } = this.state;
+    const { main, dev, loading, all, version } = this.props.store;
 
-    const allDependencies = [
-      ...new Set([...mainDependencies, ...devDependencies].map(d => d.id))
-    ];
-
+    const allDependencies = [...new Set([...all].map(d => d.id))];
     return (
       <React.Fragment>
-        <Tabs
-          tabBarExtraContent={operations}
-          onChange={(activeKey: string) => this.handleTabChange(activeKey)}
-        >
+        <Tabs tabBarExtraContent={operations}>
           <TabPane key="1" tab="Main dependencies">
-            {loadingMain ? (
+            {loading ? (
               <Loading />
             ) : (
-              <Table
-                columns={columns}
-                dataSource={this.state.mainDependencies}
-                pagination={false}
-              />
+              <Table columns={columns} dataSource={main} pagination={false} />
             )}
           </TabPane>
           <TabPane key="2" tab="Dev dependencies">
-            {loadingDev ? (
+            {loading ? (
               <Loading />
             ) : (
-              <Table
-                columns={columns}
-                dataSource={this.state.devDependencies}
-                pagination={false}
-              />
+              <Table columns={columns} dataSource={dev} pagination={false} />
             )}
           </TabPane>
         </Tabs>
@@ -204,4 +168,4 @@ class Dependencies extends React.PureComponent<{}, IDependenciesRouteState> {
   }
 }
 
-export default Dependencies;
+export default () => <Dependencies store={dependenciesStore} />;

@@ -63,7 +63,11 @@ const config = {
                 "@babel/preset-react",
                 "@babel/preset-typescript"
               ],
-              plugins: [["import", { "libraryName": "antd", style: "css" }]],
+              plugins: [
+                ["import", { libraryName: "antd", style: "css" }],
+                ["@babel/plugin-proposal-decorators", { legacy: true }],
+                ["@babel/plugin-proposal-class-properties", {loose: true}]
+              ],
               cacheDirectory: true
             }
           }
