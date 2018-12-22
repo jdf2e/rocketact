@@ -1,10 +1,11 @@
 import webpack from "webpack";
-import DevServer from "webpack-dev-server";
+import WebpackDevServer from "webpack-dev-server";
 import detectPort from "detect-port";
 
 import { error, success, clearConsole } from "rocketact-dev-utils";
 
 import CoreAPI from "../CoreAPI";
+const webConsole = require("rocketact-web-console").default;
 
 export default (api: CoreAPI) => {
   api.registerCommand(
@@ -14,7 +15,7 @@ export default (api: CoreAPI) => {
 
       return new Promise((resolve, reject) => {
         const webpackConfig = api.resolveWebpackConfig();
-        const devServerOptions = {
+        const devServerOptions: WebpackDevServer.Configuration = {
           disableHostCheck: true,
           overlay: true,
           hot: true,
@@ -24,6 +25,9 @@ export default (api: CoreAPI) => {
           quiet: true,
           stats: {
             colors: true
+          },
+          before: app => {
+            webConsole(app);
           }
           // historyApiFallback: {
           //   index: '/',
@@ -36,7 +40,10 @@ export default (api: CoreAPI) => {
           // },
         };
 
-        DevServer.addDevServerEntrypoints(webpackConfig, devServerOptions);
+        WebpackDevServer.addDevServerEntrypoints(
+          webpackConfig,
+          devServerOptions
+        );
 
         detectPort(3000, (err, availablePort) => {
           if (err) {
@@ -44,7 +51,7 @@ export default (api: CoreAPI) => {
           } else {
             clearConsole();
             const compiler = webpack(webpackConfig);
-            const devServer = new DevServer(compiler, devServerOptions);
+            const devServer = new WebpackDevServer(compiler, devServerOptions);
             global.ROCKETACT_PORT = availablePort;
 
             devServer.listen(availablePort, "0.0.0.0", () => {});
