@@ -65,6 +65,8 @@ class PackageInstaller extends React.Component<
   IPackageInstallerState
 > {
   searchService: SearchService;
+  searchResultContainer?: HTMLDivElement | null;
+  needResetPagination: boolean;
 
   constructor(props: IPackageInstallerProps) {
     super(props);
@@ -78,6 +80,7 @@ class PackageInstaller extends React.Component<
     };
 
     this.searchService = new SearchService();
+    this.needResetPagination = false;
 
     this.handleUserInput = this.handleUserInput.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
@@ -87,8 +90,15 @@ class PackageInstaller extends React.Component<
     this.searchService.getResults().subscribe(response => {
       this.setState({
         totalCount: response.total,
-        packages: response.objects.map(o => o.package)
+        packages: response.objects.map(o => o.package),
+        currentPage: this.needResetPagination ? 1 : this.state.currentPage
       });
+
+      this.needResetPagination = false;
+
+      if (this.searchResultContainer) {
+        this.searchResultContainer.scrollTo(0, 0);
+      }
     });
   }
 
@@ -96,9 +106,10 @@ class PackageInstaller extends React.Component<
     const keyword = e.target.value;
 
     this.setState({ keyword });
+    this.needResetPagination = true;
     this.searchService.search({
       keyword,
-      page: this.state.currentPage
+      page: 1
     });
   }
 
@@ -121,7 +132,12 @@ class PackageInstaller extends React.Component<
           size="large"
           onChange={this.handleUserInput}
         />
-        <div style={{ height: 400, overflow: "auto", margin: 10 }}>
+        <div
+          ref={node => {
+            this.searchResultContainer = node;
+          }}
+          style={{ height: 400, overflow: "auto", margin: 10 }}
+        >
           <List
             itemLayout="horizontal"
             dataSource={this.state.packages}
