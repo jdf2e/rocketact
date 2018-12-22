@@ -1,5 +1,6 @@
 import React from "react";
-
+// import Redux from "mobx";
+// import Redux1 from "./mobx1";
 import { hot } from "react-hot-loader";
 
 import logo from "../assets/logo.png";
@@ -14,6 +15,13 @@ class Counter extends React.Component<{}, ICounterState> {
     this.state = {
       count: 0
     };
+
+    this.onClick = this.onClick.bind(this);
+  }
+
+  async onClick() {
+    this.setState({ count: this.state.count + 1333333 });
+    // console.log(Redux);
   }
 
   render() {
@@ -21,11 +29,7 @@ class Counter extends React.Component<{}, ICounterState> {
       <div>
         <h1>
           hello world {this.state.count}
-          <button
-            onClick={() => this.setState({ count: this.state.count + 1 })}
-          >
-            +
-          </button>
+          <button onClick={this.onClick}>+</button>
         </h1>
 
         <img src={logo} />

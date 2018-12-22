@@ -1,9 +1,17 @@
 {
+  "name": "Simple",
+  "description": "Rocketact 测试项目",
   "dependencies": {
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "rocketact-scripts": "file:../../.."
+  },
+  "scripts": {
+    "start": "rocketact-scripts start",
+    "build": "rocketact-scripts build"
   },
   "devDependencies": {
-    "react-hot-loader": "^4.3.12"
+    "react-hot-loader": "^4.3.12",
+    "rocketact-plugin-polyfill": "0.0.1"
   }
 }
