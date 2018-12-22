@@ -157,7 +157,7 @@ class Dependencies extends React.Component<
       </Button>
     );
 
-    const { main, dev, loading } = this.props.store;
+    const { main, dev, loading, version } = this.props.store;
 
     return (
       <React.Fragment>
