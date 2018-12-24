@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.1",
+    "execa": "^1.0.0",
     "ramda": "^0.25.0"
   },
   "config": {
