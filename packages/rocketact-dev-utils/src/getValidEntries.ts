@@ -15,39 +15,47 @@ interface IValidEntries {
 }
 
 const getJsEntries = (p: string): IEntries => {
-  return R.pipe(
-    R.flip(R.nAry(2, path.resolve))("./src/pages/"),
-    fs.readdirSync,
-    R.map(R.curry(R.nAry(3, path.resolve))(p, "./src/pages")),
-    R.filter(R.test(/\.[tj]sx?$/)),
-    R.converge(R.zipObj, [
-      R.map(
-        R.pipe(
-          path.basename,
-          R.replace(/\.[tj]sx?$/, "")
-        )
-      ),
-      R.identity
-    ])
-  )(p);
+  if (fs.existsSync(path.resolve(p, "./src/pages"))) {
+    return R.pipe(
+      R.flip(R.nAry(2, path.resolve))("./src/pages/"),
+      fs.readdirSync,
+      R.map(R.curry(R.nAry(3, path.resolve))(p, "./src/pages")),
+      R.filter(R.test(/\.[tj]sx?$/)),
+      R.converge(R.zipObj, [
+        R.map(
+          R.pipe(
+            path.basename,
+            R.replace(/\.[tj]sx?$/, "")
+          )
+        ),
+        R.identity
+      ])
+    )(p);
+  } else {
+    return {};
+  }
 };
 
 const getHtmlEntries = (p: string): IEntries => {
-  return R.pipe(
-    R.flip(R.nAry(2, path.resolve))("./src/pages/"),
-    fs.readdirSync,
-    R.map(R.curry(R.nAry(3, path.resolve))(p, "./src/pages")),
-    R.filter(R.test(/\.html$/)),
-    R.converge(R.zipObj, [
-      R.map(
-        R.pipe(
-          path.basename,
-          R.replace(/\.html$/, "")
-        )
-      ),
-      R.identity
-    ])
-  )(p);
+  if (fs.existsSync(path.resolve(p, "./src/pages"))) {
+    return R.pipe(
+      R.flip(R.nAry(2, path.resolve))("./src/pages/"),
+      fs.readdirSync,
+      R.map(R.curry(R.nAry(3, path.resolve))(p, "./src/pages")),
+      R.filter(R.test(/\.html$/)),
+      R.converge(R.zipObj, [
+        R.map(
+          R.pipe(
+            path.basename,
+            R.replace(/\.html$/, "")
+          )
+        ),
+        R.identity
+      ])
+    )(p);
+  } else {
+    return {};
+  }
 };
 
 const getValidEntries: (p: string) => IValidEntries = p => {
