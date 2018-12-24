@@ -23,6 +23,8 @@ if (!semver.satisfies(process.version, pkg.engines.node)) {
 
 const core = new Core();
 
+global.ROCKETACT_CORE = core;
+
 const scriptName = path.basename(__filename).replace(/\.[tj]s$/, "");
 const i = process.argv.findIndex(arg =>
   path.basename(arg).startsWith(scriptName)
