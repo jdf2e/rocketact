@@ -2,7 +2,7 @@
   "name": "rocketact-plugin-butler",
   "version": "0.0.1",
   "description": "Rockectact plugin for legacy butler projects",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/jdf2e/rocketact-plugin-butler/issues"
   },
-  "homepage": "https://github.com/jdf2e/rocketact-plugin-butler#readme"
+  "homepage": "https://github.com/jdf2e/rocketact-plugin-butler#readme",
+  "peerDependencies": {
+    "rocketact-scripts": "^0.0.1"
+  },
+  "dependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "rocketact-dev-utils": "^0.1.0"
+  }
 }
