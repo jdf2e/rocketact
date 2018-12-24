@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 var ProgressBarPlugin = require("progress-bar-webpack-plugin");
+
+import createHtmlWebpackPluginInstance from "../../utils/createHtmlWebpackPluginInstance";
 
 import { info, infoBlock, success, successBlock } from "rocketact-dev-utils";
 
@@ -82,13 +83,9 @@ export default (api: CoreAPI) => {
       webpackChain
         .plugin(`HtmlWebpackPlugin-${entryName}`)
         .use(
-          new HtmlWebpackPlugin({
-            filename: `${entryName}.html`,
-            template: entry.html,
-            chunks: [entryName, isProductionEnv() ? "vender" : ""].filter(
-              Boolean
-            ),
-            inject: true
+          createHtmlWebpackPluginInstance({
+            entryName,
+            template: entry.html
           })
         )
         .end();
