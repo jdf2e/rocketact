@@ -1,6 +1,6 @@
 {
   "name": "rocketact-plugin-butler",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Rockectact plugin for legacy butler projects",
   "main": "index.js",
   "scripts": {
