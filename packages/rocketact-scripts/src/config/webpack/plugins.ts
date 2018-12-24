@@ -1,7 +1,8 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+var ProgressBarPlugin = require("progress-bar-webpack-plugin");
 
-import { info } from "rocketact-dev-utils";
+import { info, infoBlock, success, successBlock } from "rocketact-dev-utils";
 
 import webpack from "webpack";
 import path from "path";
@@ -55,6 +56,21 @@ export default (api: CoreAPI) => {
         .use(MiniCssExtractPlugin, [
           {
             filename: "css/[name].[contenthash:8].css"
+          }
+        ])
+        .end()
+        .plugin("ProgressBarPlugin")
+        .use(ProgressBarPlugin, [
+          {
+            format: `${infoBlock(" WAITING ")} ${info("[:bar] (:percent)")}`,
+            summary: false,
+            customSummary: (time: number) => {
+              console.log(
+                `${successBlock(" SUCCESS ")} ${success(
+                  `Build completed in ${time}`
+                )}`
+              );
+            }
           }
         ])
         .end();

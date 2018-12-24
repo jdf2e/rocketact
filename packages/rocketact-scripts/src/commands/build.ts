@@ -22,7 +22,6 @@ export default (api: CoreAPI) => {
               reject(info.errors);
             }
           } else {
-            console.log("Build Success!");
             resolve();
           }
         });

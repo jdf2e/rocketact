@@ -2,7 +2,13 @@ import webpack from "webpack";
 import WebpackDevServer from "webpack-dev-server";
 import detectPort from "detect-port";
 
-import { error, success, clearConsole } from "rocketact-dev-utils";
+import {
+  error,
+  success,
+  clearConsole,
+  infoBlock,
+  info
+} from "rocketact-dev-utils";
 
 import CoreAPI from "../CoreAPI";
 const webConsole = require("rocketact-web-console").default;
@@ -50,6 +56,7 @@ export default (api: CoreAPI) => {
             console.log(error(`${err}`));
           } else {
             clearConsole();
+            console.log(`${infoBlock(" WAITING ")} ${info("Building...")}`);
             const compiler = webpack(webpackConfig);
             const devServer = new WebpackDevServer(compiler, devServerOptions);
             global.ROCKETACT_PORT = availablePort;

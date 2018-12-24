@@ -51,7 +51,7 @@ export default class ConsolePlugin {
       }
       console.log(
         `${successBlock(" DONE ")} ${success(
-          `Build Successfully ${
+          `Build completed ${
             duration > 0 ? `in ${(duration / 1000).toFixed(2)}s` : ""
           }`
         )}`
@@ -123,7 +123,7 @@ export default class ConsolePlugin {
 
       console.log(errorObj.error.message);
     } else if (hasWarnings) {
-      console.log("Build finished with warnings");
+      console.log("Build completed with warnings");
     }
   }
 

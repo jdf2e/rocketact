@@ -76,6 +76,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-loader": "^3.0.0",
+    "progress-bar-webpack-plugin": "^1.11.0",
     "rocketact-dev-utils": "^0.1.0",
     "rocketact-plugin-polyfill": "0.0.1",
     "sass-loader": "^7.1.0",
