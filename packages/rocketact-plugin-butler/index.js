@@ -41,7 +41,7 @@ module.exports = api => {
         webpackChain.entry(entryName).add(jsEntries[entryName]);
 
         webpackChain.plugin(`HtmlWebpackPlugin-${entryName}`).use(
-          createHtmlWebpackPluginInstance({
+          ...createHtmlWebpackPluginInstance({
             entryName,
             template: htmlEntries[entryName]
           })
