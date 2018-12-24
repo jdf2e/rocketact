@@ -37,6 +37,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/react-timeago": "^4.1.0",
     "@types/semver": "^5.5.0",
+    "@types/webpack-chain": "^5.0.0",
     "autoprefixer": "^9.4.3",
     "babel-loader": "^8.0.4",
     "babel-plugin-import": "^1.11.0",
@@ -71,5 +72,8 @@
     "rocketact-dev-utils": "^0.1.0",
     "rxjs": "^6.3.3",
     "semver": "^5.6.0"
+  },
+  "peerDependencies": {
+    "rocketact-scripts": "^0.0.2"
   }
 }

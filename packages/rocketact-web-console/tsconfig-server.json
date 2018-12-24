@@ -62,6 +62,6 @@
     /* Advanced Options */
     "resolveJsonModule": true /* Include modules imported with '.json' extension */
   },
-  "include": ["src/**/*"],
+  "include": ["./types", "src/**/*"],
   "exclude": ["src/client/**/*"]
 }
