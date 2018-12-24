@@ -1,5 +1,10 @@
 import WebpackChain from "webpack-chain";
-import { error, appPackageJson, isPlugin } from "rocketact-dev-utils";
+import {
+  error,
+  appPackageJson,
+  isPlugin,
+  resolveToAppRoot
+} from "rocketact-dev-utils";
 import minimist from "minimist";
 import glob from "glob";
 import fs from "fs";
@@ -48,7 +53,9 @@ class Core {
     const installedPlugins = Object.keys(this.pkg.dependencies || {})
       .filter(isPlugin)
       .concat(Object.keys(this.pkg.devDependencies || {}).filter(isPlugin));
-    installedPlugins.forEach(file => require(file)(new CoreAPI(this)));
+    installedPlugins.forEach(plugin =>
+      require(resolveToAppRoot(`./node_modules/${plugin}`))(new CoreAPI(this))
+    );
   }
 
   resolveWebpackConfig() {
