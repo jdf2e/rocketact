@@ -85,7 +85,9 @@ export default (api: CoreAPI) => {
           new HtmlWebpackPlugin({
             filename: `${entryName}.html`,
             template: entry.html,
-            chunks: [entryName],
+            chunks: [entryName, isProductionEnv() ? "vender" : ""].filter(
+              Boolean
+            ),
             inject: true
           })
         )
