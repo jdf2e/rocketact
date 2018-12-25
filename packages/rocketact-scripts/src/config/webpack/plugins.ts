@@ -64,14 +64,7 @@ export default (api: CoreAPI) => {
         .use(ProgressBarPlugin, [
           {
             format: `${infoBlock(" WAITING ")} ${info("[:bar] (:percent)")}`,
-            summary: false,
-            customSummary: (time: number) => {
-              console.log(
-                `${successBlock(" SUCCESS ")} ${success(
-                  `Build completed in ${time}`
-                )}`
-              );
-            }
+            summary: false
           }
         ])
         .end();
