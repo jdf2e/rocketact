@@ -8,6 +8,7 @@
     "ordered-imports": false,
     "no-console": false,
     "max-classes-per-file": false,
-    "member-access": false
+    "member-access": false,
+    "no-var-requires": false
   }
 }
