@@ -108,20 +108,24 @@ class PackageUtil implements IPackageUtil {
   ): Promise<IExecaReturn> {
     const args: any = [];
 
-    let canUseYarn = await this.hasYarn();
+    /** 拥有 yarn 环境 */
+    const hasYarn = await this.hasYarn();
+    /** 本地有 yarn.lock 文件 */
     const hasYarnLock = await this.hasYarnLock();
 
-    const command = canUseYarn ? "yarn" : "npm";
+    // 初次初始化安装，优先使用 yarn 安装
     if (!packageName) {
       try {
-        const result = await execa.shell(`${command} install`);
+        const result = await execa.shell(`${hasYarn ? "yarn" : "npm"} install`);
         return Promise.resolve({ ...(result as IExecaReturn) });
       } catch (error) {
         return Promise.reject({ error });
       }
     }
 
-    canUseYarn = canUseYarn && hasYarnLock; // 本工程内以前未使用 yarn 管理
+    // 非首次安装
+    const canUseYarn = hasYarn && hasYarnLock;
+    const command = canUseYarn ? "yarn" : "npm";
 
     if (canUseYarn) {
       args.push("add");
@@ -177,6 +181,11 @@ class PackageUtil implements IPackageUtil {
       return Promise.reject(runReturn);
     }
   }
+
+  /**
+   * 项目首次初始化安装
+   */
+  private async processInitInstall() {}
 }
 
 const packageUtil = new PackageUtil();
