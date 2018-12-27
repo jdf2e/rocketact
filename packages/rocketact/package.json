@@ -6,7 +6,6 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "git-cz"
   },
   "bin": {
@@ -23,6 +22,8 @@
   },
   "homepage": "https://github.com/jdf2e/rocketact#readme",
   "devDependencies": {
+    "@types/fs-extra": "^5.0.4",
+    "@types/mustache": "^0.8.32",
     "@types/node": "^10.12.2",
     "commitizen": "3.0.4",
     "cz-conventional-changelog": "^2.1.0",
@@ -30,7 +31,8 @@
     "jest": "^23.6.0",
     "lint-staged": "^8.0.4",
     "prettier": "^1.14.3",
-    "ts-node": "^7.0.1",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.1.6"
   },
   "config": {
