@@ -6,14 +6,12 @@ interface IPackageUtil {
   /**
    * 安装依赖
    * @param {string} packageName 依赖包名称
-   * @param {string} versionOrTag 依赖包版本号或tag
-   * @param {boolean} isDev 是否为开发依赖，默认 ture
+   * @param {IInstallOpts} opts 安装依赖选项
    * @returns promise
    */
   install: (
     packageName?: string,
-    versionOrTag?: string,
-    isDev?: boolean
+    opts?: IInstallOpts | undefined
   ) => Promise<IExecaReturn>;
   /**
    * 删除依赖
@@ -38,33 +36,39 @@ export interface IExecaReturn {
   timedOut: boolean;
 }
 
+export interface IInstallOpts {
+  /** 版本或tag */
+  versionOrTag?: string;
+  /** 是否为开发依赖，默认 false */
+  isDev?: boolean;
+}
+
 /**
  * 项目依赖工具类
+ *
+ * - install
+ * - uninstall
  *
  * [NPM Install Doc](https://docs.npmjs.com/cli/install)
  *
  * [Yarn Install Doc](https://yarnpkg.com/zh-Hans/docs/usage)
  *
- * TODO: 安装过程 loading 和 emoji
+ * TODO: 安装过程 loading 和 emoji、名称的校验、版本或tag的提前校验，目前都交给yarn和npm安装异常抛出错误
+ *
+ * @returns {Promise} process msg
  */
 class PackageUtil implements IPackageUtil {
-  constructor() {
-    // TODO: singleton
-  }
-
   /**
    * 安装依赖
    * @param {string} packageName 依赖包名称
-   * @param {string} versionOrTag 依赖包版本号或tag
-   * @param {boolean} isDev 是否为开发依赖，默认 ture
+   * @param {IInstallOpts} opts 安装依赖选项
    * @returns promise
    */
   public install(
     packageName?: string,
-    version?: string,
-    isDev = true
+    opts?: IInstallOpts
   ): Promise<IExecaReturn> {
-    return this.processInstall(packageName, version, isDev);
+    return this.processInstall(packageName, opts);
   }
 
   /**
@@ -100,8 +104,7 @@ class PackageUtil implements IPackageUtil {
 
   private async processInstall(
     packageName?: string,
-    versionOrTag?: string,
-    isDev = true
+    opts?: IInstallOpts
   ): Promise<IExecaReturn> {
     const args: any = [];
 
@@ -122,16 +125,24 @@ class PackageUtil implements IPackageUtil {
 
     if (canUseYarn) {
       args.push("add");
-      args.push(`${packageName}${versionOrTag ? `@${versionOrTag}` : ""}`);
+      args.push(
+        `${packageName}${
+          opts && opts.versionOrTag ? `@${opts.versionOrTag}` : ""
+        }`
+      );
 
-      args.push(isDev ? "-D" : "");
+      args.push(opts && opts.isDev ? "-D" : "");
 
       args.push("--cwd");
       args.push(process.cwd());
     } else {
       args.push("install");
-      args.push(`${packageName}${versionOrTag ? `@${versionOrTag}` : ""}`);
-      args.push(isDev ? "-D" : "-P");
+      args.push(
+        `${packageName}${
+          opts && opts.versionOrTag ? `@${opts.versionOrTag}` : ""
+        }`
+      );
+      args.push(opts && opts.isDev ? "-D" : "-P");
     }
 
     let runReturn: IExecaReturn;
