@@ -16,11 +16,11 @@
   "devDependencies": {
     "typescript": "^3.2.2",
     "tslint": "^5.12.0",
-    "@types/webpack-env": "^1.13.6",
     "tslint-config-prettier": "^1.13.0",
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
-    "react-hot-loader": "^4.0.1"
+    "react-hot-loader": "^4.0.1",
+    "rocketact-scripts": "^0.0.1"
   },
   "dependencies": {
     "react": "^16.7.0",

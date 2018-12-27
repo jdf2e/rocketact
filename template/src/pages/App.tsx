@@ -12,6 +12,6 @@ ReactDOM.render(
   document.getElementById('app') as HTMLElement
 );
 
-// if (module.hot) {
-//   module.hot.accept();
-// }
+if (module.hot) {
+  module.hot.accept();
+}

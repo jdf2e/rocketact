@@ -1,20 +1,22 @@
 #!/usr/bin/env node
 
-const validateProjectName = require('validate-npm-package-name');
-const { error, warning, success, packageUtil } = require('rocketact-dev-utils');
+import { error, warning, success, packageUtil } from 'rocketact-dev-utils';
 
-const fs = require('fs-extra');
-const path = require('path');
-const os = require('os');
+import * as fs from 'fs-extra';
+import * as path from 'path';
+import * as os from 'os';
 
-const Mustache = require('mustache');
-const promisify = require('util.promisify');
-const promisifiedGlob = promisify(require('glob'));
-const promisifiedFsReadFile = promisify(require('fs').readFile);
+import * as Mustache from 'mustache';
+import { promisify } from 'util';
 
-const program = require('commander');
-const chalk = require('chalk');
-const packageJson = require('../../package.json');
+const validatePackageName = require('validate-npm-package-name'); // tslint:disable-line
+const promisifiedGlob = promisify(require('glob')); // tslint:disable-line
+const promisifiedFsReadFile = promisify(require('fs').readFile); // tslint:disable-line
+
+import program from 'commander';
+import chalk from 'chalk';
+
+import * as packageJson from '../../package.json';
 
 /** 项目名称 */
 let projectName: string | undefined;
@@ -39,15 +41,13 @@ if (!projectName) {
   process.exit(0);
 }
 
-createProject(projectName as string);
+createProject();
 
 /**
  * 校验项目名称
- *
- * @param {string} projectName
  */
-function checkProjectName(projectName: string): void {
-  const validationResult = validateProjectName(projectName);
+function checkProjectName(): void {
+  const validationResult = validatePackageName(projectName);
   if (!validationResult.validForNewPackages) {
     printValidationResults(validationResult.errors);
     printValidationResults(validationResult.warnings);
@@ -55,19 +55,24 @@ function checkProjectName(projectName: string): void {
   }
 }
 
-function printValidationResults(results: [string]) {
+/**
+ * 打印名称校验结果
+ *
+ * @param {[string]} results
+ */
+function printValidationResults(results: [string]): void {
   if (typeof results !== 'undefined') {
-    results.forEach((error) => {
-      console.error(chalk.red(`  *  ${error}`));
+    results.forEach((result) => {
+      console.error(chalk.red(`  *  ${result}`));
     });
   }
 }
 
-async function createProject(projectName: string) {
-  const root = path.resolve(projectName);
-  const appName = path.basename(root);
+async function createProject() {
+  checkProjectName();
 
-  checkProjectName(appName);
+  const root = path.resolve(projectName as string);
+  const appName = path.basename(root);
 
   fs.ensureDirSync(appName);
 
@@ -76,7 +81,11 @@ async function createProject(projectName: string) {
   await copyTemplateContent(root);
 
   process.chdir(root);
-  packageUtil.install();
+  try {
+    await packageUtil.install();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 /**
@@ -87,7 +96,7 @@ async function createProject(projectName: string) {
  */
 async function copyTemplateFiles(projectDir: string) {
   try {
-    return await fs.copySync(path.join(__dirname, '../../template'), projectDir, {
+    await fs.copy(path.resolve(path.join(__dirname, '../../../template')), projectDir, {
       overwrite: true
     });
   } catch (err) {
@@ -110,7 +119,7 @@ async function copyTemplateContent(projectDir: string) {
         const tplContent = await Mustache.render(tpl.toString(), {
           projectName: path.basename(projectDir)
         });
-        await fs.outputFileSync(file.replace(/\.tpl$/, ''), tplContent);
+        await fs.outputFile(file.replace(/\.tpl$/, ''), tplContent);
         await fs.remove(file);
       })
     );
