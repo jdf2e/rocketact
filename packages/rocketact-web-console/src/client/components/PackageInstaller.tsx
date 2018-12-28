@@ -54,7 +54,7 @@ export interface IPackage {
 }
 
 interface IPackageInstallerProps {
-  onClose: () => void;
+  refreshOnClose: () => void;
   store: IDependencyStore;
 }
 
@@ -121,6 +121,7 @@ class PackageInstaller extends React.Component<
           this.setState({
             installed: [...this.state.installed, name]
           });
+          this.props.refreshOnClose();
           message.success(`${name} was installed successfully!`);
         },
         () => {

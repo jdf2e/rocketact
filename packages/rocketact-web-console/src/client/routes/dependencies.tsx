@@ -40,12 +40,16 @@ class Dependencies extends React.Component<
   IDependenciesRouteProps,
   IDependenciesRouteState
 > {
+  refreshOnClosePackageInstaller: boolean;
+
   constructor(props: any) {
     super(props);
 
     this.state = {
       displayInstallModal: false
     };
+
+    this.refreshOnClosePackageInstaller = false;
   }
 
   remove(name: string) {
@@ -168,14 +172,28 @@ class Dependencies extends React.Component<
     ];
 
     const operations = (
-      <Button
-        type="primary"
-        ghost
-        icon="download"
-        onClick={() => this.setState({ displayInstallModal: true })}
-      >
-        Install new dependency
-      </Button>
+      <React.Fragment>
+        <Button
+          type="primary"
+          ghost
+          icon="sync"
+          onClick={() => dependenciesStore.refresh()}
+          style={{ marginRight: 10 }}
+        >
+          Refresh
+        </Button>
+        <Button
+          type="primary"
+          ghost
+          icon="download"
+          onClick={() => {
+            this.setState({ displayInstallModal: true });
+            this.refreshOnClosePackageInstaller = false;
+          }}
+        >
+          Install new dependency
+        </Button>
+      </React.Fragment>
     );
 
     const { main, dev, loading, version } = this.props.store;
@@ -201,14 +219,18 @@ class Dependencies extends React.Component<
         <Modal
           title="Install new dependency"
           visible={this.state.displayInstallModal}
-          maskClosable={false}
           width={1000}
           footer={null}
-          onCancel={() => this.setState({ displayInstallModal: false })}
+          onCancel={() => {
+            this.setState({ displayInstallModal: false });
+            if (this.refreshOnClosePackageInstaller) {
+              dependenciesStore.refresh();
+            }
+          }}
           destroyOnClose
         >
           <PackageInstaller
-            onClose={() => this.setState({ displayInstallModal: false })}
+            refreshOnClose={() => (this.refreshOnClosePackageInstaller = true)}
           />
         </Modal>
         <GlobalLoadingModal />
