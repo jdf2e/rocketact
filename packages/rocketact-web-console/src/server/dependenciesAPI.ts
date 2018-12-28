@@ -6,7 +6,12 @@ import express from "express";
 import axios from "axios";
 import url from "url";
 
-import { appRoot, appPackageJson, packageUtil } from "rocketact-dev-utils";
+import {
+  appRoot,
+  appPackageJson,
+  packageUtil,
+  resolveToAppRoot
+} from "rocketact-dev-utils";
 
 export enum DependencyType {
   Main = "dependencies",
@@ -25,19 +30,41 @@ export interface IDependency {
 }
 
 function getDependenciesInstalledVersion(): Promise<{ [key: string]: string }> {
-  return execa("npm", ["list", "--depth=0", "--json"], {
-    cwd: appRoot()
-  })
-    .then(result => JSON.parse(result.stdout).dependencies)
-    .then(listResult => {
-      const result: { [key: string]: string } = {};
-
-      Object.keys(listResult).forEach(
-        key => (result[key] = listResult[key].version)
-      );
-
-      return result;
+  if (fs.existsSync(resolveToAppRoot("./yarn.lock"))) {
+    return execa("yarn", ["list", "--depth", "0"], {
+      cwd: appRoot()
+    }).then(result => {
+      if (result.failed) {
+        throw new Error(result.stderr);
+      }
+      return result.stdout
+        .split("\n")
+        .filter(l => l.startsWith("├─ "))
+        .map(l => l.replace("├─ ", ""))
+        .reduce(
+          (acc, l: string): { [keys: string]: string } => {
+            const parts = l.split("@");
+            acc[parts.slice(0, -1).join("@")] = parts[parts.length - 1];
+            return acc;
+          },
+          {} as { [keys: string]: string }
+        );
     });
+  } else {
+    return execa("npm", ["list", "--depth=0", "--json"], {
+      cwd: appRoot()
+    })
+      .then(result => JSON.parse(result.stdout).dependencies)
+      .then(listResult => {
+        const result: { [key: string]: string } = {};
+
+        Object.keys(listResult).forEach(
+          key => (result[key] = listResult[key].version)
+        );
+
+        return result;
+      });
+  }
 }
 
 function getDependenciesInPackageJson(): Promise<{
@@ -74,7 +101,6 @@ function getDependencies(): Promise<{
   ]).then(result => {
     const dependencies = result[0];
     const installedStats = result[1];
-
     dependencies.main.forEach(i => (i.installed = installedStats[i.id]));
     dependencies.dev.forEach(i => (i.installed = installedStats[i.id]));
 
@@ -85,7 +111,7 @@ function getDependencies(): Promise<{
 const dependenciesAPI = express.Router();
 
 dependenciesAPI.get("/", (req, res) => {
-  getDependencies().then(r => res.json(r));
+  getDependencies().then(r => res.json(r), () => res.json({ succss: false }));
 });
 
 dependenciesAPI.get("/npmPackageDetail", (req, res) => {
@@ -116,7 +142,6 @@ dependenciesAPI.post("/install", (req, res) => {
           res.json({ success: true });
         },
         error => {
-          console.log(error);
           res.json({ success: false });
         }
       );
@@ -127,12 +152,16 @@ dependenciesAPI.post("/install", (req, res) => {
 
 dependenciesAPI.post("/uninstall", (req, res) => {
   if (req.body && req.body.name) {
-    // packageUtil.install()
-    setTimeout(() => {
-      Math.random() > 0.5
-        ? res.end({ success: true })
-        : res.end({ success: false });
-    }, 4000);
+    packageUtil.uninstall(req.body.name).then(
+      () => {
+        res.json({ success: true });
+      },
+      error => {
+        res.json({ success: false });
+      }
+    );
+  } else {
+    res.json({ success: false });
   }
 });
 

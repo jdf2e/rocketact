@@ -34,6 +34,7 @@ export interface IDependencyStore {
   all: IDependency[];
   refresh: () => void;
   version: number;
+  remove: (name: string) => void;
 }
 
 const store = observable(
@@ -45,6 +46,11 @@ const store = observable(
 
     get all(): IDependency[] {
       return [...this.main, ...this.dev];
+    },
+
+    remove(name) {
+      this.main = this.main.filter(p => p.id !== name);
+      this.dev = this.dev.filter(p => p.id !== name);
     },
 
     refresh() {

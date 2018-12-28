@@ -2,6 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 
 import dependenciesStore, { IDependencyStore } from "../stores/dependencies";
+import globalLoadingStore from "../stores/globalLoading";
 
 import { IDependency } from "../../server/dependenciesAPI";
 
@@ -17,7 +18,8 @@ import {
   Tabs,
   Button,
   Modal,
-  Popconfirm
+  Popconfirm,
+  message
 } from "antd";
 
 import Loading from "../components/Loading";
@@ -44,6 +46,23 @@ class Dependencies extends React.Component<
     this.state = {
       displayInstallModal: false
     };
+  }
+
+  remove(name: string) {
+    globalLoadingStore.show(`Removing ${name}...`);
+    API.uninstall(name)
+      .then(
+        () => {
+          message.success(`${name} was remove successfully!`);
+          dependenciesStore.remove(name);
+        },
+        () => {
+          message.error(`Failed to remove ${name}!`);
+        }
+      )
+      .finally(() => {
+        globalLoadingStore.hide();
+      });
   }
 
   render() {
@@ -118,7 +137,7 @@ class Dependencies extends React.Component<
         key: "opeartion",
         align: "center" as "center",
         render: (text: any, record: IDependency) => (
-          <React.Fragment>
+          <div style={{ minWidth: 140 }}>
             {record.homepage ? (
               <Tooltip placement="top" title="View homepage">
                 <a
@@ -134,7 +153,7 @@ class Dependencies extends React.Component<
               placement="topRight"
               title="Are you sure?"
               onConfirm={() => {
-                alert("removed");
+                this.remove(record.id);
               }}
               okText="Yes"
               cancelText="No"
@@ -143,7 +162,7 @@ class Dependencies extends React.Component<
                 <Icon type="delete" />
               </a>
             </Popconfirm>
-          </React.Fragment>
+          </div>
         )
       }
     ];

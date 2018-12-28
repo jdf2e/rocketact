@@ -79,11 +79,23 @@ function install(
     });
 }
 
+function uninstall(name: string) {
+  return axios
+    .post(`${API_BASE}/dependencies/uninstall`, { name })
+    .then(response => response.data)
+    .then(response => {
+      if (!response.success) {
+        throw new Error();
+      }
+    });
+}
+
 export {
   getProject,
   getPages,
   getDependencies,
   searchNPM,
   getNPMPackageDetail,
-  install
+  install,
+  uninstall
 };
