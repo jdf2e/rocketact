@@ -54,7 +54,7 @@ export interface IPackage {
 }
 
 interface IPackageInstallerProps {
-  refreshOnClose: () => void;
+  refreshOnClose: () => boolean;
   store: IDependencyStore;
 }
 
@@ -303,6 +303,6 @@ class PackageInstaller extends React.Component<
   }
 }
 
-export default (props: { onClose: () => void }) => (
+export default (props: { refreshOnClose: () => boolean }) => (
   <PackageInstaller store={dependencyStore} {...props} />
 );

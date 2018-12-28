@@ -21,6 +21,7 @@ export enum DependencyType {
 export interface IDependency {
   id: string;
   range: string;
+  isDev: boolean;
   installed?: string;
   wanted?: string;
   latest?: string;
@@ -77,14 +78,16 @@ function getDependenciesInPackageJson(): Promise<{
         id =>
           ({
             id,
-            range: project[DependencyType.Main][id]
+            range: project[DependencyType.Main][id],
+            isDev: false
           } as IDependency)
       ),
       dev: Object.keys(project[DependencyType.Dev]).map(
         id =>
           ({
             id,
-            range: project[DependencyType.Dev][id]
+            range: project[DependencyType.Dev][id],
+            isDev: true
           } as IDependency)
       )
     };

@@ -69,6 +69,55 @@ class Dependencies extends React.Component<
       });
   }
 
+  upgrade(name: string, version: string, isDev: boolean) {
+    globalLoadingStore.show(`Upgrading ${name}...`);
+    API.install(name, {
+      isDev,
+      version: `^${version}`
+    })
+      .then(
+        () => {
+          dependenciesStore.refresh();
+          message.success(`${name} was upgraded successfully!`);
+        },
+        () => {
+          message.error(`Failed to upgrade ${name}!`);
+        }
+      )
+      .finally(() => {
+        globalLoadingStore.hide();
+      });
+  }
+
+  renderVersionLabel(
+    name: string,
+    installedVersion: string | undefined,
+    targetVersion: string | undefined,
+    isNext: boolean,
+    isDev: boolean
+  ) {
+    if (targetVersion && installedVersion) {
+      return targetVersion === installedVersion ? (
+        isNext ? null : (
+          <Tag color="green">{targetVersion}</Tag>
+        )
+      ) : (
+        <Popconfirm
+          placement="topRight"
+          title="Upgrade to this version?"
+          trigger="hover"
+          onConfirm={() => {
+            this.upgrade(name, targetVersion, isDev);
+          }}
+        >
+          <Tag color={isNext ? "cyan" : "orange"}>{targetVersion}</Tag>
+        </Popconfirm>
+      );
+    } else {
+      return null;
+    }
+  }
+
   render() {
     const columns = [
       {
@@ -98,39 +147,37 @@ class Dependencies extends React.Component<
         title: "Wanted",
         key: "wanted",
         render: (text: any, record: IDependency) =>
-          record.wanted ? (
-            <span>
-              <Tag
-                color={record.wanted === record.installed ? "green" : "orange"}
-              >
-                {record.wanted}
-              </Tag>
-            </span>
-          ) : null
+          this.renderVersionLabel(
+            record.id,
+            record.installed,
+            record.wanted,
+            false,
+            record.isDev
+          )
       },
       {
         title: "Latest",
         key: "latest",
         render: (text: any, record: IDependency) =>
-          record.latest ? (
-            <span>
-              <Tag
-                color={record.latest === record.installed ? "green" : "orange"}
-              >
-                {record.latest}
-              </Tag>
-            </span>
-          ) : null
+          this.renderVersionLabel(
+            record.id,
+            record.installed,
+            record.latest,
+            false,
+            record.isDev
+          )
       },
       {
         title: "Next",
         key: "next",
         render: (text: any, record: IDependency) =>
-          record.next && record.next !== record.installed ? (
-            <span>
-              <Tag color="cyan">{record.next}</Tag>
-            </span>
-          ) : null
+          this.renderVersionLabel(
+            record.id,
+            record.installed,
+            record.next,
+            true,
+            record.isDev
+          )
       },
       {
         title: "Description",
