@@ -10,7 +10,9 @@ import {
   infoBlock,
   normalBlock,
   appRoot,
-  clearConsole
+  clearConsole,
+  warningBlock,
+  warning
 } from "rocketact-dev-utils";
 
 const plugin = "RocketactConsoleWebpackPlugin";
@@ -123,7 +125,12 @@ export default class ConsolePlugin {
 
       console.log(errorObj.error.message);
     } else if (hasWarnings) {
-      console.log("Build completed with warnings");
+      console.log(
+        `${warningBlock(" WARNING ")} ${warning(
+          "Build completed with warnings"
+        )}`
+      );
+      console.log(stats.compilation.warnings[0].message);
     }
   }
 
