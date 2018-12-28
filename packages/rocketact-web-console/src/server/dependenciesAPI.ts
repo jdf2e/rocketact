@@ -6,7 +6,7 @@ import express from "express";
 import axios from "axios";
 import url from "url";
 
-import { appRoot, appPackageJson } from "rocketact-dev-utils";
+import { appRoot, appPackageJson, packageUtil } from "rocketact-dev-utils";
 
 export enum DependencyType {
   Main = "dependencies",
@@ -102,6 +102,38 @@ dependenciesAPI.get("/npmPackageDetail", (req, res) => {
     .catch(() => {
       res.end();
     });
+});
+
+dependenciesAPI.post("/install", (req, res) => {
+  if (req.body && req.body.name) {
+    packageUtil
+      .install(req.body.name, {
+        versionOrTag: req.body.version,
+        isDev: !!req.body.isDev
+      })
+      .then(
+        () => {
+          res.json({ success: true });
+        },
+        error => {
+          console.log(error);
+          res.json({ success: false });
+        }
+      );
+  } else {
+    res.json({ success: false });
+  }
+});
+
+dependenciesAPI.post("/uninstall", (req, res) => {
+  if (req.body && req.body.name) {
+    // packageUtil.install()
+    setTimeout(() => {
+      Math.random() > 0.5
+        ? res.end({ success: true })
+        : res.end({ success: false });
+    }, 4000);
+  }
 });
 
 export default dependenciesAPI;

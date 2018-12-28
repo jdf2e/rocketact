@@ -2,6 +2,10 @@ import React from "react";
 import { observer } from "mobx-react";
 import dependencyStore, { IDependencyStore } from "../stores/dependencies";
 
+import globalLoadingStore from "../stores/globalLoading";
+
+import * as API from "../api";
+
 import {
   Input,
   Pagination,
@@ -11,7 +15,9 @@ import {
   Tooltip,
   Icon,
   Divider,
-  Popover
+  Popover,
+  Popconfirm,
+  message
 } from "antd";
 import TimeAgo from "react-timeago";
 import gravatar from "gravatar";
@@ -85,6 +91,8 @@ class PackageInstaller extends React.Component<
 
     this.handleUserInput = this.handleUserInput.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
+
+    this.install = this.install.bind(this);
   }
 
   componentDidMount() {
@@ -101,6 +109,27 @@ class PackageInstaller extends React.Component<
         this.searchResultContainer.scrollTo(0, 0);
       }
     });
+  }
+
+  install(name: string, isDev: boolean) {
+    globalLoadingStore.show(`Installing ${name}...`);
+    API.install(name, {
+      isDev
+    })
+      .then(
+        () => {
+          this.setState({
+            installed: [...this.state.installed, name]
+          });
+          message.success(`${name} was installed successfully!`);
+        },
+        () => {
+          message.error(`Failed to install ${name}!`);
+        }
+      )
+      .finally(() => {
+        globalLoadingStore.hide();
+      });
   }
 
   handleUserInput(e: React.ChangeEvent<HTMLInputElement>) {
@@ -151,24 +180,40 @@ class PackageInstaller extends React.Component<
                       Installed
                     </Button>
                   ) : (
-                    <Popover
+                    // <Popover
+                    //   placement="topRight"
+                    //   title="Do you want install it as?"
+                    //   content={
+                    //     <React.Fragment>
+                    // <Button
+                    //   type="primary"
+                    //   onClick={() => this.install(item.name, false)}
+                    // >
+                    //   Main dependency
+                    // </Button>
+                    //       <span style={{ marginLeft: 10, marginRight: 10 }}>
+                    //         or
+                    //       </span>
+                    // <Button onClick={() => this.install(item.name, true)}>
+                    //   Dev dependency
+                    // </Button>
+                    //     </React.Fragment>
+                    //   }
+                    //   trigger="click"
+                    // >
+                    <Popconfirm
                       placement="topRight"
                       title="Do you want install it as?"
-                      content={
-                        <React.Fragment>
-                          <Button type="primary">Main dependency</Button>
-                          <span style={{ marginLeft: 10, marginRight: 10 }}>
-                            or
-                          </span>
-                          <Button>Dev dependency</Button>
-                        </React.Fragment>
-                      }
-                      trigger="click"
+                      okText="Main dependency"
+                      cancelText="Dev dependency"
+                      onConfirm={() => this.install(item.name, false)}
+                      onCancel={() => this.install(item.name, true)}
                     >
                       <Button type="primary" icon="download">
                         Install
                       </Button>
-                    </Popover>
+                    </Popconfirm>
+                    // </Popover>
                   )
                 ]}
               >

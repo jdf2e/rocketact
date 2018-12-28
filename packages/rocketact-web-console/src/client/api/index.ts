@@ -62,10 +62,28 @@ function getNPMPackageDetail(name: string): Promise<IPackageDetail> {
     });
 }
 
+function install(
+  name: string,
+  options: {
+    version?: string;
+    isDev: boolean;
+  }
+) {
+  return axios
+    .post(`${API_BASE}/dependencies/install`, { ...options, name })
+    .then(response => response.data)
+    .then(response => {
+      if (!response.success) {
+        throw new Error();
+      }
+    });
+}
+
 export {
   getProject,
   getPages,
   getDependencies,
   searchNPM,
-  getNPMPackageDetail
+  getNPMPackageDetail,
+  install
 };

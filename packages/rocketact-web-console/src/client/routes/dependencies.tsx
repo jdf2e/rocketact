@@ -5,6 +5,8 @@ import dependenciesStore, { IDependencyStore } from "../stores/dependencies";
 
 import { IDependency } from "../../server/dependenciesAPI";
 
+import GlobalLoadingModal from "../components/GlobalLoadingModal";
+
 import * as API from "../api";
 
 import {
@@ -190,6 +192,7 @@ class Dependencies extends React.Component<
             onClose={() => this.setState({ displayInstallModal: false })}
           />
         </Modal>
+        <GlobalLoadingModal />
       </React.Fragment>
     );
   }

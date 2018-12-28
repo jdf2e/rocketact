@@ -6,6 +6,8 @@ import pagesAPI from "./server/pagesAPI";
 import dependenciesAPI from "./server/dependenciesAPI";
 
 export default (app: express.Application) => {
+  app.use(express.json());
+
   app.use(
     "/ROCKETACT_WEB_CONSOLE/static",
     express.static(path.join(__dirname, "client"))
