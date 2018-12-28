@@ -5,23 +5,6 @@ import { observer } from "mobx-react";
 import Loading from "./Loading";
 import store, { IGlobalLoadingStore } from "../stores/globalLoading";
 
-// const GloalLoadxingModal = observer((props: { store: IGlobalLoadingStore }) => {
-//   return props.store.text ? (
-//     <div
-//       className="ant-modal-mask"
-//       style={{
-//         backgroundColor: "rgba(255,255,255,0.95)",
-//         zIndex: 1010,
-//         textAlign: "center",
-//         paddingTop: 400
-//       }}
-//     >
-//       <Loading />
-//       <p>{props.store.text}</p>
-//     </div>
-//   ) : null;
-// });
-
 interface IGloalLoadingModalProps {
   store: IGlobalLoadingStore;
 }

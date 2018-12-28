@@ -30,6 +30,18 @@ export interface IDependency {
   description?: string;
 }
 
+const result = execa.shellSync("npm config get registry", {
+  cwd: appRoot()
+});
+
+let registry = "https://registry.npmjs.org/";
+
+if (!result.failed) {
+  registry = result.stdout.split("\n")[0];
+}
+
+registry = `${registry}/`.replace(/\/\/$/, "/");
+
 function getDependenciesInstalledVersion(): Promise<{ [key: string]: string }> {
   if (fs.existsSync(resolveToAppRoot("./yarn.lock"))) {
     return execa("yarn", ["list", "--depth", "0"], {
@@ -121,7 +133,7 @@ dependenciesAPI.get("/npmPackageDetail", (req, res) => {
   const urlParams = url.parse(req.url, true);
 
   axios
-    .get(`http://registry.npmjs.org/${urlParams.query.name}`)
+    .get(`${registry}${urlParams.query.name}`)
     .then(response => response.data)
     .then(response => {
       response.versions = Object.keys(response.versions);
