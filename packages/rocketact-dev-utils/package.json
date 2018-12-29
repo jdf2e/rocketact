@@ -1,9 +1,11 @@
 {
   "name": "rocketact-dev-utils",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "shared utils for rocketact and it's plugins",
   "main": "./dist/index.js",
-  "keywords": ["rocketact"],
+  "keywords": [
+    "rocketact"
+  ],
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
