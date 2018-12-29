@@ -8,6 +8,7 @@
     "watch": "tsc -w",
     "commit": "git-cz"
   },
+  "keywords":["react", "webpack", "zero-configuration", "build-tools", "TypeScript"],
   "bin": {
     "rocketact": "./dist/bin/rocketact.js"
   },
