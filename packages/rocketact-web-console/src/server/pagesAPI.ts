@@ -30,7 +30,7 @@ pagesAPI.get("/", (req, res) => {
     }
   });
 
-  res.json(data);
+  res.json({ data, success: true });
 });
 
 export default pagesAPI;

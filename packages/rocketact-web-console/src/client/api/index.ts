@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 import { IDependency } from "../../server/dependenciesAPI";
 import { IPackage } from "../components/PackageInstaller";
@@ -20,19 +20,27 @@ export interface ISearchResult {
 
 const API_BASE = "/ROCKETACT_WEB_CONSOLE/api";
 
+function handleResponse(response: AxiosResponse<any>) {
+  if (response.data.success) {
+    return response.data.data;
+  }
+
+  throw new Error();
+}
+
 function getProject() {
-  return axios.get(`${API_BASE}/project`).then(response => response.data);
+  return axios.get(`${API_BASE}/project`).then(handleResponse);
 }
 
 function getPages() {
-  return axios.get(`${API_BASE}/pages`).then(response => response.data);
+  return axios.get(`${API_BASE}/pages`).then(handleResponse);
 }
 
 function getDependencies(): Promise<{
   main: IDependency[];
   dev: IDependency[];
 }> {
-  return axios.get(`${API_BASE}/dependencies`).then(response => response.data);
+  return axios.get(`${API_BASE}/dependencies`).then(handleResponse);
 }
 
 function searchNPM(
@@ -56,9 +64,13 @@ function getNPMPackageDetail(name: string): Promise<IPackageDetail> {
     .get(`${API_BASE}/dependencies/npmPackageDetail?name=${name}`)
     .then(response => response.data)
     .then(response => {
-      response.versions = Object.values(response.versions);
+      if (response.success) {
+        response.data.versions = Object.values(response.data.versions);
 
-      return response as IPackageDetail;
+        return response.data as IPackageDetail;
+      }
+
+      throw new Error();
     });
 }
 
@@ -71,23 +83,13 @@ function install(
 ) {
   return axios
     .post(`${API_BASE}/dependencies/install`, { ...options, name })
-    .then(response => response.data)
-    .then(response => {
-      if (!response.success) {
-        throw new Error();
-      }
-    });
+    .then(handleResponse);
 }
 
 function uninstall(name: string) {
   return axios
     .post(`${API_BASE}/dependencies/uninstall`, { name })
-    .then(response => response.data)
-    .then(response => {
-      if (!response.success) {
-        throw new Error();
-      }
-    });
+    .then(handleResponse);
 }
 
 export {

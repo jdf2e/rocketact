@@ -11,8 +11,11 @@ pagesAPI.get("/", (req, res) => {
     fs.readFileSync(appPackageJson(), "utf-8").toString()
   );
   res.json({
-    name: project.name,
-    description: project.description
+    data: {
+      name: project.name,
+      description: project.description
+    },
+    success: true
   });
 });
 

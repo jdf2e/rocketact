@@ -126,7 +126,10 @@ function getDependencies(): Promise<{
 const dependenciesAPI = express.Router();
 
 dependenciesAPI.get("/", (req, res) => {
-  getDependencies().then(r => res.json(r), () => res.json({ succss: false }));
+  getDependencies().then(
+    r => res.json({ data: r, success: true }),
+    () => res.json({ succss: false })
+  );
 });
 
 dependenciesAPI.get("/npmPackageDetail", (req, res) => {
@@ -138,10 +141,10 @@ dependenciesAPI.get("/npmPackageDetail", (req, res) => {
     .then(response => {
       response.versions = Object.keys(response.versions);
 
-      res.json(response);
+      res.json({ success: true, data: response });
     })
     .catch(() => {
-      res.end();
+      res.json({ success: false });
     });
 });
 
