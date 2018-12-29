@@ -11,6 +11,7 @@
     "url": "git+https://github.com/jdf2e/rocketact-plugin-polyfill.git"
   },
   "keywords": [
+    "rocketact",
     "polyfill"
   ],
   "author": "loveky <ylzcylx@gmail.com>",
