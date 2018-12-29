@@ -1,35 +1,28 @@
 #!/usr/bin/env node
 
-import { error, warning, success, packageUtil } from 'rocketact-dev-utils';
+import { error, warning, success, infoBlock, normalBlock, packageUtil } from 'rocketact-dev-utils';
 
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import * as os from 'os';
 
-import * as Mustache from 'mustache';
-import { promisify } from 'util';
-
 const validatePackageName = require('validate-npm-package-name'); // tslint:disable-line
-const promisifiedGlob = promisify(require('glob')); // tslint:disable-line
-const promisifiedFsReadFile = promisify(require('fs').readFile); // tslint:disable-line
 
 import program from 'commander';
-import chalk from 'chalk';
-
 import * as packageJson from '../../package.json';
 
 /** 项目名称 */
 let projectName: string | undefined;
 
 program
-  .version(packageJson.version)
+  .version(packageJson.version, '-v, --version, -V')
   .arguments('<project-directory>')
   .description('rocketact will help you create <project-directory> [options]')
-  .option('-t, --template', 'Project Template')
-  .option('-V, --version', 'Show Rocketact Version')
+  .option('create', 'Create an awesome app')
   .allowUnknownOption()
   .on('--help', () => {
-    console.log(`Only ${chalk.green('<project-directory>')} is required.`);
+    console.log(`Only ${infoBlock('<project-directory>')} is required.`);
+    // TODO: 补充更多内容
   })
   .action((projectDirectory: string) => {
     projectName = projectDirectory;
@@ -78,13 +71,16 @@ async function createProject() {
 
   await copyTemplateFiles(root);
 
-  await copyTemplateContent(root);
-
   process.chdir(root);
+
+  await replacePkgConfig();
+
+  console.log('Installing packages. This might take a couple of minutes.');
   try {
-    await packageUtil.install();
+    // await packageUtil.install();
+    console.log(success('Installing packages done.'));
   } catch (error) {
-    console.log(error);
+    console.log(error('Install packages failed. Please check.'));
   }
 }
 
@@ -104,26 +100,12 @@ async function copyTemplateFiles(projectDir: string) {
   }
 }
 
-/**
- * 替换模板内容
- *
- * @param {string} projectDir
- * @returns
- */
-async function copyTemplateContent(projectDir: string) {
-  try {
-    const files = await promisifiedGlob(path.join(projectDir, '**/*.tpl'));
-    return Promise.all(
-      files.map(async (file: any) => {
-        const tpl = await promisifiedFsReadFile(file);
-        const tplContent = await Mustache.render(tpl.toString(), {
-          projectName: path.basename(projectDir)
-        });
-        await fs.outputFile(file.replace(/\.tpl$/, ''), tplContent);
-        await fs.remove(file);
-      })
-    );
-  } catch (err) {
-    console.log(err);
-  }
+/** reaplace pkg.json name */
+async function replacePkgConfig() {
+  const projectPkg = fs.readJsonSync(path.resolve(process.cwd(), 'package.json'));
+  projectPkg.name = projectName;
+  fs.writeJsonSync('./package.json', projectPkg, {
+    spaces: 2,
+    EOL: os.EOL
+  });
 }

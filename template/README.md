@@ -1,19 +1,17 @@
-# {{ projectName }}
-
 ## Start
 
 ```bash
-npm run start
+npm start
 // or
-yarn run start
+yarn start
 ```
 
 ## Build
 
 ```bash
-npm run build
+npm build
 // or
-yarn run build
+yarn build
 ```
 
 ## Project Template Descrption

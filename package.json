@@ -1,6 +1,6 @@
 {
   "name": "rocketact",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Develop React projects with ease",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,16 @@
     "type": "git",
     "url": "git+https://github.com/jdf2e/rocketact.git"
   },
-  "author": "",
+  "contributors": [
+    {
+      "name": "loveky",
+      "email": "ylzcylx@gmail.com"
+    },
+    {
+      "name": "beanlee",
+      "email": "irobot039@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jdf2e/rocketact/issues"
@@ -23,7 +32,6 @@
   "homepage": "https://github.com/jdf2e/rocketact#readme",
   "devDependencies": {
     "@types/fs-extra": "^5.0.4",
-    "@types/mustache": "^0.8.32",
     "@types/node": "^10.12.2",
     "commitizen": "3.0.4",
     "cz-conventional-changelog": "^2.1.0",
@@ -52,10 +60,8 @@
     ]
   },
   "dependencies": {
-    "chalk": "^2.4.1",
     "commander": "^2.19.0",
     "fs-extra": "^7.0.1",
-    "mustache": "^3.0.1",
     "rocketact-dev-utils": "^0.1.0",
     "validate-npm-package-name": "^3.0.0"
   },
