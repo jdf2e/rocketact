@@ -9,6 +9,7 @@
     "test": "jest --coverage",
     "commit": "git-cz"
   },
+  "keywords":["rocketact"],
   "bin": {
     "rocketact-scripts": "./dist/bin/rocketact-scripts.js"
   },
