@@ -3,6 +3,7 @@
   "version": "0.0.3",
   "description": "Rocketact Web Console",
   "main": "index.js",
+  "keywords": ["rocketact"],
   "scripts": {
     "build": "tsc --project tsconfig-server.json; webpack",
     "watch": "tsc --project tsconfig-server.json --watch & webpack --watch",
