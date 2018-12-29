@@ -16,9 +16,9 @@ yarn build
 
 ## Project Template Descrption
 
-### File Architecture
+### Folder Structure
 
-```
+```bash
 .
 ├── build
 ├── node_modules
