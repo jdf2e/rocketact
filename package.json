@@ -16,10 +16,6 @@
     "type": "git",
     "url": "git+https://github.com/jdf2e/rocketact.git"
   },
-  "keyword": [
-    "react",
-    "create-react-app"
-  ],
   "contributors": [
     {
       "name": "loveky",
