@@ -56,7 +56,7 @@ function checkProjectName(): void {
 function printValidationResults(results: [string]): void {
   if (typeof results !== 'undefined') {
     results.forEach((result) => {
-      console.error(chalk.red(`  *  ${result}`));
+      console.error(error(`  *  ${result}`));
     });
   }
 }
