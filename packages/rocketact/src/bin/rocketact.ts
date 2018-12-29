@@ -77,7 +77,7 @@ async function createProject() {
 
   console.log('Installing packages. This might take a couple of minutes.');
   try {
-    // await packageUtil.install();
+    await packageUtil.install();
     console.log(success('Installing packages done.'));
   } catch (error) {
     console.log(error('Install packages failed. Please check.'));
