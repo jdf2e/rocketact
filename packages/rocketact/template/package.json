@@ -1,10 +1,10 @@
 {
-  "name": "{{ projectName }}",
+  "name": "rockectact",
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
+    "start": "rocketact-scripts start",
+    "build": "rocketact-scripts build",
     "tslint": "tslint --config tslint.json --project tsconfig.json"
   },
   "repository": {
@@ -20,11 +20,10 @@
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
     "react-hot-loader": "^4.0.1",
-    "rocketact-scripts": "^0.0.1"
+    "rocketact-scripts": "^0.0.2"
   },
   "dependencies": {
     "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-scripts-ts": "3.1.0"
+    "react-dom": "^16.7.0"
   }
 }
