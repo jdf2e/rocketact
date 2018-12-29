@@ -1,6 +1,6 @@
 {
   "name": "rocketact",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Develop React projects with ease",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,10 @@
     "type": "git",
     "url": "git+https://github.com/jdf2e/rocketact.git"
   },
+  "keyword": [
+    "react",
+    "create-react-app"
+  ],
   "contributors": [
     {
       "name": "loveky",
@@ -63,7 +67,7 @@
   "dependencies": {
     "commander": "^2.19.0",
     "fs-extra": "^7.0.1",
-    "rocketact-dev-utils": "^0.1.0",
+    "rocketact-dev-utils": "^1.0.0",
     "validate-npm-package-name": "^3.0.0"
   },
   "engines": {
