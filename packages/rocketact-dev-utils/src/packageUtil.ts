@@ -151,7 +151,7 @@ class PackageUtil implements IPackageUtil {
 
     let runReturn: IExecaReturn;
     try {
-      runReturn = execa.shellSync(`${command} ${args.join(" ")}`);
+      runReturn = await execa.shell(`${command} ${args.join(" ")}`);
       return Promise.resolve(runReturn);
     } catch (error) {
       runReturn = { ...error };
