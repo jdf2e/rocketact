@@ -1,6 +1,15 @@
 #!/usr/bin/env node
 
-import { error, warning, success, infoBlock, normalBlock, packageUtil } from 'rocketact-dev-utils';
+import {
+  error,
+  warning,
+  success,
+  info,
+  infoBlock,
+  normalBlock,
+  successBlock,
+  packageUtil
+} from 'rocketact-dev-utils';
 
 import * as fs from 'fs-extra';
 import * as path from 'path';
@@ -9,13 +18,14 @@ import * as os from 'os';
 const validatePackageName = require('validate-npm-package-name'); // tslint:disable-line
 
 import program from 'commander';
-import * as packageJson from '../../package.json';
 
 /** 项目名称 */
 let projectName: string | undefined;
 
+const projectMainPkg = fs.readJsonSync(path.resolve(__dirname, '../../package.json'));
+
 program
-  .version(packageJson.version, '-v, --version, -V')
+  .version(projectMainPkg.version, '-v, --version, -V')
   .arguments('<project-directory>')
   .description('rocketact will help you create <project-directory> [options]')
   .option('create', 'Create an awesome app')
@@ -30,7 +40,7 @@ program
   .parse(process.argv);
 
 if (!projectName) {
-  console.log('Please specify the project directory:');
+  console.log(error('Please specify the project directory!'));
   process.exit(0);
 }
 
@@ -76,12 +86,21 @@ async function createProject() {
   await replacePkgConfig();
 
   console.log('Installing packages. This might take a couple of minutes.');
+  console.log('Installing react, react-dom, and rocketact-script...');
+
   try {
-    await packageUtil.install();
-    console.log(success('Installing packages done.'));
+    const r = await packageUtil.install();
+    console.log(r);
+    console.log(`Installing packages. ${successBlock(' done ')}`);
   } catch (error) {
     console.log(error('Install packages failed. Please check.'));
   }
+
+  console.log(`${successBlock('All Things done. ')} :)`);
+  console.log();
+  console.log(success(`  cd ${projectName}`));
+  console.log(success('  yarn start'));
+  console.log();
 }
 
 /**
@@ -92,9 +111,11 @@ async function createProject() {
  */
 async function copyTemplateFiles(projectDir: string) {
   try {
-    await fs.copy(path.resolve(path.join(__dirname, '../../../template')), projectDir, {
+    console.log('Initializing project content...');
+    await fs.copy(path.resolve(path.join(__dirname, '../../template')), projectDir, {
       overwrite: true
     });
+    console.log(`Initializing project content. ${successBlock(' done ')}`);
   } catch (err) {
     console.error(err);
   }

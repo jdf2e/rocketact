@@ -1,3 +1,5 @@
+# Quick Started
+
 ## Start
 
 ```bash
@@ -21,7 +23,6 @@ yarn build
 ```bash
 .
 ├── build
-├── node_modules
 ├── public
 ├── src
 │   ├── api # API
@@ -42,8 +43,8 @@ yarn build
 │   │   ├── home.scss
 │   │   └── home.tsx
 │   └── utils
-├── .editorconfig
-├── .prettierrc
+├── .editorconfig # editor config
+├── .prettierrc # prettier config
 ├── README.md
 ├── package.json
 ├── tsconfig.json

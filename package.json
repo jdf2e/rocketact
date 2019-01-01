@@ -1,14 +1,16 @@
 {
   "name": "rocketact",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "description": "Develop React projects with ease",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "compile": "rm -rf dist && tsc",
+    "prepublish": "npm run compile"
   },
-  "keywords":["react", "webpack", "zero-configuration", "build-tools", "TypeScript"],
+  "keywords":["rocketact", "react", "webpack", "zero-configuration", "build-tools", "TypeScript"],
   "bin": {
     "rocketact": "./dist/bin/rocketact.js"
   },
@@ -30,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/jdf2e/rocketact/issues"
   },
-  "homepage": "https://github.com/jdf2e/rocketact#readme",
+  "homepage": "https://github.com/jdf2e/rocketact",
   "devDependencies": {
     "@types/fs-extra": "^5.0.4",
     "@types/node": "^10.12.2",
