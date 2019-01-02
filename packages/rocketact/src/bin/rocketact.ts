@@ -89,14 +89,15 @@ async function createProject() {
   console.log('Installing react, react-dom, and rocketact-script...');
 
   try {
-    const r = await packageUtil.install();
-    console.log(r);
+    await packageUtil.install();
     console.log(`Installing packages. ${successBlock(' done ')}`);
-  } catch (error) {
-    console.log(error('Install packages failed. Please check.'));
+  } catch (err) {
+    console.log(err);
+    console.log(error('Install packages failed.'));
   }
 
-  console.log(`${successBlock('All Things done. ')} :)`);
+  console.log();
+  console.log(`${successBlock(' All Things done. ')}`);
   console.log();
   console.log(success(`  cd ${projectName}`));
   console.log(success('  yarn start'));
