@@ -8,7 +8,7 @@
     "watch": "tsc -w",
     "commit": "git-cz",
     "compile": "rm -rf dist && tsc",
-    "prepublish": "npm run compile"
+    "prepublishOnly": "npm run compile"
   },
   "keywords":["rocketact", "react", "webpack", "zero-configuration", "build-tools", "TypeScript"],
   "bin": {
