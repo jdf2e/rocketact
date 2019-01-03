@@ -73,12 +73,7 @@ export default (api: CoreAPI) => {
     const validEntries = getValidEntries(appRoot());
     Object.keys(validEntries).forEach(entryName => {
       const entry = validEntries[entryName];
-      console.log(
-        createHtmlWebpackPluginInstance({
-          entryName,
-          template: entry.html
-        })
-      );
+
       webpackChain
         .plugin(`HtmlWebpackPlugin-${entryName}`)
         .use(
