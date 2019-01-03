@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jdf2e.github.io/rocketact/blog</id>
-    <title>Test Site Blog</title>
+    <title>Rocketact Blog</title>
     <updated>2017-10-24T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://jdf2e.github.io/rocketact/blog"/>
-    <subtitle>The best place to stay up-to-date with the latest Test Site news and events.</subtitle>
+    <subtitle>The best place to stay up-to-date with the latest Rocketact news and events.</subtitle>
     <logo>https://jdf2e.github.io/rocketact/img/docusaurus.svg</logo>
-    <rights>Copyright © 2018 Your Name or Your Company Name</rights>
+    <rights>Copyright © 2019 JD.com</rights>
     <entry>
         <title type="html"><![CDATA[New Version 1.0.0]]></title>
         <id>https://jdf2e.github.io/rocketact/blog/2017/10/24/new-version-1.0.0.html</id>
