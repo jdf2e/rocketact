@@ -82,6 +82,6 @@
     "semver": "^5.6.0"
   },
   "peerDependencies": {
-    "rocketact-scripts": "^0.0.2"
+    "rocketact-scripts": "^1.0.0"
   }
 }
