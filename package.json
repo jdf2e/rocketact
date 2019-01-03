@@ -10,7 +10,14 @@
     "compile": "rm -rf dist && tsc",
     "prepublishOnly": "npm run compile"
   },
-  "keywords":["rocketact", "react", "webpack", "zero-configuration", "build-tools", "TypeScript"],
+  "keywords": [
+    "rocketact",
+    "react",
+    "webpack",
+    "zero-configuration",
+    "build-tools",
+    "TypeScript"
+  ],
   "bin": {
     "rocketact": "./dist/bin/rocketact.js"
   },
