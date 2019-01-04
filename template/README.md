@@ -23,10 +23,9 @@ yarn build
 ```bash
 .
 ├── build
-├── public
 ├── src
 │   ├── api # API
-│   ├── assets # ex: images 、scss
+│   ├── styles # ex: images 、scss
 │   │   ├── images
 │   │   ├── common.scss
 │   │   └── reset.scss
@@ -43,11 +42,9 @@ yarn build
 │   │   ├── home.scss
 │   │   └── home.tsx
 │   └── utils
-├── .editorconfig # editor config
-├── .prettierrc # prettier config
+├── @types # typescript *.d.ts
 ├── README.md
 ├── package.json
 ├── tsconfig.json
-├── tslint.json
-└── yarn.lock
+└── tslint.json
 ```
