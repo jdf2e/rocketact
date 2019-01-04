@@ -1,7 +1,7 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
-import './app.scss';
+import "./app.scss";
 
 ReactDOM.render(
   <div className="App">
@@ -9,7 +9,7 @@ ReactDOM.render(
       <h1 className="App-title">Welcome to Rocketact</h1>
     </header>
   </div>,
-  document.getElementById('app') as HTMLElement
+  document.getElementById("app") as HTMLElement
 );
 
 if (module.hot) {
