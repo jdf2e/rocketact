@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/jdf2e/rocketact-plugin-butler#readme",
   "peerDependencies": {
-    "rocketact-scripts": "^0.0.1"
+    "rocketact-scripts": "^1.0.0"
   },
   "dependencies": {
     "rocketact-dev-utils": "^1.0.0"
