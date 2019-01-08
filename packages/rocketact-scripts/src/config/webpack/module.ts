@@ -49,19 +49,19 @@ export default (api: CoreAPI) => {
         .use("style")
         .loader(require.resolve("style-loader"))
         .options({
-          sourceMap: true
+          sourceMap: true // FIXME: suport setting from --option
         })
         .end()
         .use("css")
         .loader(require.resolve("css-loader"))
         .options({
-          sourceMap: true
+          sourceMap: true // FIXME: suport setting from --option
         })
         .end()
         .use("postcss")
         .loader(require.resolve("postcss-loader"))
         .options({
-          sourceMap: true,
+          sourceMap: true, // FIXME: suport setting from --option
           ident: "postcss",
           plugins: () => [
             postcssFlexbugsFixes,
@@ -74,7 +74,7 @@ export default (api: CoreAPI) => {
         .use("scss")
         .loader(require.resolve("sass-loader"))
         .options({
-          sourceMap: true,
+          sourceMap: true, // FIXME: suport setting from --option
           outputStyle: "compressed"
         })
         .end()

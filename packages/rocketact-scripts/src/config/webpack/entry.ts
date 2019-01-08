@@ -1,7 +1,5 @@
 import CoreAPI from "../../CoreAPI";
 
-import { isDevelopmentEnv } from "../../utils/environment";
-
 import { getValidEntries, appRoot } from "rocketact-dev-utils";
 
 export default (api: CoreAPI) => {

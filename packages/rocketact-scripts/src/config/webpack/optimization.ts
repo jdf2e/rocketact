@@ -31,7 +31,7 @@ export default (api: CoreAPI) => {
                 drop_console: true
               }
             },
-            sourceMap: false
+            sourceMap: false // FIXME: support source map from option
           }
         ])
         .end()
@@ -46,7 +46,7 @@ export default (api: CoreAPI) => {
               discardUnused: false,
               autoprefixer: false,
               zindex: false,
-              map: false
+              map: false // FIXME: support source map from option
             }
           }
         ])
