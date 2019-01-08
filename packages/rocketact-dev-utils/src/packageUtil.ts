@@ -1,6 +1,8 @@
 import * as fs from "fs";
 import * as path from "path";
-import * as execa from "execa";
+
+const execa = require("execa");
+const getStream = require("get-stream");
 
 interface IPackageUtil {
   /**
@@ -113,49 +115,57 @@ class PackageUtil implements IPackageUtil {
     /** 本地有 yarn.lock 文件 */
     const hasYarnLock = await this.hasYarnLock();
 
-    // 初次初始化安装，优先使用 yarn 安装
     if (!packageName) {
+      // 初次初始化安装，优先使用 yarn 安装
       try {
-        const result = await execa.shell(`${hasYarn ? "yarn" : "npm"} install`);
-        return Promise.resolve({ ...(result as IExecaReturn) });
+        const result = execa(`${hasYarn ? "yarn" : "npm"}`, ["install"]);
+        const stream = result.stdout;
+        stream.pipe(process.stdout);
+
+        return getStream(stream).then(() => {
+          return Promise.resolve({ ...result });
+        });
       } catch (error) {
         return Promise.reject({ error });
       }
-    }
-
-    // 非首次安装
-    const canUseYarn = hasYarn && hasYarnLock;
-    const command = canUseYarn ? "yarn" : "npm";
-
-    if (canUseYarn) {
-      args.push("add");
-      args.push(
-        `${packageName}${
-          opts && opts.versionOrTag ? `@${opts.versionOrTag}` : ""
-        }`
-      );
-
-      args.push(opts && opts.isDev ? "-D" : "");
-
-      args.push("--cwd");
-      args.push(process.cwd());
     } else {
-      args.push("install");
-      args.push(
-        `${packageName}${
-          opts && opts.versionOrTag ? `@${opts.versionOrTag}` : ""
-        }`
-      );
-      args.push(opts && opts.isDev ? "-D" : "-P");
-    }
+      // 非首次安装
+      const canUseYarn = hasYarn && hasYarnLock;
+      const command = canUseYarn ? "yarn" : "npm";
 
-    let runReturn: IExecaReturn;
-    try {
-      runReturn = await execa.shell(`${command} ${args.join(" ")}`);
-      return Promise.resolve(runReturn);
-    } catch (error) {
-      runReturn = { ...error };
-      return Promise.reject(runReturn);
+      if (canUseYarn) {
+        args.push("add");
+        args.push(
+          `${packageName}${
+            opts && opts.versionOrTag ? `@${opts.versionOrTag}` : ""
+          }`
+        );
+
+        args.push(opts && opts.isDev ? "--save-dev" : "--save");
+
+        args.push("--cwd");
+        args.push(process.cwd());
+      } else {
+        args.push("install");
+        args.push(
+          `${packageName}${
+            opts && opts.versionOrTag ? `@${opts.versionOrTag}` : ""
+          }`
+        );
+        args.push(opts && opts.isDev ? "--save-dev" : "--save");
+      }
+
+      try {
+        const result = execa(`${command}`, args);
+        const stream = result.stdout;
+        stream.pipe(process.stdout);
+
+        return await getStream(stream).then(() => {
+          return Promise.resolve({ ...result });
+        });
+      } catch (error) {
+        return Promise.reject({ ...error });
+      }
     }
   }
 
@@ -173,7 +183,7 @@ class PackageUtil implements IPackageUtil {
 
     let runReturn: IExecaReturn;
     try {
-      runReturn = await execa.shell(`${command} ${packageName}`);
+      runReturn = await execa(`${command} ${packageName}`);
       return Promise.resolve(runReturn);
     } catch (error) {
       // yarn remove 删除一个不存在的包会报错，npm unisntall 并不会
@@ -181,11 +191,6 @@ class PackageUtil implements IPackageUtil {
       return Promise.reject(runReturn);
     }
   }
-
-  /**
-   * 项目首次初始化安装
-   */
-  private async processInitInstall() {}
 }
 
 const packageUtil = new PackageUtil();

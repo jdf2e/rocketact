@@ -1,6 +1,6 @@
 {
   "name": "rocketact-dev-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "shared utils for rocketact and it's plugins",
   "main": "./dist/index.js",
   "keywords": [
@@ -11,7 +11,9 @@
     "watch": "tsc -w",
     "test": "jest --coverage",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "compile": "rm -rf dist && tsc",
+    "prepublishOnly": "npm run compile"
   },
   "types": "./dist/index.d.ts",
   "repository": {
@@ -19,6 +21,16 @@
     "url": "git+https://github.com/jdf2e/rocketact-dev-utils.git"
   },
   "author": "loveky",
+  "contributors": [
+    {
+      "name": "loveky",
+      "email": "ylzcylx@gmail.com"
+    },
+    {
+      "name": "beanlee",
+      "email": "irobot039@gmail.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jdf2e/rocketact-dev-utils/issues"
@@ -45,6 +57,7 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "execa": "^1.0.0",
+    "get-stream": "^4.1.0",
     "ramda": "^0.25.0"
   },
   "config": {
