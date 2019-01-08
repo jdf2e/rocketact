@@ -183,7 +183,7 @@ class PackageUtil implements IPackageUtil {
 
     let runReturn: IExecaReturn;
     try {
-      runReturn = await execa(`${command} ${packageName}`);
+      runReturn = await execa.shell(`${command} ${packageName}`);
       return Promise.resolve(runReturn);
     } catch (error) {
       // yarn remove 删除一个不存在的包会报错，npm unisntall 并不会
