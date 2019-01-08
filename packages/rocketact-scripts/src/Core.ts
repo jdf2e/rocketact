@@ -58,6 +58,14 @@ class Core {
     );
   }
 
+  resolveProjectPlugins() {
+    if (Array.isArray(this.pkg.rocketactPlugins)) {
+      this.pkg.rocketactPlugins.forEach((plugin: string) =>
+        require(resolveToAppRoot(plugin))(new CoreAPI(this))
+      );
+    }
+  }
+
   resolveWebpackConfig() {
     if (!this.webpackConfigResolved) {
       this.applyWebpackChainFns();
@@ -69,6 +77,7 @@ class Core {
   run(command: string, args: minimist.ParsedArgs): Promise<any> {
     this.resolveBuiltInPlugins();
     this.resolveInstalledPlugins();
+    this.resolveProjectPlugins();
 
     if (!this.commands[command]) {
       console.log(error(`Subcommand [${command}] does not exist!`));
