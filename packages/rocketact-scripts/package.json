@@ -71,6 +71,7 @@
     "babel-preset-rocketact": "^1.0.0",
     "css-loader": "^1.0.1",
     "cssnano": "^4.1.7",
+    "del": "^3.0.0",
     "detect-port": "^1.2.3",
     "file-loader": "^2.0.0",
     "glob": "^7.1.3",
