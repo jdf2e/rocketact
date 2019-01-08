@@ -25,7 +25,7 @@ export default (api: CoreAPI) => {
             const startTime = +new Date();
             webpack(api.resolveWebpackConfig(), (err, stats) => {
               const endTime = +new Date();
-              const duration = ((endTime - startTime) / 100).toFixed(2);
+              const duration = ((endTime - startTime) / 1000).toFixed(2);
 
               if (err || stats.hasErrors()) {
                 console.log(
