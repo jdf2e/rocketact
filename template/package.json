@@ -5,7 +5,7 @@
   "scripts": {
     "start": "rocketact-scripts start",
     "build": "rocketact-scripts build",
-    "tslint": "tslint --config tslint.json --project tsconfig.json"
+    "ts-check": "tsc --project tsconfig.json && tslint --config tslint.json --project tsconfig.json"
   },
   "repository": {
     "type": "git",
