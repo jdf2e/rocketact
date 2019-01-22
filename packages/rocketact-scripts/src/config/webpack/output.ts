@@ -9,6 +9,8 @@ import {
   appBuild
 } from "rocketact-dev-utils";
 
+const pkg = require(appPackageJson());
+
 export default (api: CoreAPI) => {
   api.chainWebpack(webpackChain => {
     const filenameTemplate = isDevelopmentEnv()
@@ -22,7 +24,7 @@ export default (api: CoreAPI) => {
       .publicPath(
         isDevelopmentEnv()
           ? "/"
-          : ensureTrailingSlash(require(appPackageJson()).publicPath || "/")
+          : ensureTrailingSlash(pkg.publicPath || pkg.cdn || "/")
       )
       .path(isProductionEnv() ? appBuild() : "/")
       .end();
