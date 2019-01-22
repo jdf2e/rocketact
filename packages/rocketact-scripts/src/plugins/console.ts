@@ -127,16 +127,17 @@ export default class ConsolePlugin {
         }
       }
 
-      if (
-        errorObj.file &&
-        errorObj.rawMessage &&
-        errorObj.rawMessage.match(/ERROR TS/)
-      ) {
+      if (errorObj.file && errorObj.rawMessage && errorObj.location) {
         console.log(
           `${errorBlock(" error ")} in ${errorObj.file.replace(appRoot(), ".")}`
         );
         console.log("");
-        console.log(errorObj.rawMessage.replace(/^[^:]*:/, "TypeError:"));
+        if (errorObj.rawMessage.match(/ERROR TS/)) {
+          console.log(errorObj.rawMessage.replace(/^[^:]*:/, "TypeError:"));
+        } else {
+          console.log(errorObj.rawMessage.replace(/^ERROR /, "TSLint: "));
+        }
+
         return;
       }
 

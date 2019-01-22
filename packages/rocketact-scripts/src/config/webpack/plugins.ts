@@ -108,9 +108,9 @@ export default (api: CoreAPI) => {
         .use(ForkTsCheckerWebpackPlugin, [
           {
             tsconfig: resolveToAppRoot("tsconfig.json"),
-            // tslint: enableTSLintCheck
-            //   ? resolveToAppRoot("tslint.json")
-            //   : undefined,
+            tslint: enableTSLintCheck
+              ? resolveToAppRoot("tslint.json")
+              : undefined,
             async: false,
             typescript: require.resolve("typescript", { paths: [appRoot()] })
           }
