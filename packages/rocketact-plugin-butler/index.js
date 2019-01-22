@@ -24,7 +24,7 @@ module.exports = api => {
       const entryName = path.basename(p).replace(/\.html$/, "");
       htmlEntries[entryName] = p;
     });
-console.log(jsEntries)
+
   api.chainWebpack(webpackChain => {
     // clear default entries and HtmlWebpackPlugin instances
     webpackChain.entryPoints.clear();
