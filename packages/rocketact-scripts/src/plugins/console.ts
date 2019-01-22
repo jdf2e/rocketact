@@ -83,7 +83,11 @@ export default class ConsolePlugin {
         )}`
       );
       console.log("");
-      if (errorObj.error.code === "BABEL_PARSE_ERROR") {
+      if (
+        errorObj &&
+        errorObj.error &&
+        errorObj.error.code === "BABEL_PARSE_ERROR"
+      ) {
         console.log(
           `${errorBlock(" error ")} in ${errorObj.module.resource.replace(
             appRoot(),
@@ -95,7 +99,7 @@ export default class ConsolePlugin {
         return;
       }
 
-      if (errorObj.name === "ModuleNotFoundError") {
+      if (errorObj && errorObj.name === "ModuleNotFoundError") {
         const missingModule = errorObj.error.message.match(
           /^Can't resolve '([^']+)'/
         );
@@ -123,7 +127,20 @@ export default class ConsolePlugin {
         }
       }
 
-      console.log(errorObj.error.message);
+      if (
+        errorObj.file &&
+        errorObj.rawMessage &&
+        errorObj.rawMessage.match(/ERROR TS/)
+      ) {
+        console.log(
+          `${errorBlock(" error ")} in ${errorObj.file.replace(appRoot(), ".")}`
+        );
+        console.log("");
+        console.log(errorObj.rawMessage.replace(/^[^:]*:/, "TypeError:"));
+        return;
+      }
+
+      console.log(errorObj);
     } else if (hasWarnings) {
       console.log(
         `${warningBlock(" WARNING ")} ${warning(

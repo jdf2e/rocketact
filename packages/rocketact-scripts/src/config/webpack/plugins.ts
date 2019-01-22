@@ -1,12 +1,20 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-var ProgressBarPlugin = require("progress-bar-webpack-plugin");
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 import createHtmlWebpackPluginInstance from "../../utils/createHtmlWebpackPluginInstance";
 
-import { info, infoBlock, success, successBlock } from "rocketact-dev-utils";
+import {
+  info,
+  infoBlock,
+  success,
+  successBlock,
+  checkPackageInstalled,
+  resolveToAppRoot
+} from "rocketact-dev-utils";
 
 import webpack from "webpack";
-import path from "path";
+import fs from "fs";
 
 import CoreAPI from "../../CoreAPI";
 
@@ -84,5 +92,29 @@ export default (api: CoreAPI) => {
         )
         .end();
     });
+
+    // Configure TypeScript check and TSLint check
+    const enableTSLintCheck =
+      checkPackageInstalled("tslint") &&
+      fs.existsSync(resolveToAppRoot("tslint.json"));
+
+    const enableTSCheck =
+      checkPackageInstalled("typescript") &&
+      fs.existsSync(resolveToAppRoot("tsconfig.json"));
+
+    if (enableTSCheck) {
+      webpackChain
+        .plugin("ForkTsCheckerWebpackPlugin")
+        .use(ForkTsCheckerWebpackPlugin, [
+          {
+            tsconfig: resolveToAppRoot("tsconfig.json"),
+            // tslint: enableTSLintCheck
+            //   ? resolveToAppRoot("tslint.json")
+            //   : undefined,
+            async: false,
+            typescript: require.resolve("typescript", { paths: [appRoot()] })
+          }
+        ]);
+    }
   });
 };
