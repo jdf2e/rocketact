@@ -62,14 +62,8 @@
     "typescript": "^3.2.2",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.27.1",
-    "webpack-cli": "^3.1.2"
-  },
-  "dependencies": {
+    "webpack-cli": "^3.1.2",
     "antd": "^3.11.2",
-    "axios": "^0.18.0",
-    "execa": "^1.0.0",
-    "express": "^4.16.4",
-    "fs-extra": "^7.0.1",
     "gravatar": "^1.8.0",
     "mobx": "^5.8.0",
     "mobx-react": "^5.4.3",
@@ -77,8 +71,14 @@
     "react-dom": "^16.6.3",
     "react-router-dom": "^4.3.1",
     "react-timeago": "^4.1.9",
+    "rxjs": "^6.3.3"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "execa": "^1.0.0",
+    "express": "^4.16.4",
+    "fs-extra": "^7.0.1",
     "rocketact-dev-utils": "^1.0.0",
-    "rxjs": "^6.3.3",
     "semver": "^5.6.0"
   },
   "peerDependencies": {
