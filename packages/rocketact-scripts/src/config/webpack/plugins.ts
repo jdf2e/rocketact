@@ -76,6 +76,30 @@ export default (api: CoreAPI) => {
           }
         ])
         .end();
+
+      // Configure TypeScript check and TSLint check
+      const enableTSLintCheck =
+        checkPackageInstalled("tslint") &&
+        fs.existsSync(resolveToAppRoot("tslint.json"));
+
+      const enableTSCheck =
+        checkPackageInstalled("typescript") &&
+        fs.existsSync(resolveToAppRoot("tsconfig.json"));
+
+      if (enableTSCheck) {
+        webpackChain
+          .plugin("ForkTsCheckerWebpackPlugin")
+          .use(ForkTsCheckerWebpackPlugin, [
+            {
+              tsconfig: resolveToAppRoot("tsconfig.json"),
+              tslint: enableTSLintCheck
+                ? resolveToAppRoot("tslint.json")
+                : undefined,
+              async: false,
+              typescript: require.resolve("typescript", { paths: [appRoot()] })
+            }
+          ]);
+      }
     }
 
     const validEntries = getValidEntries(appRoot());
@@ -92,29 +116,5 @@ export default (api: CoreAPI) => {
         )
         .end();
     });
-
-    // Configure TypeScript check and TSLint check
-    const enableTSLintCheck =
-      checkPackageInstalled("tslint") &&
-      fs.existsSync(resolveToAppRoot("tslint.json"));
-
-    const enableTSCheck =
-      checkPackageInstalled("typescript") &&
-      fs.existsSync(resolveToAppRoot("tsconfig.json"));
-
-    if (enableTSCheck) {
-      webpackChain
-        .plugin("ForkTsCheckerWebpackPlugin")
-        .use(ForkTsCheckerWebpackPlugin, [
-          {
-            tsconfig: resolveToAppRoot("tsconfig.json"),
-            tslint: enableTSLintCheck
-              ? resolveToAppRoot("tslint.json")
-              : undefined,
-            async: false,
-            typescript: require.resolve("typescript", { paths: [appRoot()] })
-          }
-        ]);
-    }
   });
 };
