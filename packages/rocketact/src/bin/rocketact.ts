@@ -85,6 +85,7 @@ async function createProject() {
 
   process.chdir(root);
 
+  await renameNpmignoreToGitignore();
   await replacePkgConfig();
 
   console.log("Installing packages. This might take a couple of minutes.");
@@ -125,6 +126,21 @@ async function copyTemplateFiles(projectDir: string) {
     console.log(`Initializing project content. ${successBlock(" done ")}`);
   } catch (err) {
     console.error(err);
+  }
+}
+/**
+ * Mannualy rename .npmignore to .gitignore
+ *
+ * This is because when publishing package, npm will rename .gitigonre to .npmignore (see npm/npm#1862)
+ */
+async function renameNpmignoreToGitignore() {
+  try {
+    const npmignoreExist = await fs.pathExists("./.npmignore");
+    if (npmignoreExist) {
+      await fs.rename(".npmignore", ".gitignore");
+    }
+  } catch (e) {
+    // we do nothing here
   }
 }
 
