@@ -262,19 +262,23 @@ class PackageInstaller extends React.Component<
                         </a>
                       </Tooltip>
                       <p style={{ display: "inline", float: "right" }}>
-                        <Avatar
-                          size="small"
-                          src={gravatar.url(item.publisher.email)}
-                        />
-                        {"  "}
-                        <a
-                          href={`https://www.npmjs.com/~${
-                            item.publisher.username
-                          }`}
-                          target="_blank"
-                        >
-                          {item.publisher.username}
-                        </a>
+                        {item.publisher ? (
+                          <React.Fragment>
+                            <Avatar
+                              size="small"
+                              src={gravatar.url(item.publisher.email)}
+                            />
+                            {"  "}
+                            <a
+                              href={`https://www.npmjs.com/~${
+                                item.publisher.username
+                              }`}
+                              target="_blank"
+                            >
+                              {item.publisher.username}
+                            </a>
+                          </React.Fragment>
+                        ) : null}
                         <span className="ant-list-item-meta-description">
                           {" "}
                           published {item.version}
