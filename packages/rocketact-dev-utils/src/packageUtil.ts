@@ -141,7 +141,9 @@ class PackageUtil implements IPackageUtil {
           }`
         );
 
-        args.push(opts && opts.isDev ? "-D" : "");
+        if (opts && opts.isDev) {
+          args.push("-D");
+        }
 
         args.push("--cwd");
         args.push(process.cwd());
