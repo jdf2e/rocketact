@@ -13,7 +13,7 @@ export default function(config: {
       {
         filename: `${config.entryName}.html`,
         template: config.template,
-        chunks: [config.entryName, isProductionEnv() ? "vender" : ""].filter(
+        chunks: [config.entryName, isProductionEnv() ? "vendor" : ""].filter(
           Boolean
         ),
         inject: true
