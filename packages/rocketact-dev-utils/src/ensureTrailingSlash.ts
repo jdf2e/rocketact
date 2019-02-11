@@ -4,7 +4,7 @@
  * @param originalString
  */
 const ensureTrailingSlash = (originalString: string): string => {
-  return `${originalString}/`.replace(/\/+/, "/");
+  return `${originalString}/`.replace(/\/+$/, "/");
 };
 
 export { ensureTrailingSlash };
