@@ -1,0 +1,21 @@
+{
+  "name": "rocketact-plugin-bundle-analyzer",
+  "version": "0.1.0",
+  "description": "Rockectact plugin for rocketact-plugin-bundle-analyzer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rocketact"
+  ],
+  "author": "loveky <ylzcylx@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "rocketact-scripts": "^1.0.0"
+  },
+  "dependencies": {
+    "rocketact-dev-utils": "^1.0.0",
+    "webpack-bundle-analyzer": "^3.0.4"
+  }
+}
