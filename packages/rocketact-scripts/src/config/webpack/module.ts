@@ -61,14 +61,7 @@ export default (api: CoreAPI) => {
         .use("postcss")
         .loader(require.resolve("postcss-loader"))
         .options({
-          sourceMap: true, // FIXME: suport setting from --option
-          ident: "postcss",
-          plugins: () => [
-            postcssFlexbugsFixes,
-            autoprefixer({
-              flexbox: "no-2009"
-            })
-          ]
+          sourceMap: true // FIXME: suport setting from --option
         })
         .end()
         .use("scss")
@@ -102,15 +95,6 @@ export default (api: CoreAPI) => {
         .end()
         .use("postcss")
         .loader(require.resolve("postcss-loader"))
-        .options({
-          ident: "postcss",
-          plugins: () => [
-            postcssFlexbugsFixes,
-            autoprefixer({
-              flexbox: "no-2009"
-            })
-          ]
-        })
         .end()
         .use("scss")
         .loader(require.resolve("sass-loader"))
