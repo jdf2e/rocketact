@@ -17,7 +17,7 @@ rocketact create my-awosome-project
 ```
 
 
-## Develop
+## Development
 
 ### Prepare
 
@@ -31,6 +31,12 @@ yarn bootstrap
 
 ```bash
 yarn build
+```
+
+### Testing
+
+```bash
+yarn test
 ```
 
 ### Commit Changes
