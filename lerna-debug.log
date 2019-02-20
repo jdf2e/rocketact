@@ -1,0 +1,20 @@
+0 silly argv { _: [ 'import' ],
+0 silly argv   lernaVersion: '3.13.0',
+0 silly argv   '$0': 'lerna',
+0 silly argv   dir: '/Users/wangge1/GitHub/rocketact' }
+1 notice cli v3.13.0
+2 verbose rootPath /Users/wangge1/GitHub/rocketact-mono
+3 info versioning independent
+4 error Error: Command failed: git rev-parse HEAD
+4 error fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.
+4 error Use '--' to separate paths from revisions, like this:
+4 error 'git <command> [<revision>...] -- [<file>...]'
+4 error
+4 error HEAD
+4 error
+4 error     at makeError (/Users/wangge1/.nvm/versions/node/v10.13.0/lib/node_modules/lerna/node_modules/execa/index.js:174:9)
+4 error     at Function.module.exports.sync (/Users/wangge1/.nvm/versions/node/v10.13.0/lib/node_modules/lerna/node_modules/execa/index.js:338:15)
+4 error     at Object.execSync (/Users/wangge1/.nvm/versions/node/v10.13.0/lib/node_modules/lerna/node_modules/@lerna/child-process/index.js:22:16)
+4 error     at ImportCommand.getCurrentSHA (/Users/wangge1/.nvm/versions/node/v10.13.0/lib/node_modules/lerna/node_modules/@lerna/import/index.js:129:34)
+4 error     at ImportCommand.initialize (/Users/wangge1/.nvm/versions/node/v10.13.0/lib/node_modules/lerna/node_modules/@lerna/import/index.js:98:31)
+4 error     at Promise.resolve.then (/Users/wangge1/.nvm/versions/node/v10.13.0/lib/node_modules/lerna/node_modules/@lerna/command/index.js:271:24)
