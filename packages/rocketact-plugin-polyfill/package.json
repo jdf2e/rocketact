@@ -1,6 +1,6 @@
 {
   "name": "rocketact-plugin-polyfill",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "automaticlly include polyfills for projects created by rocketact",
   "main": "index.js",
   "scripts": {

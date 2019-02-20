@@ -1,6 +1,6 @@
 {
   "name": "rocketact",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Develop React projects with ease",
   "main": "index.js",
   "scripts": {
@@ -72,7 +72,7 @@
   "dependencies": {
     "commander": "^2.19.0",
     "fs-extra": "^7.0.1",
-    "rocketact-dev-utils": "^1.0.0",
+    "rocketact-dev-utils": "^1.0.7",
     "validate-npm-package-name": "^3.0.0"
   },
   "engines": {
