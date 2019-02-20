@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jdf2e/rocketact-plugin-polyfill.git"
+    "url": "git+https://github.com/jdf2e/rocketact.git"
   },
   "keywords": [
     "rocketact",
@@ -17,9 +17,9 @@
   "author": "loveky <ylzcylx@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jdf2e/rocketact-plugin-polyfill/issues"
+    "url": "https://github.com/jdf2e/rocketact/issues"
   },
-  "homepage": "https://github.com/jdf2e/rocketact-plugin-polyfill#readme",
+  "homepage": "https://jdf2e.github.io/rocketact/",
   "dependencies": {
     "@babel/helper-module-imports": "^7.0.0",
     "core-js": "2.5.7",

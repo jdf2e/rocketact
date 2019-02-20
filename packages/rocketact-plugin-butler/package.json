@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jdf2e/rocketact-plugin-butler.git"
+    "url": "git+https://github.com/jdf2e/rocketact.git"
   },
   "keywords": [
     "rocketact"
@@ -16,9 +16,9 @@
   "author": "loveky <ylzcylx@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jdf2e/rocketact-plugin-butler/issues"
+    "url": "https://github.com/jdf2e/rocketact/issues"
   },
-  "homepage": "https://github.com/jdf2e/rocketact-plugin-butler#readme",
+  "homepage": "https://jdf2e.github.io/rocketact/",
   "peerDependencies": {
     "rocketact-scripts": "^1.0.0"
   },

@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jdf2e/rocketact-web-console.git"
+    "url": "git+https://github.com/jdf2e/rocketact.git"
   },
   "author": "loveky <ylzcylx@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jdf2e/rocketact-web-console/issues"
+    "url": "https://github.com/jdf2e/rocketact/issues"
   },
-  "homepage": "https://github.com/jdf2e/rocketact-web-console#readme",
+  "homepage": "https://jdf2e.github.io/rocketact/",
   "files": [
     "index.js",
     "/server",

@@ -17,7 +17,7 @@
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jdf2e/rocketact-dev-utils.git"
+    "url": "git+https://github.com/jdf2e/rocketact.git"
   },
   "author": "loveky",
   "contributors": [
@@ -32,9 +32,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jdf2e/rocketact-dev-utils/issues"
+    "url": "https://github.com/jdf2e/rocketact/issues"
   },
-  "homepage": "https://github.com/jdf2e/rocketact-dev-utils#readme",
+  "homepage": "https://jdf2e.github.io/rocketact/",
   "dependencies": {
     "chalk": "^2.4.1",
     "execa": "^1.0.0",
