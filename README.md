@@ -19,3 +19,22 @@ rocketact create my-awosome-project
 
 ## Develop
 
+### Prepare
+
+```bash
+git clone https://github.com/jdf2e/rocketact.git
+cd rocketact
+yarn bootstrap
+```
+
+### Build
+
+```bash
+yarn build
+```
+
+### Commit Changes
+
+```bash
+yarn commit
+```
