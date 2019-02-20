@@ -7,7 +7,8 @@
   "scripts": {
     "commit": "git-cz",
     "bootstrap": "./node_modules/.bin/lerna bootstrap",
-    "build": "./node_modules/.bin/lerna run build"
+    "build": "./node_modules/.bin/lerna run build",
+    "test": "jest"
   },
   "config": {
     "commitizen": {

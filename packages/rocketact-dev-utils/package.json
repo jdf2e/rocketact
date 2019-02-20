@@ -9,8 +9,6 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "jest --coverage",
-    "coveralls": "cat ./coverage/lcov.info | coveralls",
     "compile": "rm -rf dist && tsc",
     "prepublishOnly": "npm run compile"
   },

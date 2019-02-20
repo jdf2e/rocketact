@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "watch": "tsc -w",
-    "test": "jest --coverage"
+    "watch": "tsc -w"
   },
   "keywords": [
     "rocketact"
