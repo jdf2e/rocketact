@@ -1,9 +1,8 @@
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
-  watchPathIgnorePatterns: [
-    "<rootDir>\/.*\/build\/"
-  ],
+  watchPathIgnorePatterns: ["<rootDir>/.*/build/"],
+  setupTestFrameworkScriptFile: "./jest.setup.js",
   globals: {
     "ts-jest": {
       tsConfig: {
