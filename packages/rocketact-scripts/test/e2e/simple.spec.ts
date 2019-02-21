@@ -23,7 +23,7 @@ describe("rocketact-scripts: build", () => {
     spy.mockImplementation(() => null);
     const core = new Core();
     core.run("build", { _: [] }).then(() => {
-      expect(spy.mock.calls[0][0]).toContain("Build Success");
+      expect(spy.mock.calls[0][0]).toContain("SUCCESS");
       done();
     });
   });

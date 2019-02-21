@@ -7,5 +7,8 @@ node_js:
 cache: yarn
 script:
   - yarn bootstrap
+  - cd packages/rocketact-scripts/test/fixture/simple/
+  - yarn
+  - cd -
   - yarn build
   - yarn test

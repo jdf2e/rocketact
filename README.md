@@ -45,6 +45,12 @@ yarn build
 yarn test
 ```
 
+While developing, you can start `jest` in watch mode:
+
+```bash
+yarn test -- --watch
+```
+
 ### Commit Changes
 
 ```bash

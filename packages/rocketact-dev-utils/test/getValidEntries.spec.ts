@@ -5,15 +5,13 @@ import path from "path";
 describe("getValidEntries", () => {
   it("should ignore unmatched entry", () => {
     expect(
-      getValidEntries(
-        path.resolve(process.cwd(), "./test/fixture/noValidEntry")
-      )
+      getValidEntries(path.resolve(__dirname, "./fixture/noValidEntry"))
     ).toEqual({});
   });
 
   it("should return valid entries", () => {
     const entries = getValidEntries(
-      path.resolve(process.cwd(), "./test/fixture/hasValidEntry")
+      path.resolve(__dirname, "./fixture/hasValidEntry")
     );
 
     expect(entries).toMatchObject({

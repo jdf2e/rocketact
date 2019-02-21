@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import semver from "semver";
 import minimist from "minimist";
 import path from "path";
