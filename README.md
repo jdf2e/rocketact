@@ -11,14 +11,14 @@
 With [`npx`](https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner), you can run:
 
 ```bash
-npx rocketact create my-awosome-project
+npx rocketact create my-awesome-project
 ```
 
 Or you can install `rocketact` globaly:
 
 ```bash
 npm install -g rocketact
-rocketact create my-awosome-project
+rocketact create my-awesome-project
 ```
 
 
