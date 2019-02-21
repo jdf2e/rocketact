@@ -31,7 +31,8 @@ rocketact create my-awesome-project
 ```bash
 git clone https://github.com/jdf2e/rocketact.git
 cd rocketact
-yarn bootstrap
+yarn && yarn bootstrap
+cd packages/rocketact-scripts/test/fixture/simple/ && yarn && cd -
 ```
 
 ### Build
