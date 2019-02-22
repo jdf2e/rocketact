@@ -1,8 +1,6 @@
 import path from "path";
 import fs from "fs";
 
-const R = require("ramda");
-
 interface IEntries {
   [key: string]: string;
 }
@@ -14,62 +12,43 @@ interface IValidEntries {
   };
 }
 
-const getJsEntries = (p: string): IEntries => {
-  if (fs.existsSync(path.resolve(p, "./src/pages"))) {
-    return R.pipe(
-      R.flip(R.nAry(2, path.resolve))("./src/pages/"),
-      fs.readdirSync,
-      R.map(R.curry(R.nAry(3, path.resolve))(p, "./src/pages")),
-      R.filter(R.test(/\.[tj]sx?$/)),
-      R.converge(R.zipObj, [
-        R.map(
-          R.pipe(
-            path.basename,
-            R.replace(/\.[tj]sx?$/, "")
-          )
-        ),
-        R.identity
-      ])
-    )(p);
-  } else {
-    return {};
-  }
-};
+const getEntriesByExt = (p: string, extReg: RegExp): IEntries => {
+  const fullPath = path.resolve(p, "./src/pages");
+  if (fs.existsSync(fullPath)) {
+    const files = fs.readdirSync(fullPath);
+    const result: IEntries = {};
 
-const getHtmlEntries = (p: string): IEntries => {
-  if (fs.existsSync(path.resolve(p, "./src/pages"))) {
-    return R.pipe(
-      R.flip(R.nAry(2, path.resolve))("./src/pages/"),
-      fs.readdirSync,
-      R.map(R.curry(R.nAry(3, path.resolve))(p, "./src/pages")),
-      R.filter(R.test(/\.html$/)),
-      R.converge(R.zipObj, [
-        R.map(
-          R.pipe(
-            path.basename,
-            R.replace(/\.html$/, "")
-          )
-        ),
-        R.identity
-      ])
-    )(p);
+    files.forEach(file => {
+      if (file.match(extReg)) {
+        result[path.basename(file).replace(extReg, "")] = path.resolve(
+          fullPath,
+          file
+        );
+      }
+    });
+
+    return result;
   } else {
     return {};
   }
 };
 
 const getValidEntries: (p: string) => IValidEntries = p => {
-  const jsEntries = getJsEntries(p);
-  const htmlEntries = getHtmlEntries(p);
-  return R.fromPairs(
-    R.map(
-      (entryName: string) => [
-        entryName,
-        { js: jsEntries[entryName], html: htmlEntries[entryName] }
-      ],
-      R.intersection(R.keys(jsEntries), R.keys(htmlEntries))
-    )
-  );
+  const jsEntries = getEntriesByExt(p, /\.[tj]sx?$/);
+  const htmlEntries = getEntriesByExt(p, /\.html$/);
+
+  const result: IValidEntries = {};
+
+  Object.keys(jsEntries).forEach(entry => {
+    if (htmlEntries[entry]) {
+      result[entry] = {
+        js: jsEntries[entry],
+        html: htmlEntries[entry]
+      };
+    }
+  });
+
+  return result;
 };
 
 export { getValidEntries };
