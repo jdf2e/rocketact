@@ -10,6 +10,14 @@
   <a href="http://makeapullrequest.com"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"></a>
 </p>
 
+## Features
+
+- ⚡️ Zero configuration
+- 👏 Supports both Single-Page Application and Multi-Page Application
+- 📤 Supports [TypeScript](https://www.typescriptlang.org/)、[Sass](https://sass-lang.com/)、[PostCSS](https://postcss.org/) out of box
+- 🖥 Full-featured web console
+- 🕹 Fully control over every step of the build process
+
 ## Usage
 
 With [`npx`](https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner), you can run:
