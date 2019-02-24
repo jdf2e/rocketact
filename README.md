@@ -33,6 +33,18 @@ npm install -g rocketact
 rocketact create my-awesome-project
 ```
 
+## Packages
+
+
+| Name  | Description | Meta |
+|---|---|---|
+| rocketact  | commandline tool to create new projects  |   <a href="https://david-dm.org/jdf2e/rocketact?path=packages%2Frocketact&view=list"><img alt="David (path)" src="https://img.shields.io/david/jdf2e/rocketact.svg?path=packages%2Frocketact"></a>  |
+| rocketact-scripts | main functionality resides here |   <a href="https://david-dm.org/jdf2e/rocketact?path=packages%2Frocketact-scripts&view=list"><img alt="David (path)" src="https://img.shields.io/david/jdf2e/rocketact.svg?path=packages%2Frocketact-scripts"></a>  |
+|  rocketact-dev-utils | common utils shared by other packages |    <a href="https://david-dm.org/jdf2e/rocketact?path=packages%2Frocketact-dev-utils&view=list"><img alt="David (path)" src="https://img.shields.io/david/jdf2e/rocketact.svg?path=packages%2Frocketact-dev-utils"></a> |
+|  rocketact-web-console | web console core |   <a href="https://david-dm.org/jdf2e/rocketact?path=packages%2Frocketact-web-console&view=list"><img alt="David (path)" src="https://img.shields.io/david/jdf2e/rocketact.svg?path=packages%2Frocketact-web-console"></a>  |
+|  rocketact-plugin-polyfill | automatically setup polyfill configuration |   <a href="https://david-dm.org/jdf2e/rocketact?path=packages%2Frocketact-plugin-polyfill&view=list"><img alt="David (path)" src="https://img.shields.io/david/jdf2e/rocketact.svg?path=packages%2Frocketact-plugin-polyfill"></a>  |
+|  rocketact-plugin-bundle-analyzer | add [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) intergation |   <a href="https://david-dm.org/jdf2e/rocketact?path=packages%2Frocketact-plugin-bundle-analyzer&view=list"><img alt="David (path)" src="https://img.shields.io/david/jdf2e/rocketact.svg?path=packages%2Frocketact-plugin-bundle-analyzer"></a>  |
+|  rocketact-plugin-butler | add compatibility for legacy Butler projects |    <a href="https://david-dm.org/jdf2e/rocketact?path=packages%2Frocketact-plugin-butler&view=list"><img alt="David (path)" src="https://img.shields.io/david/jdf2e/rocketact.svg?path=packages%2Frocketact-plugin-butler"></a> |
 
 ## Development
 
