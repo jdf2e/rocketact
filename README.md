@@ -33,6 +33,15 @@ npm install -g rocketact
 rocketact create my-awesome-project
 ```
 
+then you can:
+
+```bash
+cd my-awesome-project
+npm start
+// or
+yarn start
+```
+
 ## Packages
 
 
