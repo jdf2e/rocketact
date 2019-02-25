@@ -1,6 +1,6 @@
 # rocketact-plugin-polyfill
 
-Automaticlly include polyfills for projects created by rocketact.
+> Automaticlly include polyfills for Rocketact projects 
 
 Following language features / browser API are included:
 
