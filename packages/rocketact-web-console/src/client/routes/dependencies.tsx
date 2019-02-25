@@ -118,6 +118,21 @@ class Dependencies extends React.Component<
     }
   }
 
+  createColumnForType(label: "wanted" | "latest" | "next") {
+    return {
+      title: label[0].toUpperCase() + label.slice(1),
+      key: label,
+      render: (text: any, record: IDependency) =>
+        this.renderVersionLabel(
+          record.id,
+          record.installed,
+          record[label],
+          false,
+          record.isDev
+        )
+    };
+  }
+
   render() {
     const columns = [
       {
@@ -143,42 +158,9 @@ class Dependencies extends React.Component<
             </span>
           ) : null
       },
-      {
-        title: "Wanted",
-        key: "wanted",
-        render: (text: any, record: IDependency) =>
-          this.renderVersionLabel(
-            record.id,
-            record.installed,
-            record.wanted,
-            false,
-            record.isDev
-          )
-      },
-      {
-        title: "Latest",
-        key: "latest",
-        render: (text: any, record: IDependency) =>
-          this.renderVersionLabel(
-            record.id,
-            record.installed,
-            record.latest,
-            false,
-            record.isDev
-          )
-      },
-      {
-        title: "Next",
-        key: "next",
-        render: (text: any, record: IDependency) =>
-          this.renderVersionLabel(
-            record.id,
-            record.installed,
-            record.next,
-            true,
-            record.isDev
-          )
-      },
+      this.createColumnForType("wanted"),
+      this.createColumnForType("latest"),
+      this.createColumnForType("next"),
       {
         title: "Description",
         dataIndex: "description"
