@@ -34,16 +34,15 @@ export default (api: CoreAPI) => {
           },
           before: app => {
             webConsole(app);
+          },
+          historyApiFallback: {
+            rewrites: [
+              {
+                from: /^(\/[^/]*\.html)\/.*$/,
+                to: context => context.match[1]
+              }
+            ]
           }
-          // historyApiFallback: {
-          //   index: '/',
-          //   rewrites: [
-          //     {
-          //       from: /^(\/[^/]*\.html)\/.*$/,
-          //       to: context => context.match[1],
-          //     },
-          //   ],
-          // },
         };
 
         WebpackDevServer.addDevServerEntrypoints(
