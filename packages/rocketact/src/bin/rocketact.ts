@@ -89,7 +89,7 @@ async function createProject() {
   await replacePkgConfig();
 
   console.log("Installing packages. This might take a couple of minutes.");
-  console.log("Installing react, react-dom, and rocketact-script...");
+  console.log("Installing react, react-dom, and rocketact-scripts...");
 
   try {
     await packageUtil.install();

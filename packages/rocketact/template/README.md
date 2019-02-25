@@ -1,50 +1,13 @@
-# Quick Started
+This project was created by [`Rocketact`](https://github.com/jdf2e/rocketact).
 
-## Start
+## Available Scripts
 
-```bash
-npm start
-// or
-yarn start
-```
+### `npm start` or `yarn start`
 
-## Build
+Start development environment.
 
-```bash
-npm build
-// or
-yarn build
-```
+### `npm run build` or `yarn build`
 
-## Project Template Descrption
+Create a production bundle in the `build` folder.
 
-### Folder Structure
 
-```bash
-.
-├── build
-├── src
-│   ├── api # API
-│   ├── styles # ex: images 、scss
-│   │   ├── images
-│   │   ├── common.scss
-│   │   └── reset.scss
-│   ├── components
-│   │   └── CommonHeader # ex：common header component
-│   │       ├── CommmonHeader.tsx
-│   │       ├── index.ts
-│   │       └── style.scss
-│   ├── pages
-│   │   ├── app.html # pages app
-│   │   ├── app.scss
-│   │   ├── app.tsx
-│   │   ├── home.html # page home
-│   │   ├── home.scss
-│   │   └── home.tsx
-│   └── utils
-├── @types # typescript *.d.ts
-├── README.md
-├── package.json
-├── tsconfig.json
-└── tslint.json
-```
