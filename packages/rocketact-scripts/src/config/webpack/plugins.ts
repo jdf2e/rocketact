@@ -1,6 +1,8 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const InterpolateHtmlPlugin = require("interpolate-html-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 import createHtmlWebpackPluginInstance from "../../utils/createHtmlWebpackPluginInstance";
 
@@ -10,6 +12,7 @@ import {
   success,
   successBlock,
   checkPackageInstalled,
+  appBuild,
   resolveToAppRoot
 } from "rocketact-dev-utils";
 
@@ -75,7 +78,19 @@ export default (api: CoreAPI) => {
             summary: false
           }
         ])
-        .end();
+        .end()
+        .plugin("CopyPlugin")
+        .use(CopyPlugin, [
+          [
+            {
+              from: "public/**",
+              to: appBuild(),
+              context: appRoot(),
+              transformPath: (targetPath: string) =>
+                targetPath.replace(/^public\//, "")
+            }
+          ]
+        ]);
 
       // Configure TypeScript check and TSLint check
       const enableTSLintCheck =
@@ -116,5 +131,11 @@ export default (api: CoreAPI) => {
         )
         .end();
     });
+
+    webpackChain.plugin("InterpolateHtmlPlugin").use(InterpolateHtmlPlugin, [
+      {
+        PUBLIC_URL: process.env.PUBLIC_URL || ""
+      }
+    ]);
   });
 };

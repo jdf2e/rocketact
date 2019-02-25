@@ -6,3 +6,4 @@ export * from "./isPlugin";
 export * from "./clearConsole";
 export * from "./packageUtil";
 export * from "./checkPackageInstalled";
+export * from "./removeTrailingSlash";
