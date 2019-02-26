@@ -3,6 +3,7 @@ import { ensureTrailingSlash } from "../src/ensureTrailingSlash";
 describe("ensureTrailingSlash", () => {
   it("should add trailing slash if the original text do not have", () => {
     expect(ensureTrailingSlash("abc")).toBe("abc/");
+    expect(ensureTrailingSlash("")).toBe("/");
   });
 
   it("should remove extra trailing slash", () => {

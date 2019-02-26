@@ -6,5 +6,8 @@ describe("removeTrailingSlash", () => {
     expect(removeTrailingSlash("abc//")).toBe("abc");
     expect(removeTrailingSlash("abc/")).toBe("abc");
     expect(removeTrailingSlash("abc")).toBe("abc");
+    expect(removeTrailingSlash("/aa/")).toBe("/aa");
+    expect(removeTrailingSlash("/")).toBe("");
+    expect(removeTrailingSlash("//")).toBe("");
   });
 });
