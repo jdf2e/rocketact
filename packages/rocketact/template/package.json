@@ -2,6 +2,7 @@
   "name": "rockectact",
   "version": "0.1.0",
   "main": "index.js",
+  "publicPath": "/",
   "scripts": {
     "start": "rocketact-scripts start",
     "build": "rocketact-scripts build",

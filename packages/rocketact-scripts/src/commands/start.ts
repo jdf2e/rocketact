@@ -1,3 +1,5 @@
+import path from "path";
+import fs from "fs";
 import webpack from "webpack";
 import WebpackDevServer from "webpack-dev-server";
 import detectPort from "detect-port";
@@ -7,7 +9,8 @@ import {
   success,
   clearConsole,
   infoBlock,
-  info
+  info,
+  resolveToAppRoot
 } from "rocketact-dev-utils";
 
 import CoreAPI from "../CoreAPI";
@@ -17,7 +20,10 @@ export default (api: CoreAPI) => {
   api.registerCommand(
     "start",
     (): Promise<any> => {
+      const publicDir = resolveToAppRoot("public");
+
       process.env.NODE_ENV = "development";
+      process.env.PUBLIC_URL = "";
 
       return new Promise((resolve, reject) => {
         const webpackConfig = api.resolveWebpackConfig();
@@ -27,7 +33,10 @@ export default (api: CoreAPI) => {
           hot: true,
           host: "127.0.0.1",
           publicPath: "/",
-          // contentBase: ['./src/html', './src'],
+          contentBase:
+            fs.existsSync(publicDir) &&
+            fs.lstatSync(publicDir).isDirectory() &&
+            publicDir,
           quiet: true,
           stats: {
             colors: true

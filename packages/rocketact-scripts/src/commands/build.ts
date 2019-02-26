@@ -9,14 +9,21 @@ import {
   errorBlock,
   success,
   successBlock,
-  appBuild
+  appBuild,
+  appPackageJson,
+  removeTrailingSlash
 } from "rocketact-dev-utils";
 
 export default (api: CoreAPI) => {
   api.registerCommand(
     "build",
     (): Promise<any> => {
+      const pkg = require(appPackageJson());
+
       process.env.NODE_ENV = "production";
+      process.env.PUBLIC_URL = removeTrailingSlash(
+        pkg.publicPath || pkg.cdn || "/"
+      );
 
       return Promise.resolve()
         .then(() => del(path.join(appBuild(), "**")))
