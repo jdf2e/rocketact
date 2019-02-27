@@ -1,0 +1,37 @@
+{
+  "name": "rocketact-plugin-deploy",
+  "version": "1.0.0",
+  "description": "deploy bundles of the rocketact project to static server",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "watch": "tsc -w",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "rocketact",
+    "deploy"
+  ],
+  "author": "beanlee <irobot039@gmail.com>",
+  "homepage": "https://jdf2e.github.io/rocketact/",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdf2e/rocketact.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jdf2e/rocketact/issues"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^3.12.0",
+    "rocketact-scripts": "^1.2.2"
+  },
+  "dependencies": {
+    "ftp-deploy": "^2.3.1",
+    "js-yaml": "^3.12.2",
+    "rocketact-dev-utils": "^1.0.0"
+  }
+}

@@ -4,10 +4,9 @@
   "description": "Develop React projects with ease",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf dist && tsc",
     "watch": "tsc -w",
-    "compile": "rm -rf dist && tsc",
-    "prepublishOnly": "npm run compile"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "rocketact",
