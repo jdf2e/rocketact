@@ -7,10 +7,9 @@
     "rocketact"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf dist && tsc",
     "watch": "tsc -w",
-    "compile": "rm -rf dist && tsc",
-    "prepublishOnly": "npm run compile"
+    "prepublishOnly": "npm run build"
   },
   "types": "./dist/index.d.ts",
   "repository": {
