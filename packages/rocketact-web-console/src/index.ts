@@ -4,6 +4,7 @@ import express from "express";
 import projectAPI from "./server/projectAPI";
 import pagesAPI from "./server/pagesAPI";
 import dependenciesAPI from "./server/dependenciesAPI";
+import proxyAPI, { proxyHandler } from "./server/proxyAPI";
 
 export default (app: express.Application) => {
   app.use(express.json());
@@ -20,4 +21,7 @@ export default (app: express.Application) => {
   app.use("/ROCKETACT_WEB_CONSOLE/api/project", projectAPI);
   app.use("/ROCKETACT_WEB_CONSOLE/api/pages", pagesAPI);
   app.use("/ROCKETACT_WEB_CONSOLE/api/dependencies", dependenciesAPI);
+  app.use("/ROCKETACT_WEB_CONSOLE/api/api-proxy", proxyAPI);
+
+  app.use(proxyHandler);
 };

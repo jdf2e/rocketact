@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 
 import { IDependency } from "../../server/dependenciesAPI";
 import { IPackage } from "../components/PackageInstaller";
+import { IProxyRule } from "../routes/apiProxy";
 
 export interface IPackageDetail {
   description: string;
@@ -92,6 +93,38 @@ function uninstall(name: string) {
     .then(handleResponse);
 }
 
+function getAllProxyRule() {
+  return axios.get(`${API_BASE}/api-proxy/rules`).then(handleResponse);
+}
+
+function crateProxyRule(rule: any) {
+  return axios.post(`${API_BASE}/api-proxy/rules`, rule).then(handleResponse);
+}
+
+function deleteProxyRule(ruleId: string) {
+  return axios
+    .delete(`${API_BASE}/api-proxy/rule/${ruleId}`)
+    .then(handleResponse);
+}
+
+function updateProxyRule(ruleId: string, rule: IProxyRule) {
+  return axios
+    .put(`${API_BASE}/api-proxy/rule/${ruleId}`, rule)
+    .then(handleResponse);
+}
+
+function toggleProxyRuleState(ruleId: string, enabled: boolean) {
+  return axios
+    .put(`${API_BASE}/api-proxy/rule/${ruleId}/enabled`, { enabled })
+    .then(handleResponse);
+}
+
+function moveProxyRule(fromIndex: number, toIndex: number) {
+  return axios
+    .post(`${API_BASE}/api-proxy/rules/move`, { fromIndex, toIndex })
+    .then(handleResponse);
+}
+
 export {
   getProject,
   getPages,
@@ -99,5 +132,11 @@ export {
   searchNPM,
   getNPMPackageDetail,
   install,
-  uninstall
+  uninstall,
+  getAllProxyRule,
+  crateProxyRule,
+  deleteProxyRule,
+  updateProxyRule,
+  toggleProxyRuleState,
+  moveProxyRule
 };

@@ -18,6 +18,12 @@ const SiderMenu = withRouter(props => {
           <span className="nav-text">Dependencies</span>
         </Link>
       </Menu.Item>
+      <Menu.Item key="/api-proxy">
+        <Link to="/api-proxy">
+          <Icon type="swap" />
+          <span className="nav-text">API Proxy</span>
+        </Link>
+      </Menu.Item>
     </Menu>
   );
 });
