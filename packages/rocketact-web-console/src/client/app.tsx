@@ -94,7 +94,7 @@ class App extends React.PureComponent<{}, IAppState> {
                   padding: 20
                 }}
               >
-                <Redirect from="/" to="/api-proxy" />
+                <Redirect from="/" to="/pages" />
                 <Route path="/pages" component={Pages} />
                 <Route path="/dependencies" component={Dependencies} />
                 <Route path="/api-proxy" component={APIProxy} />

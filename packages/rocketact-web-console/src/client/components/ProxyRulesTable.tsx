@@ -6,9 +6,7 @@ import HTML5Backend from "react-dnd-html5-backend";
 
 import { IProxyRule } from "../routes/apiProxy";
 
-import * as API from "../api";
-
-import { Tooltip, Icon, Button, Popconfirm } from "antd";
+import { Icon, Popconfirm, Tag } from "antd";
 
 let dragingIndex = -1;
 
@@ -103,7 +101,11 @@ class ProxyRulesTable extends React.Component<IProxyRulesTableProps, {}> {
       {
         title: "Action",
         key: "action",
-        render: (text: any, record: IProxyRule) => <span>{record.action}</span>
+        render: (text: any, record: IProxyRule) => {
+          const color =
+            { FORWARD: "green", JSON: "orange" }[record.action] || "";
+          return <Tag color={color}>{record.action}</Tag>;
+        }
       },
       {
         title: "Description",
@@ -170,6 +172,4 @@ class ProxyRulesTable extends React.Component<IProxyRulesTableProps, {}> {
   }
 }
 
-const Demo = DragDropContext(HTML5Backend)(ProxyRulesTable);
-
-export default Demo;
+export default DragDropContext(HTML5Backend)(ProxyRulesTable);

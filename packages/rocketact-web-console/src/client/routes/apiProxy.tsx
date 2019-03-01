@@ -1,30 +1,9 @@
 import React from "react";
-import { observer } from "mobx-react";
-
-import dependenciesStore, { IDependencyStore } from "../stores/dependencies";
-import globalLoadingStore from "../stores/globalLoading";
-
-import { IDependency } from "../../server/dependenciesAPI";
-
-import GlobalLoadingModal from "../components/GlobalLoadingModal";
-
 import * as API from "../api";
 
 import ProxyRulesTabel from "../components/ProxyRulesTable";
 const JSONInput = require("react-json-editor-ajrm/index").default;
-import {
-  Table,
-  Tag,
-  Icon,
-  Tooltip,
-  Tabs,
-  Button,
-  Modal,
-  Select,
-  Popconfirm,
-  Input,
-  message
-} from "antd";
+import { Button, Modal, Select, Input, message } from "antd";
 
 export interface IProxyRule {
   ruleId: string;
