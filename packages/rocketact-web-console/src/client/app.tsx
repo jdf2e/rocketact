@@ -15,6 +15,8 @@ import Pages from "./routes/pages";
 import Dependencies from "./routes/dependencies";
 import APIProxy from "./routes/apiProxy";
 
+import "./app.scss";
+
 interface IProject {
   name: string;
   description?: string;
