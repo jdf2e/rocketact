@@ -135,7 +135,7 @@ class APIProxyRoute extends React.Component<
       const newRules = this.state.rules.filter(
         rule => rule.ruleId !== fromRule.ruleId
       );
-      const newToIndex = this.state.rules.findIndex(
+      const newToIndex = newRules.findIndex(
         rule => rule.ruleId === toRule.ruleId
       );
       newRules.splice(newToIndex + 1, 0, fromRule);
