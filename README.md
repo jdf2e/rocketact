@@ -98,3 +98,15 @@ yarn test -- --watch
 ```bash
 yarn commit
 ```
+
+## Preview Website Locally
+
+We use [Docusaurus](https://docusaurus.io/) maintain our website.
+
+If you want to preview the website locally, you can:
+
+```bash
+cd docusaurus/website
+yarn
+yarn start
+```
