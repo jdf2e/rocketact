@@ -1,0 +1,12 @@
+ul.toc-headings > li {
+  padding-bottom: 0px;   /* moved to li > a */
+}
+
+.toc-headings > li > a {
+  display: block;
+  padding: 4px;
+}
+
+.toc-headings > li > a.active {
+  font-weight: bold;
+}
