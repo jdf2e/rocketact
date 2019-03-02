@@ -20,7 +20,7 @@ const users = [
   }
 ];
 
-const repoUrl = "https://github.com/jdf2e/rocketact-website";
+const repoUrl = "https://github.com/jdf2e/rocketact";
 const baseUrl = "/rocketact/";
 
 const siteConfig = {
@@ -38,7 +38,7 @@ const siteConfig = {
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
-  editUrl:`${repoUrl}/edit/master/docs/`,
+  editUrl:`${repoUrl}/edit/master/docusaurus/docs/`,
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
@@ -50,8 +50,8 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: "img/docusaurus.svg",
-  footerIcon: "img/docusaurus.svg",
+  headerIcon: "img/rocketact.png",
+  footerIcon: "img/rocketact.png",
   favicon: "img/favicon.png",
 
   /* Colors for website */
@@ -100,8 +100,8 @@ const siteConfig = {
   cleanUrl: true,
 
   // Open Graph and Twitter card images.
-  ogImage: "img/docusaurus.png",
-  twitterImage: "img/docusaurus.png",
+  ogImage: "img/rocketact.png",
+  twitterImage: "img/rocketact.png",
 
   // Show documentation's last contributor's name.
   enableUpdateBy: true,
