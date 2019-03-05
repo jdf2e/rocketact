@@ -13,6 +13,9 @@ import SiderMenu from "./components/SiderMenu";
 
 import Pages from "./routes/pages";
 import Dependencies from "./routes/dependencies";
+import APIProxy from "./routes/apiProxy";
+
+import "./app.scss";
 
 interface IProject {
   name: string;
@@ -94,9 +97,14 @@ class App extends React.PureComponent<{}, IAppState> {
                 <Redirect from="/" to="/pages" />
                 <Route path="/pages" component={Pages} />
                 <Route path="/dependencies" component={Dependencies} />
+                <Route path="/api-proxy" component={APIProxy} />
               </Content>
               <Footer style={{ textAlign: "center" }}>
-                Powered by Rocketact with ❤️
+                Powered by{" "}
+                <a target="_blank" href="https://github.com/jdf2e/rocketact">
+                  Rocketact
+                </a>{" "}
+                with ❤️
               </Footer>
             </Layout>
           </Layout>

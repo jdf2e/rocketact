@@ -1,4 +1,4 @@
-import Config = require("../node_modules/@types/webpack-chain");
+import Config = require("../../../node_modules/@types/webpack-chain");
 
 declare global {
   namespace NodeJS {
