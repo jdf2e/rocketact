@@ -45,7 +45,7 @@ module.exports = api => {
             entryName,
             template: htmlEntries[entryName]
           })
-        );
+        ).before('InterpolateHtmlPlugin');
       }
     });
   });
