@@ -29,7 +29,6 @@
   "dependencies": {
     "@babel/core": "^7.1.6",
     "@types/detect-port": "^1.1.0",
-    "autoprefixer": "^9.3.1",
     "babel-loader": "^8.0.4",
     "babel-preset-rocketact": "^1.0.0",
     "copy-webpack-plugin": "^5.0.0",
@@ -47,7 +46,6 @@
     "minimist": "^1.2.0",
     "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-loader": "^3.0.0",
     "progress-bar-webpack-plugin": "^1.11.0",
     "rocketact-dev-utils": "^1.0.9",
