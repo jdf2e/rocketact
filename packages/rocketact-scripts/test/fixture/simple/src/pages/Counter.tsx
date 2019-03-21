@@ -1,7 +1,6 @@
 import React from "react";
 // import Redux from "mobx";
 // import Redux1 from "./mobx1";
-import { hot } from "react-hot-loader";
 
 import logo from "../assets/logo.png";
 
@@ -38,4 +37,4 @@ class Counter extends React.Component<{}, ICounterState> {
   }
 }
 
-export default hot(module)(Counter);
+export default Counter;

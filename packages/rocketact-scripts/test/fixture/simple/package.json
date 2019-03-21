@@ -11,6 +11,5 @@
     "build": "rocketact-scripts build"
   },
   "devDependencies": {
-    "react-hot-loader": "^4.3.12"
   }
 }

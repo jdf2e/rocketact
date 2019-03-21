@@ -13,10 +13,6 @@ export default (api: CoreAPI) => {
       .add(".ts")
       .add(".jsx")
       .add(".tsx")
-      .end()
-      .alias.set(
-        "react-hot-loader",
-        path.resolve(appRoot(), "./node_modules/react-hot-loader")
-      );
+      .end();
   });
 };

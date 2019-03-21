@@ -11,7 +11,3 @@ ReactDOM.render(
   </div>,
   document.getElementById("app") as HTMLElement
 );
-
-if (module.hot) {
-  module.hot.accept();
-}

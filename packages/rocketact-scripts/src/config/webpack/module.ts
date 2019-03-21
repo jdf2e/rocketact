@@ -29,14 +29,7 @@ export default (api: CoreAPI) => {
       .use("babel")
       .loader(require.resolve("babel-loader"))
       .options({
-        presets: [require.resolve("babel-preset-rocketact")],
-        plugins: [
-          require(path.join(
-            process.cwd(),
-            "./node_modules/",
-            "react-hot-loader/babel"
-          ))
-        ]
+        presets: [require.resolve("babel-preset-rocketact")]
       })
       .end()
       .end()
