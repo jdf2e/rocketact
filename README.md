@@ -27,7 +27,7 @@
 
 ## Usage
 
-With [`npx`](https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner), you can run:
+With [`npx`](https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner), run:
 
 ```bash
 npx rocketact create my-awesome-project
@@ -38,15 +38,29 @@ Or you can install `rocketact` globaly:
 ```bash
 npm install -g rocketact
 rocketact create my-awesome-project
+cd my-awesome-project
 ```
 
-then you can:
+### Available Scripts
+
+#### Start
+
+> Start local development environment
 
 ```bash
-cd my-awesome-project
-npm start
-// or
 yarn start
+# or
+npm start
+```
+
+#### Build
+
+> Perform a production build
+
+```bash
+yarn build
+# or
+npm run build
 ```
 
 ## Packages
@@ -62,7 +76,7 @@ yarn start
 |  rocketact-plugin-bundle-analyzer | add [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) intergation for Rocketact projects |   <a href="https://david-dm.org/jdf2e/rocketact?path=packages%2Frocketact-plugin-bundle-analyzer&view=list"><img alt="David (path)" src="https://img.shields.io/david/jdf2e/rocketact.svg?path=packages%2Frocketact-plugin-bundle-analyzer"></a>  |
 |  rocketact-plugin-butler | add compatibility for legacy Butler projects |    <a href="https://david-dm.org/jdf2e/rocketact?path=packages%2Frocketact-plugin-butler&view=list"><img alt="David (path)" src="https://img.shields.io/david/jdf2e/rocketact.svg?path=packages%2Frocketact-plugin-butler"></a> |
 
-## Development
+## Contributing
 
 Use Node >= 10 version as **development environment**.
 
