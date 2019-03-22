@@ -1,6 +1,6 @@
 {
   "name": "rocketact-scripts",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -46,10 +46,11 @@
     "minimist": "^1.2.0",
     "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "pnp-webpack-plugin": "^1.4.1",
     "postcss-loader": "^3.0.0",
     "progress-bar-webpack-plugin": "^1.11.0",
-    "rocketact-dev-utils": "^1.0.9",
-    "rocketact-web-console": "^1.1.0",
+    "rocketact-dev-utils": "^1.1.0",
+    "rocketact-web-console": "^1.1.1",
     "sass-loader": "^7.1.0",
     "semver": "^5.6.0",
     "style-loader": "^0.23.1",
@@ -57,8 +58,7 @@
     "url-loader": "^1.1.2",
     "webpack": "^4.25.1",
     "webpack-chain": "^5.0.1",
-    "webpack-dev-server": "^3.1.10",
-    "pnp-webpack-plugin":"^1.4.1"
+    "webpack-dev-server": "^3.1.10"
   },
   "engines": {
     "node": ">=8"

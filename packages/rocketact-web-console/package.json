@@ -1,6 +1,6 @@
 {
   "name": "rocketact-web-console",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Rocketact Web Console",
   "main": "index.js",
   "keywords": [
@@ -33,7 +33,7 @@
     "express": "^4.16.4",
     "fs-extra": "^7.0.1",
     "http-proxy": "^1.17.0",
-    "rocketact-dev-utils": "^1.0.9",
+    "rocketact-dev-utils": "^1.1.0",
     "semver": "^5.6.0"
   },
   "peerDependencies": {

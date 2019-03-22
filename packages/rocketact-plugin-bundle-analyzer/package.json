@@ -1,6 +1,6 @@
 {
   "name": "rocketact-plugin-bundle-analyzer",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Rockectact plugin for rocketact-plugin-bundle-analyzer",
   "main": "index.js",
   "scripts": {},
@@ -13,7 +13,7 @@
     "rocketact-scripts": "^1.0.0"
   },
   "dependencies": {
-    "rocketact-dev-utils": "^1.0.9",
+    "rocketact-dev-utils": "^1.1.0",
     "webpack-bundle-analyzer": "^3.0.4"
   }
 }
