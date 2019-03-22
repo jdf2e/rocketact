@@ -3,7 +3,8 @@ import {
   error,
   appPackageJson,
   isPlugin,
-  resolveToAppRoot
+  resolveToAppRoot,
+  safeResolve
 } from "rocketact-dev-utils";
 import minimist from "minimist";
 import glob from "glob";
@@ -54,7 +55,7 @@ class Core {
       .filter(isPlugin)
       .concat(Object.keys(this.pkg.devDependencies || {}).filter(isPlugin));
     installedPlugins.forEach(plugin =>
-      require(resolveToAppRoot(`./node_modules/${plugin}`))(new CoreAPI(this))
+      require(safeResolve(plugin))(new CoreAPI(this))
     );
   }
 

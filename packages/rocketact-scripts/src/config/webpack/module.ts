@@ -61,7 +61,8 @@ export default (api: CoreAPI) => {
         .loader(require.resolve("sass-loader"))
         .options({
           sourceMap: true, // FIXME: suport setting from --option
-          outputStyle: "compressed"
+          outputStyle: "compressed",
+          implementation: require("node-sass")
         })
         .end()
         .end()
@@ -91,6 +92,9 @@ export default (api: CoreAPI) => {
         .end()
         .use("scss")
         .loader(require.resolve("sass-loader"))
+        .options({
+          implementation: require("node-sass")
+        })
         .end()
         .end();
 
