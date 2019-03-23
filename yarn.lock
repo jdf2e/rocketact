@@ -6553,10 +6553,10 @@ istanbul-reports@^1.5.1:
   dependencies:
     handlebars "^4.0.3"
 
-javascript-stringify@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/javascript-stringify/-/javascript-stringify-1.6.0.tgz#142d111f3a6e3dae8f4a9afd77d45855b5a9cce3"
-  integrity sha1-FC0RHzpuPa6PSpr9d9RYVbWpzOM=
+javascript-stringify@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/javascript-stringify/-/javascript-stringify-2.0.0.tgz#ef750216ae66504ffd670b68c8b8aa07bdf7b588"
+  integrity sha512-zzK8+ByrzvOL6N92hRewwUKL0wN0TOaIuUjX0Jj8lraxWvr5wHYs2YTjaj2lstF+8qMv5cmPPef47va8NT8lDw==
 
 jest-changed-files@^23.4.2:
   version "23.4.2"
@@ -12083,13 +12083,13 @@ webpack-bundle-analyzer@^3.0.4:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-chain@^5.0.1:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/webpack-chain/-/webpack-chain-5.2.0.tgz#752c01e42752412610b27e3dbd6e0781146a465a"
-  integrity sha512-JXz9YgEkTqx8hvnES2VMRyWHNFlqJfLmA5QTyuJOXalkGg+MVdOgB0UaYtc4iDadEmzJLe8UyCl4wyDq3wWZDg==
+webpack-chain@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/webpack-chain/-/webpack-chain-5.2.3.tgz#dbe782b1ae3c8a3658600dbb85be0cc8c6eee94d"
+  integrity sha512-4s4X02RiiPKz3v9LwSCTNUyieY8EOfj0DflUC2ySUvtj2/IWH+ai9Orz07uYiQ4l/knR5U88Q9Nty3Oay6OGGw==
   dependencies:
     deepmerge "^1.5.2"
-    javascript-stringify "^1.6.0"
+    javascript-stringify "^2.0.0"
 
 webpack-cli@^3.1.2:
   version "3.2.3"
