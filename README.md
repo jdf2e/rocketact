@@ -12,8 +12,8 @@
 </p>
 <p align="center">
   <a href="https://david-dm.org/jdf2e/rocketact?path=packages%2Frocketact-scripts&view=list"><img alt="David (path)" src="https://img.shields.io/david/jdf2e/rocketact.svg?path=packages%2Frocketact-scripts"></a>
-  <a href="https://codeclimate.com/github/jdf2e/rocketact"><img alt="Maintainability" src="https://img.shields.io/codeclimate/maintainability/jdf2e/rocketact.svg"></a>
   <a href="https://www.npmjs.com/package/rocketact"><img alt="npm Downloads" src="https://img.shields.io/npm/dm/rocketact.svg"></a>
+  <a href="https://github.com/jdf2e/rocketact/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/jdf2e/rocketact.svg"></a>
   <a href="http://makeapullrequest.com"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"></a>
 </p>
 
