@@ -60,13 +60,10 @@ class HomeSplash extends React.Component {
 
     return (
       <SplashContainer>
-        <Logo img_src={`${baseUrl}img/docusaurus.svg`} />
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
-            <Button href="#try">Try It Out</Button>
-            <Button href={docUrl('doc1.html')}>Example Link</Button>
-            <Button href={docUrl('doc2.html')}>Example Link 2</Button>
+            <Button href={docUrl('getting-started.html')}>Get Started</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -85,7 +82,7 @@ class Index extends React.Component {
         id={props.id}
         background={props.background}>
         <GridBlock
-          align="center"
+          // align="center"
           contents={props.children}
           layout={props.layout}
         />
@@ -101,14 +98,18 @@ class Index extends React.Component {
       </div>
     );
 
-    const TryOut = () => (
+    const WebConsole = () => (
       <Block id="try">
         {[
           {
-            content: 'Talk about trying this out',
-            image: `${baseUrl}img/docusaurus.svg`,
+            content: `
+With the web console, you can:
+- Manage project dependencies in browser with a single click
+- View/Modify/Add API proxy rules without write any code
+`,
+            image: `${baseUrl}img/install-dependency.gif`,
             imageAlign: 'left',
-            title: 'Try it Out',
+            title: 'Full featured web console',
           },
         ]}
       </Block>
@@ -132,10 +133,15 @@ class Index extends React.Component {
       <Block background="light">
         {[
           {
-            content: 'Talk about learning how to use this',
-            image: `${baseUrl}img/docusaurus.svg`,
+            content: `
+All you need to do is:
+\`\`\`bash
+npx rocketact create awesome-project
+\`\`\`
+            `,
+            image: `${baseUrl}img/create.gif`,
             imageAlign: 'right',
-            title: 'Learn How',
+            title: 'Getting started with one command',
           },
         ]}
       </Block>
@@ -145,17 +151,17 @@ class Index extends React.Component {
       <Block layout="fourColumn">
         {[
           {
-            content: 'This is the content of my feature',
-            image: `${baseUrl}img/docusaurus.svg`,
-            imageAlign: 'top',
-            title: 'Feature One',
+            content: 'Rocketact helps you focusing on your code without caring about environment setup or build process configuration. You can start developing a single-page React application or multi-page React application with zero configuration.',
+            title: 'Zero Configuration',
           },
           {
-            content: 'The content of my second feature',
-            image: `${baseUrl}img/docusaurus.svg`,
-            imageAlign: 'top',
-            title: 'Feature Two',
+            content: 'With the buildin web console, you can manage project dependecies and configure API mocks in your favorite browser.',
+            title: 'Better Develop Experience',
           },
+          {
+            content: 'Zero configuration does not mean sacrificing flexibility. Rocketact is built with the configurability in mind. You still have full control over all the steps during the build process.',
+            title: 'Fully Configurable',
+          }
         ]}
       </Block>
     );
@@ -194,10 +200,9 @@ class Index extends React.Component {
         <HomeSplash siteConfig={siteConfig} language={language} />
         <div className="mainContainer">
           <Features />
-          <FeatureCallout />
           <LearnHow />
-          <TryOut />
-          <Description />
+          <WebConsole />
+          {/* <Description /> */}
           <Showcase />
         </div>
       </div>
