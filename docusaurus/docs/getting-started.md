@@ -35,24 +35,3 @@ Then open [http://localhost:3000](http://localhost:3000) to see your app.
 
 Rocketact requires **Node >= 8**. You can use [nvm](https://github.com/creationix/nvm) (for Mac/Linux) or [nvm-windows](https://github.com/coreybutler/nvm-windows) (for Windows) to switch between different Node versions on your local machine.
 
-## Builtin Scripts
-
-### `npm start` or `yarn start`
-
-Start local development environment.
-
-Once started, you will see a similar console:
-
-![](assets/development-environment-console.png)
-
-The port may be different depending on whether another process is using 3000 port.
-
-In the development environment, changes made to JavaScript module and SCSS/CSS files will trigger a fully page reload automaticly.
-
-### `npm run build` or `yarn build`
-
-Perform a production build.
-
-During the production build, all text assets (JavaScript / CSS files) will be minified and hashes are added to file names for long-term caching.
-
-All emitted assets will be saved to `build` folder.

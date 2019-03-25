@@ -3,56 +3,45 @@ id: Folder Structure
 title: Folder Structure
 ---
 
-## Folder Structure Intro
+## Basic Structure
 
-Rocketact team has consulted create-react-app@2 (with react-script-ts), Vue-cli@3, react-boilerate, other projects with React and so on. And multi-page is a Rocetact's important feature. For aiming to develop with Rocetact easier and comfortable, let's take some minutes on the following content to know about the project folder structure which Rocetact working.
+Newly created project will contain the following folder structure:
 
 ```bash
 .
-├── build
-├── src
-│   ├── api # API
-│   ├── styles # ex: images 、scss
-│   │   ├── images
-│   │   ├── common.scss
-│   │   └── reset.scss
-│   ├── components
-│   │   └── CommonHeader # ex：common header component
-│   │       ├── CommmonHeader.tsx
-│   │       ├── index.ts
-│   │       └── style.scss
-│   ├── pages
-│   │   ├── app.html # pages app
-│   │   ├── app.scss
-│   │   ├── app.tsx
-│   │   ├── home.html # page home
-│   │   ├── home.scss
-│   │   └── home.tsx
-│   └── utils
-├── @types # typescript *.d.ts
-├── README.md
+├── @types               # project level type definations
+│   └── images.d.ts
+├── README.md            # project readme
 ├── package.json
-├── tsconfig.json
-└── tslint.json
+├── postcss.config.js    # PostCSS configuration.
+├── public               # files under this directory will be copied to build directory untouched
+│   └── favicon.png
+├── src                  # all your source code goes here
+│   ├── pages
+│   │   ├── app.html     # HTML template for this page
+│   │   ├── app.scss     # page level style. not required.
+│   │   └── app.tsx      # entry file for this page
+│   └── styles           # gloabl styles shared by multi pages
+│       └── reset.scss   # global reset style
+├── tsconfig.json        # TypeScript configuration. Remove it if you don't use TypeScript
+├── tslint.json          # TSLint configuration. Remove it if you do not need TSLint check
+└── node_moduels/
 ```
 
-### build
+## Conventions/Restrictions
 
-As you see, Rocketact build folder is `build` as default when you run `yarn build or npm build`. This folder contains all the files which are HTML, js (bundled), CSS and other assets.
+Rocketact does not rely on your folder structure much. The only convention/restriction is that **entry file** and **HTML template** must have the same filename for the same page and boths resides in `src/pages/` folder.
 
-### source code
+For example, you'd like to add a new profile page, all you need to do is creating two new files:
 
-'src' folder is source code folder. You can put your files, assets and other things what you imported and expect to bundle. There's only one rule here, 'pages' in 'src' is required. Because Rocketact will regard every '.tsx / .jsx' in 'pages' as an entry, like 'app.tsx' and 'app.html', 'index.tsx' and 'index.html'. They pair up each other and make up multi-page Application.
+```bash
+├── src
+│   ├── pages
+│   │   ├── app.html
+│   │   ├── app.scss
+│   │   ├── app.tsx
+│   │   ├── profile.tsx    # entry file for new page
+│   │   └── profile.html   # HTML template for new page
+```
 
-Other folders are recommended, but they are not a constraint. Our team consulted folder structure from many scaffolds and project which developed with React.
-
-### config
-
-- `package.json`
-- `tsconfig.json` and `tslint.json`
-
-### others
-
-- components, you can put your components in here.
-- styles, it may contain `.scss`, image files and other static assets.
-- ...
+Then Rocketact should be ready for the new page in both development and production environment.

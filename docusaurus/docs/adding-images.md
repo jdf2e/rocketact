@@ -36,7 +36,3 @@ Nothing special here, just reference the image through relative paths and Webpac
   background: url(./rocketact.png);
 }
 ```
-
-## Reference Images in HTML
-
-TODO
