@@ -88,7 +88,8 @@ const siteConfig = {
     "https://buttons.github.io/buttons.js",
     "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js",
     `${baseUrl}js/scrollspy.js`,
-    `${baseUrl}js/code-block-buttons.js`
+    `${baseUrl}js/code-block-buttons.js`,
+    "https://s23.cnzz.com/z_stat.php?id=1276787744&web_id=1276787744"
   ],
   stylesheets: [
     `${baseUrl}css/scrollspy.css`,
