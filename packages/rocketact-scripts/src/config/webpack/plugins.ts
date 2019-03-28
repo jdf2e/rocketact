@@ -67,7 +67,9 @@ export default (api: CoreAPI) => {
         .plugin("MiniCssExtractPlugin")
         .use(MiniCssExtractPlugin, [
           {
-            filename: "css/[name].[contenthash:8].css"
+            filename: process.env.NO_HASH
+              ? "css/[name].bundle.css"
+              : "css/[name].[contenthash:8].css"
           }
         ])
         .end()

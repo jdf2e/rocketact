@@ -13,9 +13,10 @@ const pkg = require(appPackageJson());
 
 export default (api: CoreAPI) => {
   api.chainWebpack(webpackChain => {
-    const filenameTemplate = isDevelopmentEnv()
-      ? "js/[name].bundle.js"
-      : "js/[name].[chunkhash:8].js";
+    const filenameTemplate =
+      isDevelopmentEnv() || process.env.NO_HASH
+        ? "js/[name].bundle.js"
+        : "js/[name].[chunkhash:8].js";
 
     webpackChain.output
       .pathinfo(isDevelopmentEnv())

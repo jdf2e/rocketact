@@ -4,6 +4,8 @@ import minimist from "minimist";
 import path from "path";
 import { error, success } from "rocketact-dev-utils";
 
+import convertArgvsToEnv from "../utils/convertArgvsToEnv";
+
 import Core from "../Core";
 
 const pkg = require("../../package.json");
@@ -30,5 +32,11 @@ const i = process.argv.findIndex(arg =>
 );
 const command = process.argv[i + 1];
 const argvs = minimist(process.argv.slice(i + 2));
+const environmentVariables = convertArgvsToEnv(argvs);
+
+// set environment variables
+Object.keys(environmentVariables).forEach(name => {
+  process.env[name] = environmentVariables[name];
+});
 
 core.run(command, argvs);
