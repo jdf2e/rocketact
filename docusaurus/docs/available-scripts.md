@@ -15,6 +15,24 @@ The port may be different depending on whether another process is using 3000 por
 
 In the development environment, changes made to JavaScript module and SCSS/CSS files will trigger a fully page reload automaticly.
 
+### Commandline Options
+
+#### `--port`
+
+> Available since Rocketact 1.6.0
+
+Allow developer specify a preferred port for development environment.
+
+Corresponding environment variable: `PORT`.
+
+For example:
+
+```bash
+yarn start -- --port 80
+# or
+PORT=80 yarn start
+```
+
 ## `npm run build` or `yarn build`
 
 Perform a production build.
