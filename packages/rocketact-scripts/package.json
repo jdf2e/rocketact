@@ -52,7 +52,7 @@
     "rocketact-dev-utils": "^1.1.0",
     "rocketact-web-console": "^1.1.1",
     "sass-loader": "^7.1.0",
-    "semver": "^5.6.0",
+    "semver": "^6.0.0",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.1.2",

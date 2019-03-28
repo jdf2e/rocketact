@@ -34,7 +34,7 @@
     "fs-extra": "^7.0.1",
     "http-proxy": "^1.17.0",
     "rocketact-dev-utils": "^1.1.0",
-    "semver": "^5.6.0"
+    "semver": "^6.0.0"
   },
   "peerDependencies": {
     "rocketact-scripts": "^1.0.0"
