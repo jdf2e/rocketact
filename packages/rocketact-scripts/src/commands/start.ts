@@ -10,6 +10,8 @@ import {
   clearConsole,
   infoBlock,
   info,
+  warningBlock,
+  warning,
   resolveToAppRoot
 } from "rocketact-dev-utils";
 
@@ -59,11 +61,20 @@ export default (api: CoreAPI) => {
           devServerOptions
         );
 
-        detectPort(3000, (err, availablePort) => {
+        const expectedPort = process.env.PORT ? Number(process.env.PORT) : 3000;
+
+        detectPort(expectedPort, (err, availablePort) => {
           if (err) {
             console.log(error(`${err}`));
           } else {
             clearConsole();
+            if (process.env.PORT && availablePort !== expectedPort) {
+              console.log(
+                `${warningBlock(" WARN ")} ${warning(
+                  `Port ${expectedPort} is in use, changing to ${availablePort}\n`
+                )}`
+              );
+            }
             console.log(`${infoBlock(" WAITING ")} ${info("Building...")}`);
             const compiler = webpack(webpackConfig);
             const devServer = new WebpackDevServer(compiler, devServerOptions);
