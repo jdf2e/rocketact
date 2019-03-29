@@ -1,6 +1,6 @@
 {
   "name": "rocketact-scripts",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -50,7 +50,7 @@
     "postcss-loader": "^3.0.0",
     "progress-bar-webpack-plugin": "^1.11.0",
     "rocketact-dev-utils": "^1.1.0",
-    "rocketact-web-console": "^1.1.2",
+    "rocketact-web-console": "^1.1.3",
     "sass-loader": "^7.1.0",
     "semver": "^6.0.0",
     "style-loader": "^0.23.1",
