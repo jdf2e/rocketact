@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/jdf2e/rocketact/issues"
   },
-  "homepage": "https://jdf2e.github.io/rocketact/",
+  "homepage": "https://rocketact.js.org/",
   "dependencies": {
     "@babel/helper-module-imports": "^7.0.0",
     "core-js": "2.5.7",

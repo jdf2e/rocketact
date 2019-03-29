@@ -12,6 +12,7 @@
   "peerDependencies": {
     "rocketact-scripts": "^1.0.0"
   },
+  "homepage": "https://rocketact.js.org/",
   "dependencies": {
     "rocketact-dev-utils": "^1.1.0",
     "webpack-bundle-analyzer": "^3.0.4"

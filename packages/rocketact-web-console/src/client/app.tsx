@@ -101,7 +101,7 @@ class App extends React.PureComponent<{}, IAppState> {
               </Content>
               <Footer style={{ textAlign: "center" }}>
                 Powered by{" "}
-                <a target="_blank" href="https://github.com/jdf2e/rocketact">
+                <a target="_blank" href="https://rocketact.js.org/">
                   Rocketact
                 </a>{" "}
                 with ❤️

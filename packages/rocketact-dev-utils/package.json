@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/jdf2e/rocketact/issues"
   },
-  "homepage": "https://jdf2e.github.io/rocketact/",
+  "homepage": "https://rocketact.js.org/",
   "dependencies": {
     "chalk": "^2.4.1",
     "execa": "^1.0.0",

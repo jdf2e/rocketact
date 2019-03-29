@@ -38,7 +38,7 @@
   "bugs": {
     "url": "https://github.com/jdf2e/rocketact/issues"
   },
-  "homepage": "https://jdf2e.github.io/rocketact/",
+  "homepage": "https://rocketact.js.org/",
   "dependencies": {
     "commander": "^2.19.0",
     "fs-extra": "^7.0.1",

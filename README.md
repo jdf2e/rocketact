@@ -41,7 +41,7 @@ rocketact create my-awesome-project
 cd my-awesome-project
 ```
 
-More info please refer to [Rocketact website](https://jdf2e.github.io/rocketact/).
+More info please refer to [Rocketact website](https://rocketact.js.org/).
 
 ### Available Scripts
 
