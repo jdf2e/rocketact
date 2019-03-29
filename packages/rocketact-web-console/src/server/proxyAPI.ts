@@ -20,6 +20,14 @@ let ruleCache: Array<IProxyRule> = [];
 const ruleMatchRegExpCache: { [index: string]: RegExp } = {};
 const proxy = httpProxy.createProxyServer({});
 
+proxy.on("error", (err, req, res) => {
+  res.writeHead(500, {
+    "Content-Type": "text/plain"
+  });
+
+  res.end(`Rocketact: Failed to get response from upstream.`);
+});
+
 const loadFromDisk = () => {
   try {
     ruleCache = JSON.parse(fs.readFileSync(CONFIG_FILE, "utf-8").toString());
