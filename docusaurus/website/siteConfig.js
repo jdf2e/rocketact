@@ -21,12 +21,12 @@ const users = [
 ];
 
 const repoUrl = "https://github.com/jdf2e/rocketact";
-const baseUrl = "/rocketact/";
+const baseUrl = "/";
 
 const siteConfig = {
   title: "Rocketact", // Title for your website.
   tagline: "🚀 Developing React projects with ease",
-  url: "https://jdf2e.github.io", // Your website URL
+  url: "https://rocketact.js.org", // Your website URL
   baseUrl, // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
@@ -87,13 +87,13 @@ const siteConfig = {
   scripts: [
     "https://buttons.github.io/buttons.js",
     "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js",
-    `${baseUrl}js/scrollspy.js`,
-    `${baseUrl}js/code-block-buttons.js`,
+    `/js/scrollspy.js`,
+    `/js/code-block-buttons.js`,
     "https://s23.cnzz.com/z_stat.php?id=1276787744&web_id=1276787744"
   ],
   stylesheets: [
-    `${baseUrl}css/scrollspy.css`,
-    `${baseUrl}css/code-block-buttons.css`
+    `/css/scrollspy.css`,
+    `/css/code-block-buttons.css`
   ],
   // On page navigation for the current documentation page.
   onPageNav: "separate",
