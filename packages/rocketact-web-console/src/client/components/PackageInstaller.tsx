@@ -285,16 +285,18 @@ class PackageInstaller extends React.Component<
                             </a>
                           </React.Fragment>
                         ) : null}
-                        <span className="ant-list-item-meta-description">
-                          {" "}
-                          published {item.version}
-                          {" · "}
-                          <TimeAgo date={new Date(item.date)} />
-                        </span>
+                        {item.version !== "0.0.0" ? (
+                          <span className="ant-list-item-meta-description">
+                            {" "}
+                            published {item.version}
+                            {" · "}
+                            <TimeAgo date={new Date(item.date)} />
+                          </span>
+                        ) : null}
                       </p>
                     </div>
                   }
-                  description={item.description}
+                  description={item.description || "No description"}
                 />
               </List.Item>
             )}
