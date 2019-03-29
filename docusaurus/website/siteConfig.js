@@ -59,7 +59,11 @@ const siteConfig = {
     primaryColor: "#212121",
     secondaryColor: "#424242"
   },
-
+  algolia: {
+    apiKey: '54dc1e803306b3c7b9c9da789d0b7cf6',
+    indexName: 'rocketact',
+    algoliaOptions: {} // Optional, if provided by Algolia
+  },
   /* Custom fonts for website */
   /*
   fonts: {
