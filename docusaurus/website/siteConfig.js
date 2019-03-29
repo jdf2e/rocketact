@@ -75,11 +75,11 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} JD.com`,
+  copyright: `Copyright © 2018-present Rocketact documentation authors.`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: "github"
+    theme: "monokai"
   },
   usePrism: ['jsx'],
 
@@ -92,14 +92,14 @@ const siteConfig = {
     "https://s23.cnzz.com/z_stat.php?id=1276787744&web_id=1276787744"
   ],
   stylesheets: [
-    `/css/scrollspy.css`,
-    `/css/code-block-buttons.css`
+    // `/css/scrollspy.css`,
+    // `/css/code-block-buttons.css`
   ],
   // On page navigation for the current documentation page.
   onPageNav: "separate",
   // No .html extensions for paths.
   cleanUrl: true,
-
+  cname: "rocketact.js.org",
   // Open Graph and Twitter card images.
   ogImage: "img/rocketact.png",
   twitterImage: "img/rocketact.png",
