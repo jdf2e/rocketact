@@ -227,40 +227,46 @@ class PackageInstaller extends React.Component<
                       >
                         {item.name}
                       </h4>
-                      <Tooltip placement="top" title="View homepage">
-                        <a
-                          href={item.links.homepage}
-                          target="_blank"
-                          style={{ marginLeft: 15 }}
-                        >
-                          <Icon type="home" />
-                        </a>
-                      </Tooltip>
-                      <Tooltip placement="top" title="View repository">
-                        <a
-                          href={item.links.repository}
-                          target="_blank"
-                          style={{ marginLeft: 10 }}
-                        >
-                          <Icon type="github" />
-                        </a>
-                      </Tooltip>
-                      <Tooltip placement="top" title="View on npm">
-                        <a
-                          href={item.links.npm}
-                          target="_blank"
-                          style={{ marginLeft: 10 }}
-                        >
-                          <Icon
-                            style={{
-                              width: 30,
-                              height: 10,
-                              verticalAlign: "middle"
-                            }}
-                            component={npmLogo}
-                          />
-                        </a>
-                      </Tooltip>
+                      {item.links.homepage ? (
+                        <Tooltip placement="top" title="View homepage">
+                          <a
+                            href={item.links.homepage}
+                            target="_blank"
+                            style={{ marginLeft: 15 }}
+                          >
+                            <Icon type="home" />
+                          </a>
+                        </Tooltip>
+                      ) : null}
+                      {item.links.repository ? (
+                        <Tooltip placement="top" title="View repository">
+                          <a
+                            href={item.links.repository}
+                            target="_blank"
+                            style={{ marginLeft: 10 }}
+                          >
+                            <Icon type="github" />
+                          </a>
+                        </Tooltip>
+                      ) : null}
+                      {item.links.npm ? (
+                        <Tooltip placement="top" title="View on npm">
+                          <a
+                            href={item.links.npm}
+                            target="_blank"
+                            style={{ marginLeft: 10 }}
+                          >
+                            <Icon
+                              style={{
+                                width: 30,
+                                height: 10,
+                                verticalAlign: "middle"
+                              }}
+                              component={npmLogo}
+                            />
+                          </a>
+                        </Tooltip>
+                      ) : null}
                       <p style={{ display: "inline", float: "right" }}>
                         {item.publisher ? (
                           <React.Fragment>
