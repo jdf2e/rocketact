@@ -1,6 +1,6 @@
 {
   "name": "rocketact-scripts",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,7 @@
     "@babel/core": "^7.1.6",
     "@types/detect-port": "^1.1.0",
     "babel-loader": "^8.0.4",
-    "babel-preset-rocketact": "^1.0.0",
+    "babel-preset-rocketact": "^1.0.1",
     "copy-webpack-plugin": "^5.0.0",
     "css-loader": "^2.1.0",
     "cssnano": "^4.1.7",
@@ -49,8 +49,8 @@
     "pnp-webpack-plugin": "^1.4.1",
     "postcss-loader": "^3.0.0",
     "progress-bar-webpack-plugin": "^1.11.0",
-    "rocketact-dev-utils": "^1.1.0",
-    "rocketact-web-console": "^1.1.3",
+    "rocketact-dev-utils": "^1.1.1",
+    "rocketact-web-console": "^1.1.4",
     "sass-loader": "^7.1.0",
     "semver": "^6.0.0",
     "style-loader": "^0.23.1",
