@@ -1,0 +1,35 @@
+{
+  "name": "babel-preset-rocketact",
+  "version": "1.0.0",
+  "description": "Babel preset used for rockectact",
+  "main": "index.js",
+  "keywords": [
+    "rocketact",
+    "babel"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.1.5",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@babel/runtime": "^7.2.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.20"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdf2e/rocketact.git"
+  },
+  "author": "loveky <ylzcylx@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jdf2e/rocketact/issues"
+  },
+  "homepage": "https://jdf2e.github.io/rocketact/"
+}

@@ -2450,22 +2450,6 @@ babel-preset-jest@^23.2.0:
     babel-plugin-jest-hoist "^23.2.0"
     babel-plugin-syntax-object-rest-spread "^6.13.0"
 
-babel-preset-rocketact@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-rocketact/-/babel-preset-rocketact-1.0.0.tgz#d7adfb7243e49ca3ee7d6f74bd7625726b53ca0d"
-  integrity sha512-jzTQprhy8O3CTj6fTMLuzv/IKn/3B31aqrZFL+9Qtm/ez8MfG+uXu7W9FTCq4yM5tSj2SMftTx+KGnV9ABUY7A==
-  dependencies:
-    "@babel/core" "^7.1.5"
-    "@babel/plugin-proposal-class-properties" "^7.1.0"
-    "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
-    "@babel/plugin-syntax-dynamic-import" "^7.0.0"
-    "@babel/plugin-transform-runtime" "^7.2.0"
-    "@babel/preset-env" "^7.1.5"
-    "@babel/preset-react" "^7.0.0"
-    "@babel/preset-typescript" "^7.1.0"
-    "@babel/runtime" "^7.2.0"
-    babel-plugin-transform-react-remove-prop-types "^0.4.20"
-
 babel-register@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-register/-/babel-register-6.26.0.tgz#6ed021173e2fcb486d7acb45c6009a856f647071"
