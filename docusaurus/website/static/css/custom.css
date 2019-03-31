@@ -14,3 +14,7 @@
 
 @media only screen and (min-width: 1500px) {
 }
+
+a[title=站长统计] {
+  display: none
+}
