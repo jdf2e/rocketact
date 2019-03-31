@@ -72,6 +72,9 @@ async function createProject() {
   const root = path.resolve(projectName as string);
   const appName = path.basename(root);
 
+  console.log(`Initializing project in ${success(root)}`);
+  console.log();
+
   fs.ensureDirSync(appName);
 
   await copyTemplateFiles(root);
@@ -82,22 +85,23 @@ async function createProject() {
   await replacePkgConfig();
 
   console.log("Installing packages. This might take a couple of minutes.");
-  console.log("Installing react, react-dom, and rocketact-scripts...");
+  console.log(
+    `Installing ${success("react")}, ${success("react-dom")}, and ${success(
+      "rocketact-scripts"
+    )}...`
+  );
+  console.log();
 
-  try {
-    await packageUtil.install();
-    console.log(`Installing packages. ${successBlock(" done ")}`);
-  } catch (err) {
-    console.log(err);
-    console.log(error("Install packages failed."));
-  }
+  await packageUtil.install();
 
   console.log();
-  console.log(`${successBlock(" All Things done. ")}`);
+  console.log(`${successBlock(" All things done. ")}`);
   console.log();
+  console.log("Now you can:");
   console.log(success(`  cd ${projectName}`));
   console.log(success("  yarn start"));
   console.log();
+  console.log("Happy hacking!");
 }
 
 /**
@@ -108,7 +112,6 @@ async function createProject() {
  */
 async function copyTemplateFiles(projectDir: string) {
   try {
-    console.log("Initializing project content...");
     await fs.copy(
       path.resolve(path.join(__dirname, "../../template")),
       projectDir,
@@ -116,7 +119,6 @@ async function copyTemplateFiles(projectDir: string) {
         overwrite: true
       }
     );
-    console.log(`Initializing project content. ${successBlock(" done ")}`);
   } catch (err) {
     console.error(err);
   }
