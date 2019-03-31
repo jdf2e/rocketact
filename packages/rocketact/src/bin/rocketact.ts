@@ -17,8 +17,7 @@ import * as os from "os";
 
 const validatePackageName = require("validate-npm-package-name"); // tslint:disable-line
 
-import program from "commander";
-
+import prog from "caporal";
 /** 项目名称 */
 let projectName: string | undefined;
 
@@ -26,28 +25,22 @@ const projectMainPkg = fs.readJsonSync(
   path.resolve(__dirname, "../../package.json")
 );
 
-program
-  .version(projectMainPkg.version, "-v, --version, -V")
-  .arguments("<project-directory>")
-  .description("rocketact will help you create <project-directory> [options]")
-  .option("create", "Create an awesome app")
-  .allowUnknownOption()
-  .on("--help", () => {
-    console.log(`Only ${infoBlock("<project-directory>")} is required.`);
-    // TODO: 补充更多内容
-  })
-  .action((projectDirectory: string) => {
-    projectName = projectDirectory;
-  })
-  .parse(process.argv);
+prog
+  .version(projectMainPkg.version)
+  .command("create", "create a new project")
+  .argument("<directory>", "directory to create project")
+  .action((args, options, logger) => {
+    projectName = args.directory;
 
-if (!projectName) {
-  console.log(error("Please specify the project directory!"));
-  process.exit(0);
-}
+    if (!projectName) {
+      console.log(error("Please specify the project directory!"));
+      process.exit(0);
+    }
 
-createProject();
+    createProject();
+  });
 
+prog.parse(process.argv);
 /**
  * 校验项目名称
  */

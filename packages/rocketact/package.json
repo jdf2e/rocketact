@@ -40,7 +40,7 @@
   },
   "homepage": "https://rocketact.js.org/",
   "dependencies": {
-    "commander": "^2.19.0",
+    "caporal": "^1.1.0",
     "fs-extra": "^7.0.1",
     "rocketact-dev-utils": "^1.1.1",
     "validate-npm-package-name": "^3.0.0"
