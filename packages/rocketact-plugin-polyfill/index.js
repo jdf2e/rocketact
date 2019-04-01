@@ -6,11 +6,11 @@ module.exports = api => {
     webpackChain.module
       .rule("compile")
       .use("babel")
-      .tap(options => {
+      .tap((options = {}) => {
         const newOptions = {};
         Object.assign(newOptions, options, {
           plugins: [
-            ...options.plugins,
+            ...(options.plugins || []),
             [polyfillsPlugin, { polyfills: [polyfill] }]
           ]
         });
