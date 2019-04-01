@@ -30,7 +30,8 @@
     "typescript": "^3.2.2",
     "tslint-config-prettier": "^1.17.0",
     "autoprefixer": "^9.3.1",
-    "postcss-flexbugs-fixes": "^4.1.0"
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "rocketact-plugin-polyfill": "^0.1.6"
   },
   "dependencies": {
     "react": "^16.7.0",
