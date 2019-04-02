@@ -93,6 +93,7 @@ const siteConfig = {
     "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js",
     `/js/scrollspy.js`,
     `/js/code-block-buttons.js`,
+    '/js/hotjar.js',
     "https://s23.cnzz.com/z_stat.php?id=1276787744&web_id=1276787744"
   ],
   stylesheets: [
