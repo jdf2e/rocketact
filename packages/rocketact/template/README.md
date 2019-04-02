@@ -1,4 +1,4 @@
-This project was created by [`Rocketact`](https://github.com/jdf2e/rocketact).
+This project was created by [`Rocketact`](https://rocketact.js.org).
 
 ## Available Scripts
 
