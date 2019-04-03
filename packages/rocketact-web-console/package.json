@@ -10,7 +10,8 @@
     "build": "tsc --project tsconfig-server.json; webpack",
     "watch": "tsc --project tsconfig-server.json --watch & webpack --watch",
     "watch:client": "webpack --watch",
-    "watch:server": "tsc --project tsconfig-server.json --watch"
+    "watch:server": "tsc --project tsconfig-server.json --watch",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",

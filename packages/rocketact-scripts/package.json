@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "rocketact"

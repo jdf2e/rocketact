@@ -6,8 +6,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "compile": "rm -rf dist && tsc",
-    "prepublishOnly": "npm run compile"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "rocketact",
