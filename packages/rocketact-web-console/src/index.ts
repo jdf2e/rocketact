@@ -7,6 +7,7 @@ import dependenciesAPI from "./server/dependenciesAPI";
 import proxyAPI, { proxyHandler } from "./server/proxyAPI";
 
 export default (app: express.Application) => {
+  app.use(proxyHandler);
   app.use(express.json());
 
   app.use(
@@ -22,6 +23,4 @@ export default (app: express.Application) => {
   app.use("/ROCKETACT_WEB_CONSOLE/api/pages", pagesAPI);
   app.use("/ROCKETACT_WEB_CONSOLE/api/dependencies", dependenciesAPI);
   app.use("/ROCKETACT_WEB_CONSOLE/api/api-proxy", proxyAPI);
-
-  app.use(proxyHandler);
 };
