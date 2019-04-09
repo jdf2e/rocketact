@@ -143,6 +143,11 @@ proxyAPI.post("/rules/move", (req, res) => {
 });
 
 let proxyHandler: RequestHandler = (req, res, next) => {
+  if (req.url.match(/ROCKETACT_WEB_CONSOLE/)) {
+    next();
+    return;
+  }
+
   const matchedRule = ruleCache.find(rule => {
     if (!rule.enabled) {
       return false;
