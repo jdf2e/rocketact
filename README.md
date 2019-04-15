@@ -24,6 +24,7 @@
 - 📤 Supports [TypeScript](https://www.typescriptlang.org/)、[Sass](https://sass-lang.com/)、[PostCSS](https://postcss.org/) out of box
 - 🖥 Full-featured web console
 - 🕹 Fully control over every step of the build process
+- 🔌 Supports [Yarn Plug'n'Play](https://yarnpkg.com/lang/en/docs/pnp/) environment
 
 ## Usage
 
