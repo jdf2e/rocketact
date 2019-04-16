@@ -56,7 +56,7 @@ const siteConfig = {
 
   /* Colors for website */
   colors: {
-    primaryColor: "#212121",
+    primaryColor: "#282c34",
     secondaryColor: "#424242"
   },
   algolia: {

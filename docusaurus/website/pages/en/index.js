@@ -139,7 +139,7 @@ All you need to do is:
 npx rocketact create awesome-project
 \`\`\`
             `,
-            image: `${baseUrl}img/create.gif`,
+            image: `${baseUrl}img/create.svg`,
             imageAlign: 'right',
             title: 'Getting started with one command',
           },
@@ -198,7 +198,7 @@ npx rocketact create awesome-project
     return (
       <div>
         <HomeSplash siteConfig={siteConfig} language={language} />
-        <div className="mainContainer">
+        <div className="mainContainer" style={{padding: 0}}>
           <Features />
           <LearnHow />
           <WebConsole />

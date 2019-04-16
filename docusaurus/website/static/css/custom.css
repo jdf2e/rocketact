@@ -18,3 +18,11 @@
 a[title=站长统计] {
   display: none
 }
+
+.mainContainer a {
+  text-decoration: underline
+}
+
+.mainContainer a:hover {
+  text-decoration: none
+}
