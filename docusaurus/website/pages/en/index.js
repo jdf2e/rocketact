@@ -139,7 +139,7 @@ All you need to do is:
 npx rocketact create awesome-project
 \`\`\`
             `,
-            image: `${baseUrl}img/create.svg`,
+            image: "https://cdn.jsdelivr.net/gh/jdf2e/rocketact@3f24651/docusaurus/website/static/img/create.svg",
             imageAlign: 'right',
             title: 'Getting started with one command',
           },
