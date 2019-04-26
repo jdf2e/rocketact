@@ -114,7 +114,7 @@ export default (api: CoreAPI) => {
         .loader(require.resolve("url-loader"))
         .options({
           limit: 10 * 1024,
-          name: "css/i/[name].[hash:8].[ext]"
+          name: "img/[name].[hash:8].[ext]"
         })
         .end();
     }
