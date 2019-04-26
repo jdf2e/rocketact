@@ -3,11 +3,11 @@ import * as ReactDOM from "react-dom";
 
 import "./app.scss";
 
+import Welcome from "../components/Welcome";
+
 ReactDOM.render(
   <div className="App">
-    <header className="App-header">
-      <h1 className="App-title">Welcome to Rocketact</h1>
-    </header>
+    <Welcome message="Hello World!" />
   </div>,
   document.getElementById("app") as HTMLElement
 );
