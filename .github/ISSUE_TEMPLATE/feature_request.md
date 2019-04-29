@@ -1,11 +1,13 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
+name: 🌈 Feature
+about: What cool thing would you like to add?
 title: "[Feature Request]"
 labels: ''
 assignees: ''
 
 ---
+
+# 🌈 Feature
 
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
