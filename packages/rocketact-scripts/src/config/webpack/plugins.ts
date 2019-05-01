@@ -113,7 +113,8 @@ export default (api: CoreAPI) => {
                 ? resolveToAppRoot("tslint.json")
                 : undefined,
               async: false,
-              typescript: require.resolve("typescript", { paths: [appRoot()] })
+              typescript: require.resolve("typescript", { paths: [appRoot()] }),
+              silent: true
             }
           ]);
       }
