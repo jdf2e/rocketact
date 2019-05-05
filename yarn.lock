@@ -12350,10 +12350,10 @@ webpack-bundle-analyzer@^3.0.4:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-chain@^5.2.3:
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/webpack-chain/-/webpack-chain-5.2.3.tgz#dbe782b1ae3c8a3658600dbb85be0cc8c6eee94d"
-  integrity sha512-4s4X02RiiPKz3v9LwSCTNUyieY8EOfj0DflUC2ySUvtj2/IWH+ai9Orz07uYiQ4l/knR5U88Q9Nty3Oay6OGGw==
+webpack-chain@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/webpack-chain/-/webpack-chain-6.0.0.tgz#9c36525a1271a54e7bfd1791199b395f400ae4f1"
+  integrity sha512-NK62XgJOOSmYs4kaXFIKKeClpuOVHY7m6e4XwxbVX/2HAUboH6xFCTVXMVv8+jB6K8o/UGjlo1Cv3XXOyNAAGw==
   dependencies:
     deepmerge "^1.5.2"
     javascript-stringify "^2.0.0"
