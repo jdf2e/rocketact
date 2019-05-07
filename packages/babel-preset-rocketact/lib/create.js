@@ -26,7 +26,8 @@ module.exports = function(api, options, env) {
       require.resolve("@babel/plugin-proposal-class-properties"),
       require.resolve("@babel/plugin-proposal-object-rest-spread"),
       require.resolve("@babel/plugin-syntax-dynamic-import"),
-      require.resolve("babel-plugin-transform-react-remove-prop-types")
+      require.resolve("babel-plugin-transform-react-remove-prop-types"),
+      require.resolve("babel-plugin-macros")
     ]
   };
 };
