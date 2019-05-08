@@ -1,0 +1,19 @@
+{
+  "name": "rocketact-plugin-legacy-decorators",
+  "version": "1.0.0",
+  "description": "Rockectact plugin to add legacy decorators support",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "rocketact"
+  ],
+  "author": "loveky <ylzcylx@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "rocketact-scripts": "^1.0.0"
+  },
+  "homepage": "https://rocketact.js.org/",
+  "dependencies": {
+    "@babel/plugin-proposal-decorators": "^7.4.4"
+  }
+}
