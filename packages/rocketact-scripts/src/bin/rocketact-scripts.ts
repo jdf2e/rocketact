@@ -39,4 +39,4 @@ Object.keys(environmentVariables).forEach(name => {
   process.env[name] = environmentVariables[name];
 });
 
-core.run(command, argvs).catch(e => null);
+core.run(command, argvs).catch(e => console.log(e));
