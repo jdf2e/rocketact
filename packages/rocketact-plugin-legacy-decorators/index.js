@@ -1,3 +1,5 @@
+const merge = require("babel-merge");
+
 module.exports = api => {
   api.chainWebpack(webpackChain => {
     webpackChain.module

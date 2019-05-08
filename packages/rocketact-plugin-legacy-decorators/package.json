@@ -14,6 +14,7 @@
   },
   "homepage": "https://rocketact.js.org/",
   "dependencies": {
-    "@babel/plugin-proposal-decorators": "^7.4.4"
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "babel-merge": "^3.0.0"
   }
 }
