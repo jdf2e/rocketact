@@ -1,6 +1,6 @@
 {
   "name": "rocketact-plugin-legacy-decorators",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rockectact plugin to add legacy decorators support",
   "main": "index.js",
   "scripts": {},
