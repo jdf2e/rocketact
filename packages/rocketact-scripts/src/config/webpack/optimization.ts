@@ -28,7 +28,9 @@ export default (api: CoreAPI) => {
               ecma: 5,
               mangle: true,
               compress: {
-                drop_console: true
+                drop_console: true,
+                // Disable reduce_funcs for https://github.com/jdf2e/rocketact/issues/29
+                reduce_funcs: false
               }
             },
             sourceMap: false // FIXME: support source map from option
