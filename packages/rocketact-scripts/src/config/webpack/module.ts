@@ -1,5 +1,3 @@
-const autoprefixer = require("autoprefixer");
-const postcssFlexbugsFixes = require("postcss-flexbugs-fixes");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 import path from "path";
