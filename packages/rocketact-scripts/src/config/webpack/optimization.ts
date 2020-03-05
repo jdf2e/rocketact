@@ -1,11 +1,10 @@
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
 
 import CoreAPI from "../../CoreAPI";
 
 import { isProductionEnv, isDevelopmentEnv } from "../../utils/environment";
-
 export default (api: CoreAPI) => {
   api.chainWebpack(webpackChain => {
     if (isProductionEnv()) {
@@ -19,19 +18,11 @@ export default (api: CoreAPI) => {
             }
           }
         })
-        .minimizer("script")
-        .use(UglifyJsPlugin, [
+        .minimizer("terser")
+        .use(TerserPlugin, [
           {
-            cache: true,
-            parallel: true,
-            uglifyOptions: {
-              ecma: 5,
-              mangle: true,
-              compress: {
-                drop_console: true
-              }
-            },
-            sourceMap: false // FIXME: support source map from option
+            sourceMap: false,
+            extractComments: false
           }
         ])
         .end()
