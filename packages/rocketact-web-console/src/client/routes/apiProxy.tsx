@@ -5,6 +5,8 @@ import ProxyRulesTabel from "../components/ProxyRulesTable";
 const JSONInput = require("react-json-editor-ajrm/index").default;
 import { Button, Modal, Select, Input, message } from "antd";
 
+const ButtonGroup = Button.Group;
+
 export interface IProxyRule {
   ruleId: string;
   match: string;
@@ -52,6 +54,7 @@ class APIProxyRoute extends React.Component<
     this.modify = this.modify.bind(this);
     this.toggleState = this.toggleState.bind(this);
     this.move = this.move.bind(this);
+    this.toggleAllEnable = this.toggleAllEnable.bind(this);
   }
 
   componentDidMount() {
@@ -74,6 +77,18 @@ class APIProxyRoute extends React.Component<
     API.deleteProxyRule(ruleId).then(() => {
       this.setState({
         rules: this.state.rules.filter(rule => rule.ruleId !== ruleId)
+      });
+    });
+  }
+
+  toggleAllEnable(enabled: boolean) {
+    API.toggleAllProxyRuleEnable(enabled).then(() => {
+      this.setState({
+        rules: this.state.rules.map(rule => {
+          return Object.assign({}, rule, {
+            enabled
+          });
+        })
       });
     });
   }
@@ -142,6 +157,18 @@ class APIProxyRoute extends React.Component<
           >
             Create new rule
           </Button>
+          &nbsp;&nbsp;
+          <ButtonGroup>
+            <Button icon="api" onClick={() => this.toggleAllEnable(true)}>
+              Enable All Rules
+            </Button>
+            <Button
+              icon="disconnect"
+              onClick={() => this.toggleAllEnable(false)}
+            >
+              Disable All Rules
+            </Button>
+          </ButtonGroup>
         </p>
         <ProxyRulesTabel
           rules={this.state.rules}

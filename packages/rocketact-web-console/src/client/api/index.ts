@@ -113,6 +113,12 @@ function updateProxyRule(ruleId: string, rule: IProxyRule) {
     .then(handleResponse);
 }
 
+function toggleAllProxyRuleEnable(enabled: boolean) {
+  return axios
+    .put(`${API_BASE}/api-proxy/rules/enable`, { enabled })
+    .then(handleResponse);
+}
+
 function toggleProxyRuleState(ruleId: string, enabled: boolean) {
   return axios
     .put(`${API_BASE}/api-proxy/rule/${ruleId}/enabled`, { enabled })
@@ -138,5 +144,6 @@ export {
   deleteProxyRule,
   updateProxyRule,
   toggleProxyRuleState,
+  toggleAllProxyRuleEnable,
   moveProxyRule
 };
