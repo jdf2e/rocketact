@@ -108,5 +108,5 @@ const store = observable(
   }
 );
 
-store.refresh();
+// store.refresh();
 export default store;

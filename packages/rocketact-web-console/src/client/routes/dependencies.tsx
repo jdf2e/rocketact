@@ -52,6 +52,12 @@ class Dependencies extends React.Component<
     this.refreshOnClosePackageInstaller = false;
   }
 
+  componentDidMount() {
+    if (this.props.store.main && this.props.store.main.length === 0) {
+      dependenciesStore.refresh();
+    }
+  }
+
   remove(name: string) {
     globalLoadingStore.show(`Removing ${name}...`);
     API.uninstall(name)
