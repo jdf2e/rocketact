@@ -77,6 +77,19 @@ proxyAPI.post("/rules", (req, res) => {
 });
 
 /**
+ * modify the enabled of all rules
+ */
+proxyAPI.put("/rules/enable", (req, res) => {
+  ruleCache = ruleCache.map(rule => {
+    return Object.assign({}, rule, { enabled: req.body.enabled });
+  });
+
+  res.json({
+    success: true
+  });
+});
+
+/**
  * modify detail info of specific rule
  */
 proxyAPI.put("/rule/:ruleId", (req, res) => {
