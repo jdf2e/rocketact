@@ -13,7 +13,7 @@ import {
   successBlock,
   checkPackageInstalled,
   appBuild,
-  resolveToAppRoot
+  resolveToAppRoot,
 } from "rocketact-dev-utils";
 
 import webpack from "webpack";
@@ -27,11 +27,11 @@ import ConsolePlugin from "../../plugins/console";
 import {
   getValidEntries,
   ensureTrailingSlash,
-  appRoot
+  appRoot,
 } from "rocketact-dev-utils";
 
 export default (api: CoreAPI) => {
-  api.chainWebpack(webpackChain => {
+  api.chainWebpack((webpackChain) => {
     if (isDevelopmentEnv()) {
       webpackChain.plugin("ConsolePlugin").use(ConsolePlugin, [
         {
@@ -39,10 +39,12 @@ export default (api: CoreAPI) => {
             () =>
               `Your application is running at ${info(
                 `http://localhost:${global.ROCKETACT_PORT}`
-              )}`
+              )}`,
           ],
-          notes: [`To create a production bundle, run ${info("npm run build")}`]
-        }
+          notes: [
+            `To create a production bundle, run ${info("npm run build")}`,
+          ],
+        },
       ]);
       webpackChain
         .plugin("NamedModulesPlugin")
@@ -69,16 +71,16 @@ export default (api: CoreAPI) => {
           {
             filename: process.env.NO_HASH
               ? "css/[name].bundle.css"
-              : "css/[name].[contenthash:8].css"
-          }
+              : "css/[name].[contenthash:8].css",
+          },
         ])
         .end()
         .plugin("ProgressBarPlugin")
         .use(ProgressBarPlugin, [
           {
             format: `${infoBlock(" WAITING ")} ${info("[:bar] (:percent)")}`,
-            summary: false
-          }
+            summary: false,
+          },
         ])
         .end()
         .plugin("CopyPlugin")
@@ -89,9 +91,9 @@ export default (api: CoreAPI) => {
               to: appBuild(),
               context: appRoot(),
               transformPath: (targetPath: string) =>
-                targetPath.replace(/^public\//, "")
-            }
-          ]
+                targetPath.replace(/^public\//, ""),
+            },
+          ],
         ]);
 
       // Configure TypeScript check and TSLint check
@@ -103,7 +105,7 @@ export default (api: CoreAPI) => {
         checkPackageInstalled("typescript") &&
         fs.existsSync(resolveToAppRoot("tsconfig.json"));
 
-      if (enableTSCheck) {
+      if (enableTSLintCheck && enableTSCheck) {
         webpackChain
           .plugin("ForkTsCheckerWebpackPlugin")
           .use(ForkTsCheckerWebpackPlugin, [
@@ -113,15 +115,17 @@ export default (api: CoreAPI) => {
                 ? resolveToAppRoot("tslint.json")
                 : undefined,
               async: false,
-              typescript: require.resolve("typescript", { paths: [appRoot()] }),
-              silent: true
-            }
+              typescript: require.resolve("typescript", {
+                paths: [appRoot()],
+              }),
+              silent: true,
+            },
           ]);
       }
     }
 
     const validEntries = getValidEntries(appRoot());
-    Object.keys(validEntries).forEach(entryName => {
+    Object.keys(validEntries).forEach((entryName) => {
       const entry = validEntries[entryName];
 
       webpackChain
@@ -129,7 +133,7 @@ export default (api: CoreAPI) => {
         .use(
           ...createHtmlWebpackPluginInstance({
             entryName,
-            template: entry.html
+            template: entry.html,
           })
         )
         .end();
@@ -137,8 +141,8 @@ export default (api: CoreAPI) => {
 
     webpackChain.plugin("InterpolateHtmlPlugin").use(InterpolateHtmlPlugin, [
       {
-        PUBLIC_URL: process.env.PUBLIC_URL || ""
-      }
+        PUBLIC_URL: process.env.PUBLIC_URL || "",
+      },
     ]);
   });
 };
