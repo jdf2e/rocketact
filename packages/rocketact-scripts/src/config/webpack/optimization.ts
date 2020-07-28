@@ -6,7 +6,7 @@ import CoreAPI from "../../CoreAPI";
 
 import { isProductionEnv, isDevelopmentEnv } from "../../utils/environment";
 export default (api: CoreAPI) => {
-  api.chainWebpack(webpackChain => {
+  api.chainWebpack((webpackChain) => {
     if (isProductionEnv()) {
       webpackChain.optimization
         .splitChunks({
@@ -14,16 +14,21 @@ export default (api: CoreAPI) => {
             commons: {
               test: /[\\/]node_modules[\\/]/,
               name: "vendor",
-              chunks: "initial"
-            }
-          }
+              chunks: "initial",
+            },
+          },
         })
         .minimizer("terser")
         .use(TerserPlugin, [
           {
             sourceMap: false,
-            extractComments: false
-          }
+            extractComments: false,
+            terserOptions: {
+              compress: {
+                drop_console: true,
+              },
+            },
+          },
         ])
         .end()
         .minimizer("css")
@@ -37,9 +42,9 @@ export default (api: CoreAPI) => {
               discardUnused: false,
               autoprefixer: false,
               zindex: false,
-              map: false // FIXME: support source map from option
-            }
-          }
+              map: false, // FIXME: support source map from option
+            },
+          },
         ])
         .end();
     }
