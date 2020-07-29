@@ -23,11 +23,6 @@ export default (api: CoreAPI) => {
           {
             sourceMap: false,
             extractComments: false,
-            terserOptions: {
-              compress: {
-                drop_console: true,
-              },
-            },
           },
         ])
         .end()
