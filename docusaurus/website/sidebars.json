@@ -1,9 +1,26 @@
 {
   "docs": {
-    "Getting Started": ["getting-started", "Folder Structure", "available-scripts", "supported-browsers-features"],
-    "Development": ["managing-depencencies", "adding-pages", "adding-stylesheets", "post-processing-css", "adding-images"],
-    "Deployment":["public-path"],
-    "Plugins": ["what-is-the-plugin", "rocketact-plugin-polyfill", "rocketact-plugin-bundle-analyzer", "plugin-template"]
+    "Getting Started": [
+      "getting-started",
+      "Folder Structure",
+      "available-scripts",
+      "supported-browsers-features"
+    ],
+    "Development": [
+      "managing-depencencies",
+      "adding-pages",
+      "adding-stylesheets",
+      "post-processing-css",
+      "adding-images"
+    ],
+    "Deployment": ["public-path"],
+    "Plugins": [
+      "what-is-the-plugin",
+      "rocketact-plugin-polyfill",
+      "rocketact-plugin-bundle-analyzer",
+      "plugin-template",
+      "awesome-plugins"
+    ]
   },
   "docs-other": {
     "First Category": ["doc4", "doc5"]
