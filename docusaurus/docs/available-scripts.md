@@ -58,3 +58,21 @@ yarn build -- --no-hash
 # or
 NO_HASH=true yarn build
 ```
+
+### Commandline Options
+
+#### `--https`
+
+> Available since Rocketact-Scripts 1.9.3
+
+This supports [webpack dev server mode](https://webpack.js.org/configuration/dev-server/#devserverhttps).
+
+Corresponding environment variable: `HTTPS`.
+
+For example:
+
+```bash
+yarn build -- --https
+# or
+HTTPS=true yarn build
+```
