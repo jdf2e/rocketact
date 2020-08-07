@@ -1,6 +1,6 @@
 {
   "name": "rocketact-dev-utils",
-  "version": "1.1.4-beta0",
+  "version": "1.1.4",
   "description": "shared utils for rocketact and it's plugins",
   "main": "./dist/index.js",
   "keywords": [

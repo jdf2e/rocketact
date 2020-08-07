@@ -1,6 +1,6 @@
 {
   "name": "rocketact-scripts",
-  "version": "1.9.3-beta3",
+  "version": "1.9.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -50,7 +50,7 @@
     "pnp-webpack-plugin": "^1.4.1",
     "postcss-loader": "^3.0.0",
     "progress-bar-webpack-plugin": "^1.11.0",
-    "rocketact-dev-utils": "1.1.4-beta0",
+    "rocketact-dev-utils": "1.1.4",
     "rocketact-web-console": "^1.1.8",
     "sass-loader": "^7.1.0",
     "semver": "^6.0.0",
