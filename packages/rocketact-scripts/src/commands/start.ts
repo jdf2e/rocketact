@@ -12,7 +12,7 @@ import {
   info,
   warningBlock,
   warning,
-  resolveToAppRoot
+  resolveToAppRoot,
 } from "rocketact-dev-utils";
 
 import CoreAPI from "../CoreAPI";
@@ -34,6 +34,7 @@ export default (api: CoreAPI) => {
           overlay: true,
           hot: true,
           host: "127.0.0.1",
+          https: process.env.HTTPS ? true : false,
           publicPath: "/",
           contentBase:
             fs.existsSync(publicDir) &&
@@ -41,19 +42,19 @@ export default (api: CoreAPI) => {
             publicDir,
           quiet: true,
           stats: {
-            colors: true
+            colors: true,
           },
-          before: app => {
+          before: (app) => {
             webConsole(app);
           },
           historyApiFallback: {
             rewrites: [
               {
                 from: /^(\/[^/]*\.html)\/.*$/,
-                to: context => context.match[1]
-              }
-            ]
-          }
+                to: (context) => context.match[1],
+              },
+            ],
+          },
         };
 
         WebpackDevServer.addDevServerEntrypoints(

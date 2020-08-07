@@ -46,7 +46,8 @@ export default (api: CoreAPI) => {
         .use("css")
         .loader(require.resolve("css-loader"))
         .options({
-          sourceMap: true // FIXME: suport setting from --option
+          sourceMap: true, // FIXME: suport setting from --option
+          modules: true
         })
         .end()
         .use("postcss")
@@ -84,6 +85,7 @@ export default (api: CoreAPI) => {
         .end()
         .use("css")
         .loader(require.resolve("css-loader"))
+        .options({modules: true})
         .end()
         .use("postcss")
         .loader(require.resolve("postcss-loader"))
