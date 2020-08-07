@@ -9,3 +9,4 @@ docusaurus/website/node_modules
 docusaurus/website/i18n/*
 *.tsbuildinfo
 .vscode
+.idea

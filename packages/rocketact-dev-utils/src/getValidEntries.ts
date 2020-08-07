@@ -15,15 +15,30 @@ interface IValidEntries {
 const getEntriesByExt = (p: string, extReg: RegExp): IEntries => {
   const fullPath = path.resolve(p, "./src/pages");
   if (fs.existsSync(fullPath)) {
-    const files = fs.readdirSync(fullPath);
     const result: IEntries = {};
+    const filesWithDir = fs.readdirSync(fullPath, { withFileTypes: true });
 
-    files.forEach(file => {
-      if (file.match(extReg)) {
-        result[path.basename(file).replace(extReg, "")] = path.resolve(
-          fullPath,
-          file
+    filesWithDir.forEach((file) => {
+      if (file.isDirectory()) {
+        const filesDir = fs.readdirSync(
+          path.resolve(p, "./src/pages", file.name)
         );
+        filesDir.forEach((fileItem) => {
+          if (fileItem.match(extReg)) {
+            result[
+              `${file.name}/${path.basename(fileItem).replace(extReg, "")}`
+            ] = path.resolve(fullPath, file.name, fileItem);
+          }
+        });
+        // return getEntriesByExt(p, extReg, "./src/pages/" + file.name);
+        // TODO: 递归
+      } else {
+        if (file.name.match(extReg)) {
+          result[file.name.replace(extReg, "")] = path.resolve(
+            fullPath,
+            file.name
+          );
+        }
       }
     });
 
@@ -33,17 +48,17 @@ const getEntriesByExt = (p: string, extReg: RegExp): IEntries => {
   }
 };
 
-const getValidEntries: (p: string) => IValidEntries = p => {
+const getValidEntries: (p: string) => IValidEntries = (p) => {
   const jsEntries = getEntriesByExt(p, /\.[tj]sx?$/);
   const htmlEntries = getEntriesByExt(p, /\.html$/);
 
   const result: IValidEntries = {};
 
-  Object.keys(jsEntries).forEach(entry => {
+  Object.keys(jsEntries).forEach((entry) => {
     if (htmlEntries[entry]) {
       result[entry] = {
         js: jsEntries[entry],
-        html: htmlEntries[entry]
+        html: htmlEntries[entry],
       };
     }
   });
