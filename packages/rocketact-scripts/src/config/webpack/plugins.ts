@@ -38,7 +38,9 @@ export default (api: CoreAPI) => {
           messages: [
             () =>
               `Your application is running at ${info(
-                `http://localhost:${global.ROCKETACT_PORT}`
+                `http${process.env.HTTPS ? "s" : ""}://localhost:${
+                  global.ROCKETACT_PORT
+                }`
               )}`,
           ],
           notes: [
