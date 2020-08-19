@@ -68,7 +68,7 @@ export default (api: CoreAPI) => {
       // support css-module
       webpackChain.module
         .rule("scss-module")
-        .test(/module\.(css|sass|scss)$/)
+        .test(/\.module\.(css|sass|scss)$/)
         .use("style")
         .loader(require.resolve("style-loader"))
         .options({
@@ -115,7 +115,7 @@ export default (api: CoreAPI) => {
       // support css-module
       webpackChain.module
         .rule("scss-module")
-        .test(/module\.(css|sass|scss)$/)
+        .test(/\.module\.(css|sass|scss)$/)
         .use("mini-css-extract-plugin")
         .loader(MiniCssExtractPlugin.loader)
         .end()
