@@ -80,7 +80,7 @@ export default (api: CoreAPI) => {
         .options({
           sourceMap: true, // FIXME: suport setting from --option
           modules: true,
-          // modules: new RegExp(/(module)\.(css|sass|scss)$/).test(webpackChain.module.)
+          localIdentName: "[name]_[local]__[hash:base64:5]",
         })
         .end()
         .use("postcss")
@@ -121,7 +121,10 @@ export default (api: CoreAPI) => {
         .end()
         .use("css")
         .loader(require.resolve("css-loader"))
-        .options({ modules: true })
+        .options({
+          modules: true,
+          localIdentName: "[name]_[local]__[hash:base64:5]",
+        })
         .end()
         .use("postcss")
         .loader(require.resolve("postcss-loader"))
