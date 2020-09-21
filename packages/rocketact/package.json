@@ -1,6 +1,6 @@
 {
   "name": "rocketact",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "Develop React projects with ease",
   "main": "index.js",
   "scripts": {

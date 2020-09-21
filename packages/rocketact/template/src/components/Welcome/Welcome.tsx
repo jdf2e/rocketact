@@ -3,7 +3,7 @@ import * as React from "react";
 import logo from "./logo.svg";
 import "./Welcome.scss";
 
-const Welcome: React.SFC<{ message: string }> = props => {
+const Welcome = (props: { message: string }) => {
   return (
     <div className="welcome-container">
       <img src={logo} />
