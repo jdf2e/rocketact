@@ -1,7 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const InterpolateHtmlPlugin = require("interpolate-html-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
 import createHtmlWebpackPluginInstance from "../../utils/createHtmlWebpackPluginInstance";
@@ -140,11 +139,5 @@ export default (api: CoreAPI) => {
         )
         .end();
     });
-
-    webpackChain.plugin("InterpolateHtmlPlugin").use(InterpolateHtmlPlugin, [
-      {
-        PUBLIC_URL: process.env.PUBLIC_URL || "",
-      },
-    ]);
   });
 };

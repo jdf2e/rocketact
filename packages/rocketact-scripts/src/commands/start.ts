@@ -58,6 +58,7 @@ export default (api: CoreAPI) => {
         };
 
         WebpackDevServer.addDevServerEntrypoints(
+          // @ts-ignore
           webpackConfig,
           devServerOptions
         );
@@ -78,7 +79,11 @@ export default (api: CoreAPI) => {
             }
             console.log(`${infoBlock(" WAITING ")} ${info("Building...")}`);
             const compiler = webpack(webpackConfig);
-            const devServer = new WebpackDevServer(compiler, devServerOptions);
+            const devServer = new WebpackDevServer(
+              // @ts-ignore
+              compiler,
+              devServerOptions
+            );
             global.ROCKETACT_PORT = availablePort;
 
             devServer.listen(availablePort, "0.0.0.0", () => {});

@@ -11,7 +11,7 @@ import {
   successBlock,
   appBuild,
   appPackageJson,
-  removeTrailingSlash
+  removeTrailingSlash,
 } from "rocketact-dev-utils";
 
 export default (api: CoreAPI) => {
@@ -45,7 +45,7 @@ export default (api: CoreAPI) => {
                   reject(err);
                 } else {
                   const info = stats.toJson();
-                  console.log(error(info.errors));
+                  console.log(error(info.errors.join()));
                   reject(info.errors);
                 }
               } else {
