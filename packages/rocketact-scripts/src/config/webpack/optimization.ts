@@ -21,7 +21,7 @@ export default (api: CoreAPI) => {
         .minimizer("terser")
         .use(TerserPlugin, [
           {
-            sourceMap: false,
+            sourceMap: process.env.SOURCEMAP ? Boolean(process.env.SOURCEMAP) : false,
             extractComments: false,
           },
         ])

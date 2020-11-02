@@ -40,25 +40,25 @@ export default (api: CoreAPI) => {
         .use("style")
         .loader(require.resolve("style-loader"))
         .options({
-          sourceMap: true, // FIXME: suport setting from --option
+          sourceMap: true,
         })
         .end()
         .use("css")
         .loader(require.resolve("css-loader"))
         .options({
-          sourceMap: true, // FIXME: suport setting from --option
+          sourceMap: true,
         })
         .end()
         .use("postcss")
         .loader(require.resolve("postcss-loader"))
         .options({
-          sourceMap: true, // FIXME: suport setting from --option
+          sourceMap: true,
         })
         .end()
         .use("scss")
         .loader(require.resolve("sass-loader"))
         .options({
-          sourceMap: true, // FIXME: suport setting from --option
+          sourceMap: true,
           outputStyle: "compressed",
           implementation: require("node-sass"),
         })
@@ -72,13 +72,13 @@ export default (api: CoreAPI) => {
         .use("style")
         .loader(require.resolve("style-loader"))
         .options({
-          sourceMap: true, // FIXME: suport setting from --option
+          sourceMap: true,
         })
         .end()
         .use("css")
         .loader(require.resolve("css-loader"))
         .options({
-          sourceMap: true, // FIXME: suport setting from --option
+          sourceMap: true,
           modules: true,
           localIdentName: "[name]_[local]__[hash:base64:5]",
         })
@@ -86,13 +86,13 @@ export default (api: CoreAPI) => {
         .use("postcss")
         .loader(require.resolve("postcss-loader"))
         .options({
-          sourceMap: true, // FIXME: suport setting from --option
+          sourceMap: true,
         })
         .end()
         .use("scss")
         .loader(require.resolve("sass-loader"))
         .options({
-          sourceMap: true, // FIXME: suport setting from --option
+          sourceMap: true,
           outputStyle: "compressed",
           implementation: require("node-sass"),
         })
