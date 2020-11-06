@@ -55,7 +55,6 @@ export default (api: CoreAPI) => {
                     `Build completed in ${duration}s`
                   )}`
                 );
-                console.dir(stats);
                 resolve();
               }
             });

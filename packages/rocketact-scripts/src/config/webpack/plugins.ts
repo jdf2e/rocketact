@@ -61,7 +61,7 @@ export default (api: CoreAPI) => {
       webpackChain
         // https://www.webpackjs.com/plugins/hashed-module-ids-plugin/
         .plugin("HashedModuleIdsPlugin")
-        .use(new webpack.HashedModuleIdsPlugin() as PluginClass)
+        .use(new webpack.HashedModuleIdsPlugin() as PluginClass) // new (...opts: any[]): webpack.Plugin;
         .end()
         .plugin("MiniCssExtractPlugin")
         .use(MiniCssExtractPlugin, [
