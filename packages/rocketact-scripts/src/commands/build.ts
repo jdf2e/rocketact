@@ -30,6 +30,7 @@ export default (api: CoreAPI) => {
         .then(() => {
           return new Promise((resolve, reject) => {
             const startTime = +new Date();
+            // @ts-ignore
             webpack(api.resolveWebpackConfig(), (err, stats) => {
               const endTime = +new Date();
               const duration = ((endTime - startTime) / 1000).toFixed(2);

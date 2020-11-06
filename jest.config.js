@@ -7,7 +7,8 @@ module.exports = {
     "ts-jest": {
       tsConfig: {
         moduleResolution: "node",
-        esModuleInterop: true
+        esModuleInterop: true,
+        diagnostics: false
       }
     }
   }

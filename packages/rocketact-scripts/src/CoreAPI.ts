@@ -1,4 +1,5 @@
 import Core, { webpackChainFn } from "./Core";
+import * as webpack from 'webpack';
 
 export default class CoreAPI {
   private readonly core: Core;
@@ -14,7 +15,7 @@ export default class CoreAPI {
     this.core.commands[name] = { fn };
   }
 
-  resolveWebpackConfig() {
+  resolveWebpackConfig(): unknown {
     return this.core.resolveWebpackConfig();
   }
 }

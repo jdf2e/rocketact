@@ -78,6 +78,7 @@ export default (api: CoreAPI) => {
               );
             }
             console.log(`${infoBlock(" WAITING ")} ${info("Building...")}`);
+            // @ts-ignore
             const compiler = webpack(webpackConfig);
             const devServer = new WebpackDevServer(
               // @ts-ignore

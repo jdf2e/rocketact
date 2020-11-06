@@ -1,4 +1,6 @@
-import WebpackChain from "webpack-chain";
+import WebpackChain  from "webpack-chain";
+import * as webpack from 'webpack';
+
 import {
   error,
   appPackageJson,
@@ -67,7 +69,7 @@ class Core {
     }
   }
 
-  resolveWebpackConfig() {
+  resolveWebpackConfig(): unknown {
     if (!this.webpackConfigResolved) {
       this.applyWebpackChainFns();
       this.webpackConfigResolved = true;

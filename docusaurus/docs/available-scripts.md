@@ -83,7 +83,7 @@ This will generate sourcemap files for `*.(t|j)s` which in current project.
 
 `Rocketact@1.x` dependencies `Webpack@4.x` and [`terser-webpack-plugin@4.2.3`](https://github.com/webpack-contrib/terser-webpack-plugin/tree/v4.2.3#sourcemap).
 
-> terser-webpack-plugin@5.x no longer supported webpack@4. [https://github.com/webpack-contrib/terser-webpack-plugin/releases/tag/v5.0.0](https://github.com/webpack-contrib/terser-webpack-plugin/releases/tag/v5.0.0)
+> terser-webpack-plugin@5.x no longer supported webpack@4.x [https://github.com/webpack-contrib/terser-webpack-plugin/releases/tag/v5.0.0](https://github.com/webpack-contrib/terser-webpack-plugin/releases/tag/v5.0.0)
 
 More Powerful ability for generating sourcemap files, please use other webpack plugins.
 
