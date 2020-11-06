@@ -1,3 +1,4 @@
+import { PluginClass } from "webpack-chain";
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
@@ -58,10 +59,9 @@ export default (api: CoreAPI) => {
 
     if (isProductionEnv()) {
       webpackChain
-          // https://www.webpackjs.com/plugins/hashed-module-ids-plugin/
+        // https://www.webpackjs.com/plugins/hashed-module-ids-plugin/
         .plugin("HashedModuleIdsPlugin")
-        // @ts-ignore
-        .use(webpack.HashedModuleIdsPlugin())
+        .use(new webpack.HashedModuleIdsPlugin() as PluginClass)
         .end()
         .plugin("MiniCssExtractPlugin")
         .use(MiniCssExtractPlugin, [
