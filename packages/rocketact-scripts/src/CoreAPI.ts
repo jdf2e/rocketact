@@ -15,7 +15,7 @@ export default class CoreAPI {
     this.core.commands[name] = { fn };
   }
 
-  resolveWebpackConfig(): webpack.Configuration {
+  resolveWebpackConfig(): unknown {
     return this.core.resolveWebpackConfig();
   }
 }

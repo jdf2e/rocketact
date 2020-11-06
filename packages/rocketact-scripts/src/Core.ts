@@ -69,12 +69,12 @@ class Core {
     }
   }
 
-  resolveWebpackConfig(): webpack.Configuration {
+  resolveWebpackConfig(): unknown {
     if (!this.webpackConfigResolved) {
       this.applyWebpackChainFns();
       this.webpackConfigResolved = true;
     }
-    return this.webpackChain.toConfig() as webpack.Configuration;
+    return this.webpackChain.toConfig();
   }
 
   run(command: string, args: minimist.ParsedArgs): Promise<any> {
