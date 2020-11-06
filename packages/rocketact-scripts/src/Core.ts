@@ -1,4 +1,6 @@
-import WebpackChain from "webpack-chain";
+import WebpackChain  from "webpack-chain";
+import * as webpack from 'webpack';
+
 import {
   error,
   appPackageJson,
@@ -67,12 +69,12 @@ class Core {
     }
   }
 
-  resolveWebpackConfig() {
+  resolveWebpackConfig(): webpack.Configuration {
     if (!this.webpackConfigResolved) {
       this.applyWebpackChainFns();
       this.webpackConfigResolved = true;
     }
-    return this.webpackChain.toConfig();
+    return this.webpackChain.toConfig() as webpack.Configuration;
   }
 
   run(command: string, args: minimist.ParsedArgs): Promise<any> {

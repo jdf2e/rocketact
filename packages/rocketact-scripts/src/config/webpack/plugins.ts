@@ -8,8 +8,6 @@ import createHtmlWebpackPluginInstance from "../../utils/createHtmlWebpackPlugin
 import {
   info,
   infoBlock,
-  success,
-  successBlock,
   checkPackageInstalled,
   appBuild,
   resolveToAppRoot,
@@ -25,13 +23,13 @@ import ConsolePlugin from "../../plugins/console";
 
 import {
   getValidEntries,
-  ensureTrailingSlash,
   appRoot,
 } from "rocketact-dev-utils";
 
 export default (api: CoreAPI) => {
   api.chainWebpack((webpackChain) => {
     if (isDevelopmentEnv()) {
+      // @ts-ignore
       webpackChain.plugin("ConsolePlugin").use(ConsolePlugin, [
         {
           messages: [
@@ -48,14 +46,10 @@ export default (api: CoreAPI) => {
         },
       ]);
       webpackChain
-        .plugin("NamedModulesPlugin")
-        .use(webpack.NamedModulesPlugin)
-        .end()
+        // https://webpack.js.org/migrate/4/#deprecatedremoved-plugins
         .plugin("DefinePlugin")
+        // @ts-ignore
         .use(webpack.DefinePlugin, [{ __DEV__: true }])
-        .end()
-        .plugin("NoEmitOnErrorsPlugin")
-        .use(webpack.NoEmitOnErrorsPlugin)
         .end()
         .plugin("HotModuleReplacementPlugin")
         .use(webpack.HotModuleReplacementPlugin)
@@ -64,8 +58,10 @@ export default (api: CoreAPI) => {
 
     if (isProductionEnv()) {
       webpackChain
+          // https://www.webpackjs.com/plugins/hashed-module-ids-plugin/
         .plugin("HashedModuleIdsPlugin")
-        .use(webpack.HashedModuleIdsPlugin)
+        // @ts-ignore
+        .use(webpack.HashedModuleIdsPlugin())
         .end()
         .plugin("MiniCssExtractPlugin")
         .use(MiniCssExtractPlugin, [
