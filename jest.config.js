@@ -8,9 +8,7 @@ module.exports = {
       tsConfig: {
         moduleResolution: "node",
         esModuleInterop: true,
-        diagnostics: {
-          warnOnly: true
-        }
+        diagnostics: false
       }
     }
   }
