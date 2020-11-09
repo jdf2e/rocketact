@@ -53,7 +53,7 @@ export default (api: CoreAPI) => {
         .use(webpack.DefinePlugin, [{ __DEV__: true }])
         .end()
         .plugin("HotModuleReplacementPlugin")
-        .use(webpack.HotModuleReplacementPlugin)
+        .use(new webpack.HotModuleReplacementPlugin as PluginClass)
         .end();
     }
 

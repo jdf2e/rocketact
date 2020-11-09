@@ -13,7 +13,6 @@ export default function (config: {
       {
         filename: `${config.entryName}.html`,
         template: config.template,
-        publicPath: process.env.PUBLIC_URL || "",
         chunks: [config.entryName, isProductionEnv() ? "vendor" : ""].filter(
           Boolean
         ),
