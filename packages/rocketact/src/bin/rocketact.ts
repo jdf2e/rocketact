@@ -6,6 +6,7 @@ import {
   success,
   info,
   infoBlock,
+  errorBlock,
   normalBlock,
   successBlock,
   packageUtil
@@ -15,6 +16,9 @@ import * as fs from "fs-extra";
 import * as path from "path";
 import * as os from "os";
 
+const latestVersion = require("latest-version");
+const download = require('download');
+const decompress = require('decompress');
 const validatePackageName = require("validate-npm-package-name"); // tslint:disable-line
 
 import prog from "caporal";
@@ -29,6 +33,8 @@ prog
   .version(projectMainPkg.version)
   .command("create", "create a new project")
   .argument("<directory>", "directory to create project")
+  .option('--template <template>', 'custom template\'s name, ex. demo', prog.STRING, )
+  // @ts-ignore
   .action((args, options, logger) => {
     projectName = args.directory;
 
@@ -37,7 +43,7 @@ prog
       process.exit(0);
     }
 
-    createProject();
+    createProject(options.template);
   });
 
 prog.parse(process.argv);
@@ -66,7 +72,7 @@ function printValidationResults(results: [string]): void {
   }
 }
 
-async function createProject() {
+async function createProject(template?: string) {
   checkProjectName();
 
   const root = path.resolve(projectName as string);
@@ -77,7 +83,7 @@ async function createProject() {
 
   fs.ensureDirSync(appName);
 
-  await copyTemplateFiles(root);
+  await copyTemplateFiles(root, template);
 
   process.chdir(root);
 
@@ -108,10 +114,15 @@ async function createProject() {
  * 拷贝模板文件
  *
  * @param {string} projectDir
+ * @param {string} template 模板名称
  * @returns
  */
-async function copyTemplateFiles(projectDir: string) {
+async function copyTemplateFiles(projectDir: string, template?: string) {
   try {
+    if(template) {
+      await copyTemplateFilesFromTemplate(projectDir, template)
+      return;
+    }
     await fs.copy(
       path.resolve(path.join(__dirname, "../../template")),
       projectDir,
@@ -123,6 +134,32 @@ async function copyTemplateFiles(projectDir: string) {
     console.error(err);
   }
 }
+
+/**
+ * 根据模板名称下载模板，并创建文件夹
+ *
+ * @param projectDir
+ * @param template
+ */
+async function copyTemplateFilesFromTemplate(projectDir: string, template: string) {
+  const latestVersionStr = await latestVersion(`rocketact-template-${template}`).catch((e: any) => {
+    console.log(`${errorBlock(' Error ')} Initial Falled.`);
+    console.log(e)
+    process.exit(1);
+  });
+
+  // TODO: 支持其他 registry 地址
+  await fs.writeFileSync(`${projectDir}/${template}.tgz`,
+    await download(`https://registry.npmjs.org/rocketact-template-${template}/-/rocketact-template-${template}-${latestVersionStr}.tgz`));
+
+  await decompress(`${projectDir}/${template}.tgz`, `${projectDir}`).then(async () =>{
+    await fs.copySync(`${projectDir}/package/`, projectDir, { overwrite: true });
+
+    await fs.removeSync(`${projectDir}/package/`);
+    await fs.removeSync(`${projectDir}/${template}.tgz`);
+  });
+}
+
 /**
  * Mannualy rename .npmignore to .gitignore
  *
