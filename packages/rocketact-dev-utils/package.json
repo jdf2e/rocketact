@@ -1,6 +1,6 @@
 {
   "name": "rocketact-dev-utils",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "shared utils for rocketact and it's plugins",
   "main": "./dist/index.js",
   "keywords": [
@@ -34,7 +34,7 @@
   "homepage": "https://rocketact.js.org/",
   "dependencies": {
     "chalk": "^2.4.1",
-    "execa": "^1.0.0",
+    "execa": "^5.0.0",
     "get-stream": "^5.0.0"
   }
 }
