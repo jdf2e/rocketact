@@ -34,7 +34,7 @@ prog
   .version(projectMainPkg.version)
   .command("create", "create a new project")
   .argument("<directory>", "directory to create project")
-  .option('--template <template>', 'custom template\'s name, ex. demo', prog.STRING, )
+  .option('--template <template>', 'custom template\'s name, ex. demo', prog.STRING)
   // @ts-ignore
   .action((args, options, logger) => {
     projectName = args.directory;
