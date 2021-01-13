@@ -16,9 +16,10 @@ import * as fs from "fs-extra";
 import * as path from "path";
 import * as os from "os";
 
-const latestVersion = require("latest-version");
 const download = require('download');
 const decompress = require('decompress');
+const execa = require("execa");
+
 const validatePackageName = require("validate-npm-package-name"); // tslint:disable-line
 
 import prog from "caporal";
@@ -142,15 +143,23 @@ async function copyTemplateFiles(projectDir: string, template?: string) {
  * @param template
  */
 async function copyTemplateFilesFromTemplate(projectDir: string, template: string) {
-  const latestVersionStr = await latestVersion(`rocketact-template-${template}`).catch((e: any) => {
+  let tarDownloadUrl = '';
+  try {
+    const execaResult = await execa(`npm`, ['view', `rocketact-template-${template}`, 'dist.tarball']);
+    tarDownloadUrl = execaResult.stdout;
+  } catch (e) {
     console.log(`${errorBlock(' Error ')} Initial Falled.`);
     console.log(e)
     process.exit(1);
-  });
+  }
 
-  // TODO: 支持其他 registry 地址
+  if(!tarDownloadUrl) {
+    console.log(`${errorBlock(' Error ')} Initial Falled.`);
+    process.exit(1);
+  }
+
   await fs.writeFileSync(`${projectDir}/${template}.tgz`,
-    await download(`https://registry.npmjs.org/rocketact-template-${template}/-/rocketact-template-${template}-${latestVersionStr}.tgz`));
+    await download(tarDownloadUrl));
 
   await decompress(`${projectDir}/${template}.tgz`, `${projectDir}`).then(async () =>{
     await fs.copySync(`${projectDir}/package/`, projectDir, { overwrite: true });
