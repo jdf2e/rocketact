@@ -28,6 +28,7 @@ export default (api: CoreAPI) => {
       .loader(require.resolve("babel-loader"))
       .options({
         presets: [require.resolve("babel-preset-rocketact")],
+        cacheDirectory: true,
       })
       .end()
       .end()
