@@ -57,12 +57,6 @@ export default (api: CoreAPI) => {
           },
         };
 
-        WebpackDevServer.addDevServerEntrypoints(
-          // @ts-ignore
-          webpackConfig,
-          devServerOptions
-        );
-
         const expectedPort = process.env.PORT ? Number(process.env.PORT) : 3000;
 
         detectPort(expectedPort, (err, availablePort) => {
