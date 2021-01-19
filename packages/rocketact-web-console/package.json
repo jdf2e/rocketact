@@ -1,13 +1,13 @@
 {
   "name": "rocketact-web-console",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "Rocketact Web Console",
   "main": "index.js",
   "keywords": [
     "rocketact"
   ],
   "scripts": {
-    "build": "tsc --project tsconfig-server.json; webpack",
+    "build": "tsc --project tsconfig-server.json & webpack",
     "watch": "tsc --project tsconfig-server.json --watch & webpack --watch",
     "watch:client": "webpack --watch",
     "watch:server": "tsc --project tsconfig-server.json --watch",
