@@ -2,7 +2,7 @@ import React from "react";
 
 import * as API from "../api";
 
-import { Table } from "antd";
+import { Table, Tooltip } from "antd";
 
 interface IPage {
   name: string;
@@ -31,7 +31,16 @@ class Pages extends React.PureComponent<{}, IPagesState> {
       {
         title: "Name",
         dataIndex: "name",
-        key: "name"
+        key: "name",
+        render: (text: any, record: IPage) => (
+          <span>
+            <Tooltip title={"Open with url without *.html as a suffix"}>
+              <a href={`/${record.name}`} target="_blank">
+                {record.name}
+              </a>
+            </Tooltip>
+          </span>
+        )
       },
       {
         title: "Title",

@@ -1,4 +1,3 @@
-import path from "path";
 import fs from "fs";
 import webpack from "webpack";
 import WebpackDevServer from "webpack-dev-server";
@@ -13,6 +12,8 @@ import {
   warningBlock,
   warning,
   resolveToAppRoot,
+  getValidEntries,
+  appRoot
 } from "rocketact-dev-utils";
 
 import CoreAPI from "../CoreAPI";
@@ -27,6 +28,14 @@ export default (api: CoreAPI) => {
       process.env.NODE_ENV = "development";
       process.env.PUBLIC_URL = "";
 
+      const validEntries = getValidEntries(appRoot());
+      const validEntryRewrites = Object.keys(validEntries).map(item => {
+        return {
+          from: new RegExp(`${item}`),
+          to: `/${item}.html`
+        }
+      });
+
       return new Promise((resolve, reject) => {
         const webpackConfig = api.resolveWebpackConfig();
         const devServerOptions: WebpackDevServer.Configuration = {
@@ -34,7 +43,7 @@ export default (api: CoreAPI) => {
           overlay: true,
           hot: true,
           host: "127.0.0.1",
-          https: process.env.HTTPS ? true : false,
+          https: !!process.env.HTTPS,
           publicPath: "/",
           contentBase:
             fs.existsSync(publicDir) &&
@@ -49,6 +58,7 @@ export default (api: CoreAPI) => {
           },
           historyApiFallback: {
             rewrites: [
+              ...validEntryRewrites,
               {
                 from: /^(\/[^/]*\.html)\/.*$/,
                 to: (context) => context.match[1],
