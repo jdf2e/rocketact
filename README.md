@@ -27,6 +27,7 @@
 - 🖥 Full-featured web console
 - 🕹 Fully control over every step of the build process
 - 🔌 Supports [Yarn Plug'n'Play](https://yarnpkg.com/lang/en/docs/pnp/) environment
+- 💈 Supports Custom Template
 
 ## Usage
 

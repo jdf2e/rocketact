@@ -31,7 +31,28 @@ npm start
 
 Then open [http://localhost:3000](http://localhost:3000) to see your app.
 
+### Start with a customized template
+
+> Available since rocketact@0.3.3
+
+Rocketact supports custom template for starting a new project.
+
+```bash
+npx rocketact create my-awesome-app --template [template-name]
+```
+
+Rocketact will help you download `rocketact-template-template-name` and initialize the project. Different from `cra-template-custom`, Rocketact totally ensure all files of the custom template, including `package.json`, `npm scripts` and so on.
+
+We ship some templates by default. [rocketact-template-default](https://www.npmjs.com/package/rocketact-template-default)
+
+ex.
+
+```bash
+npx rocketact create my-awesome-app --template default
+## or with version. Rocketact supports installing a template with a assign version.
+npx rocketact create my-awesome-app --template default@1.0.1
+```
+
 ## Environment Requirement
 
-Rocketact requires **Node >= 8**. You can use [nvm](https://github.com/creationix/nvm) (for Mac/Linux) or [nvm-windows](https://github.com/coreybutler/nvm-windows) (for Windows) to switch between different Node versions on your local machine.
-
+Rocketact requires **Node >= 10**. You can use [nvm](https://github.com/creationix/nvm) (for Mac/Linux) or [nvm-windows](https://github.com/coreybutler/nvm-windows) (for Windows) to switch between different Node versions on your local machine.
