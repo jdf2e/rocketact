@@ -13,11 +13,20 @@ import {
   warning,
   resolveToAppRoot,
   getValidEntries,
-  appRoot
+  appRoot,
+  appPackageJson,
 } from "rocketact-dev-utils";
 
 import CoreAPI from "../CoreAPI";
 const webConsole = require("rocketact-web-console").default;
+const pkg = JSON.parse(fs.readFileSync(appPackageJson()).toString());
+
+/*resolve proxy config start*/
+const rocketactProxyConfig = pkg.rocketactProxy
+  ? require(resolveToAppRoot(pkg.rocketactProxy))
+  : null;
+const rocketactProxy = rocketactProxyConfig ? rocketactProxyConfig : {};
+/*resolve proxy config end*/
 
 export default (api: CoreAPI) => {
   api.registerCommand(
@@ -29,11 +38,11 @@ export default (api: CoreAPI) => {
       process.env.PUBLIC_URL = "";
 
       const validEntries = getValidEntries(appRoot());
-      const validEntryRewrites = Object.keys(validEntries).map(item => {
+      const validEntryRewrites = Object.keys(validEntries).map((item) => {
         return {
           from: new RegExp(`${item}`),
-          to: `/${item}.html`
-        }
+          to: `/${item}.html`,
+        };
       });
 
       return new Promise((resolve, reject) => {
@@ -44,6 +53,7 @@ export default (api: CoreAPI) => {
           hot: true,
           host: "127.0.0.1",
           https: !!process.env.HTTPS,
+          open: !!process.env.OPEN,
           publicPath: "/",
           contentBase:
             fs.existsSync(publicDir) &&
@@ -65,6 +75,7 @@ export default (api: CoreAPI) => {
               },
             ],
           },
+          proxy: rocketactProxy,
         };
 
         const expectedPort = process.env.PORT ? Number(process.env.PORT) : 3000;
