@@ -1,0 +1,23 @@
+---
+id: http-proxy
+title: 开发模式下配置代理
+---
+
+## 如何在 Rocketact 中自定义 proxy 配置？
+
+自定义代理配置的引用方式和自定义 plugin 的方式类似。你可以在项目的根文件夹中创建一个`rocketactProxy.js`文件，该文件导出的对象将直接作用于`devServer.proxy`配置，其完全遵循`devServer.proxy`的配置规则，其内容可以按如下格式：
+
+```jsx
+module.exports = {
+  "/api": {
+    target: "http://localhost:3000",
+    changeOrigin: true,
+  },
+};
+```
+
+然后通过在 package.json 新增配置`rocketactProxy`，告诉 Rocketact 加载该文件 ：
+
+```jsx
+ "rocketactProxy": "./rocketactProxy.js"
+```

@@ -12,7 +12,8 @@
       "adding-pages",
       "adding-stylesheets",
       "post-processing-css",
-      "adding-images"
+      "adding-images",
+      "http-proxy"
     ],
     "Deployment": ["public-path"],
     "Plugins": [
