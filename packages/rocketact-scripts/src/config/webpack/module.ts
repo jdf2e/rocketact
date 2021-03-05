@@ -8,6 +8,8 @@ import { isDevelopmentEnv, isProductionEnv } from "../../utils/environment";
 
 import { getValidEntries, appRoot, appSrc } from "rocketact-dev-utils";
 
+const merge = require("babel-merge");
+
 export default (api: CoreAPI) => {
   api.chainWebpack((webpackChain) => {
     webpackChain.module
@@ -110,6 +112,16 @@ export default (api: CoreAPI) => {
           publicPath: "/",
         })
         .end();
+
+      //suport react-refresh
+      webpackChain.module
+        .rule("compile")
+        .use("babel")
+        .tap((options) =>
+          merge(options, {
+            plugins: [require.resolve("react-refresh/babel")],
+          })
+        );
     }
 
     if (isProductionEnv()) {

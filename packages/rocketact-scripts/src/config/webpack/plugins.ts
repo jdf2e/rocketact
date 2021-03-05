@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 import createHtmlWebpackPluginInstance from "../../utils/createHtmlWebpackPluginInstance";
 
@@ -22,10 +23,7 @@ import CoreAPI from "../../CoreAPI";
 import { isProductionEnv, isDevelopmentEnv } from "../../utils/environment";
 import ConsolePlugin from "../../plugins/console";
 
-import {
-  getValidEntries,
-  appRoot,
-} from "rocketact-dev-utils";
+import { getValidEntries, appRoot } from "rocketact-dev-utils";
 
 export default (api: CoreAPI) => {
   api.chainWebpack((webpackChain) => {
@@ -53,8 +51,10 @@ export default (api: CoreAPI) => {
         .use(webpack.DefinePlugin, [{ __DEV__: true }])
         .end()
         .plugin("HotModuleReplacementPlugin")
-        .use(new webpack.HotModuleReplacementPlugin as PluginClass)
+        .use(new webpack.HotModuleReplacementPlugin() as PluginClass)
         .end();
+      //suport react-refresh
+      webpackChain.plugin("react-refresh").use(ReactRefreshWebpackPlugin);
     }
 
     if (isProductionEnv()) {
